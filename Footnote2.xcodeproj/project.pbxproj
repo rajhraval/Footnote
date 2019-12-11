@@ -16,9 +16,9 @@
 		FCD0C84223A070FF00EFA591 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FCD0C84023A070FF00EFA591 /* LaunchScreen.storyboard */; };
 		FCD0C84B23A0717100EFA591 /* Quote+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C84923A0717100EFA591 /* Quote+CoreDataClass.swift */; };
 		FCD0C84C23A0717100EFA591 /* Quote+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C84A23A0717100EFA591 /* Quote+CoreDataProperties.swift */; };
-		FCD0C84E23A0736A00EFA591 /* AddQuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C84D23A0736A00EFA591 /* AddQuoteView.swift */; };
 		FCD0C85023A073E900EFA591 /* Cosmetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C84F23A073E900EFA591 /* Cosmetics.swift */; };
 		FCD0C85223A0742600EFA591 /* QuoteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C85123A0742600EFA591 /* QuoteItemView.swift */; };
+		FCD0C85823A077C500EFA591 /* AddQuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C85723A077C500EFA591 /* AddQuoteView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,9 +33,9 @@
 		FCD0C84323A070FF00EFA591 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FCD0C84923A0717100EFA591 /* Quote+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quote+CoreDataClass.swift"; sourceTree = "<group>"; };
 		FCD0C84A23A0717100EFA591 /* Quote+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quote+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		FCD0C84D23A0736A00EFA591 /* AddQuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuoteView.swift; sourceTree = "<group>"; };
 		FCD0C84F23A073E900EFA591 /* Cosmetics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cosmetics.swift; sourceTree = "<group>"; };
 		FCD0C85123A0742600EFA591 /* QuoteItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteItemView.swift; sourceTree = "<group>"; };
+		FCD0C85723A077C500EFA591 /* AddQuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddQuoteView.swift; path = Footnote2/AddQuoteView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,6 +52,7 @@
 		FCD0C82623A070FE00EFA591 = {
 			isa = PBXGroup;
 			children = (
+				FCD0C85723A077C500EFA591 /* AddQuoteView.swift */,
 				FCD0C83123A070FE00EFA591 /* Footnote2 */,
 				FCD0C83023A070FE00EFA591 /* Products */,
 			);
@@ -74,7 +75,6 @@
 				FCD0C83423A070FE00EFA591 /* SceneDelegate.swift */,
 				FCD0C83923A070FE00EFA591 /* ContentView.swift */,
 				FCD0C85123A0742600EFA591 /* QuoteItemView.swift */,
-				FCD0C84D23A0736A00EFA591 /* AddQuoteView.swift */,
 				FCD0C84F23A073E900EFA591 /* Cosmetics.swift */,
 				FCD0C83B23A070FF00EFA591 /* Assets.xcassets */,
 				FCD0C84023A070FF00EFA591 /* LaunchScreen.storyboard */,
@@ -164,10 +164,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FCD0C85823A077C500EFA591 /* AddQuoteView.swift in Sources */,
 				FCD0C84C23A0717100EFA591 /* Quote+CoreDataProperties.swift in Sources */,
 				FCD0C83323A070FE00EFA591 /* AppDelegate.swift in Sources */,
 				FCD0C84B23A0717100EFA591 /* Quote+CoreDataClass.swift in Sources */,
-				FCD0C84E23A0736A00EFA591 /* AddQuoteView.swift in Sources */,
 				FCD0C85023A073E900EFA591 /* Cosmetics.swift in Sources */,
 				FCD0C83823A070FE00EFA591 /* Footnote2.xcdatamodeld in Sources */,
 				FCD0C85223A0742600EFA591 /* QuoteItemView.swift in Sources */,
