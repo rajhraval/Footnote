@@ -2,7 +2,7 @@
 //  Quote+CoreDataProperties.swift
 //  Footnote2
 //
-//  Created by Cameron Bardell on 2019-12-10.
+//  Created by Cameron Bardell on 2019-12-12.
 //  Copyright © 2019 Cameron Bardell. All rights reserved.
 //
 //
@@ -16,9 +16,9 @@ extension Quote {
     @nonobjc public class func fetchRequest() -> NSFetchRequest<Quote> {
         return NSFetchRequest<Quote>(entityName: "Quote")
     }
-
+    @NSManaged public var author: String
     @NSManaged public var text: String
     @NSManaged public var title: String
-    @NSManaged public var author: String
+    @NSManaged public var dateCreated: Date
 
 }

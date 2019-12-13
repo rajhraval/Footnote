@@ -18,7 +18,7 @@ struct ContentView: View {
     @FetchRequest(
         entity: Quote.entity(),
         sortDescriptors: [
-            NSSortDescriptor(keyPath: \Quote.text, ascending: true)
+            NSSortDescriptor(keyPath: \Quote.dateCreated, ascending: false)
         ]
     ) var quotes: FetchedResults<Quote>
     
@@ -36,10 +36,10 @@ struct ContentView: View {
                     Divider()
                     
                     // TODO: Quote detail view, edit quote.
-                    List(self.quotes, id: \.self) { quote in
-                        QuoteItemView(quote: quote)
-            
-                        
+                    List {
+                        ForEach(self.quotes, id: \.self) { quote in
+                            QuoteItemView(quote: quote)
+                        }.onDelete(perform: self.removeQuote)
                     }
                     
                     
@@ -74,14 +74,25 @@ struct ContentView: View {
                 .gesture(DragGesture()
                     .onEnded {_ in
                         self.offset = .init(width: 0, height: 0)
-                    
+                        // Dismiss keyboard
+                        UIApplication.shared.endEditing()
                 })
                 .offset(x: 0, y: self.offset.height)
                 
-                
-
             }
             
+        }
+    }
+    
+   func removeQuote(at offsets: IndexSet) {
+        for index in offsets {
+            let quote = quotes[index]
+            managedObjectContext.delete(quote)
+        }
+        do {
+            try managedObjectContext.save()
+        } catch {
+            // handle the Core Data error
         }
     }
 }

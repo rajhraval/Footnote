@@ -33,3 +33,10 @@ extension Color {
     static let footnoteDark = Color(UIColor(red: 0.20, green: 0.25, blue: 0.33, alpha: 1.00))
     
 }
+
+// Dismiss keyboard
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}

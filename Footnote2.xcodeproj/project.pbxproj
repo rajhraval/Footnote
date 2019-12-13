@@ -22,7 +22,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FCD0C82F23A070FE00EFA591 /* Footnote2.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Footnote2.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FCD0C82F23A070FE00EFA591 /* Footnote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Footnote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD0C83223A070FE00EFA591 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCD0C83423A070FE00EFA591 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		FCD0C83723A070FE00EFA591 /* Footnote2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Footnote2.xcdatamodel; sourceTree = "<group>"; };
@@ -35,7 +35,7 @@
 		FCD0C84A23A0717100EFA591 /* Quote+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Quote+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		FCD0C84F23A073E900EFA591 /* Cosmetics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cosmetics.swift; sourceTree = "<group>"; };
 		FCD0C85123A0742600EFA591 /* QuoteItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteItemView.swift; sourceTree = "<group>"; };
-		FCD0C85723A077C500EFA591 /* AddQuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddQuoteView.swift; path = Footnote2/AddQuoteView.swift; sourceTree = "<group>"; };
+		FCD0C85723A077C500EFA591 /* AddQuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuoteView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -52,7 +52,6 @@
 		FCD0C82623A070FE00EFA591 = {
 			isa = PBXGroup;
 			children = (
-				FCD0C85723A077C500EFA591 /* AddQuoteView.swift */,
 				FCD0C83123A070FE00EFA591 /* Footnote2 */,
 				FCD0C83023A070FE00EFA591 /* Products */,
 			);
@@ -61,7 +60,7 @@
 		FCD0C83023A070FE00EFA591 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				FCD0C82F23A070FE00EFA591 /* Footnote2.app */,
+				FCD0C82F23A070FE00EFA591 /* Footnote.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -69,6 +68,7 @@
 		FCD0C83123A070FE00EFA591 /* Footnote2 */ = {
 			isa = PBXGroup;
 			children = (
+				FCD0C85723A077C500EFA591 /* AddQuoteView.swift */,
 				FCD0C84923A0717100EFA591 /* Quote+CoreDataClass.swift */,
 				FCD0C84A23A0717100EFA591 /* Quote+CoreDataProperties.swift */,
 				FCD0C83223A070FE00EFA591 /* AppDelegate.swift */,
@@ -110,7 +110,7 @@
 			);
 			name = Footnote2;
 			productName = Footnote2;
-			productReference = FCD0C82F23A070FE00EFA591 /* Footnote2.app */;
+			productReference = FCD0C82F23A070FE00EFA591 /* Footnote.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -318,7 +318,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bardell.Footnote2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Footnote;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -338,7 +338,7 @@
 					"@executable_path/Frameworks",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.bardell.Footnote2;
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Footnote;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
