@@ -9,22 +9,25 @@
 import SwiftUI
 
 struct AddQuoteView: View {
+    
     @Environment(\.managedObjectContext) var managedObjectContext
     @State var text: String = ""
-    @State var title: String = ""
     @State var author: String = ""
+    @State var title: String = ""
+    
     var body: some View {
+        
         GeometryReader { geometry in
             VStack {
-                
-                
                 TextField("Text", text: self.$text)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
                 TextField("Title", text: self.$title)
+                    .textContentType(.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding([.leading, .trailing, .bottom])
                 TextField("Author", text: self.$author)
+                    .textContentType(.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding([.leading, .trailing, .bottom])
                 Button(action: {
@@ -33,19 +36,18 @@ struct AddQuoteView: View {
                     Image(systemName: "plus.circle.fill")
                         .resizable()
                         .frame(width: 50, height: 50)
-                        .foregroundColor(Color.footnoteBabyBlue)
+                        .foregroundColor(Color.footnoteOrange)
                         .padding(.bottom)
                     
                 }.padding(.top)
                 
-                Text("Add Quote").font(.title).foregroundColor(Color.footnoteCream)
-                Text("Swipe to dismiss").font(.footnote).foregroundColor(Color.footnoteCream)
+                Text("Add Quote").font(.title).foregroundColor(Color.white)
+                Text("Swipe to dismiss").font(.footnote).foregroundColor(Color.white)
                 Spacer()
                 
             }.frame(width: geometry.size.width - 20, height: geometry.size.height)
-                .background(Color.footnoteDark)
-            .cornerRadius(10)
-             
+                .background(Color.footnoteRed)
+                .cornerRadius(10)
         }
     }
     
@@ -56,19 +58,18 @@ struct AddQuoteView: View {
         quote.text = self.text
         quote.author = self.author
         quote.dateCreated = Date()
+        
         do {
             try self.managedObjectContext.save()
         } catch {
             // handle the Core Data error
         }
+        
         title = ""
         text = ""
         author = ""
     }
-    
-    
 }
-
 
 struct AddQuoteView_Previews: PreviewProvider {
     static var previews: some View {

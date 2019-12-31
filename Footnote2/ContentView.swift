@@ -40,9 +40,8 @@ struct ContentView: View {
                         ForEach(self.quotes, id: \.self) { quote in
                             QuoteItemView(quote: quote)
                         }.onDelete(perform: self.removeQuote)
+                        
                     }
-                    
-                    
                 }
                 
                 // Embedded stacks to put button in bottom corner
@@ -57,10 +56,10 @@ struct ContentView: View {
                                 .resizable()
                                 .frame(width: 50, height: 50)
                                 
-                                .background(Color.footnoteBabyBlue)
+                                .background(Color.footnoteOrange)
                                 // Needs a background to colour the plus, corner radius to remove box
                                 .cornerRadius(25)
-                                .foregroundColor(Color.footnoteDark)
+                                .foregroundColor(Color.footnoteRed)
                                 .padding()
                             
                         }
@@ -97,8 +96,12 @@ struct ContentView: View {
     }
 }
 
+// To preview with CoreData
+#if DEBUG
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        return ContentView().environment(\.managedObjectContext, context)
     }
 }
+#endif

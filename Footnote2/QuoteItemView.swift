@@ -9,26 +9,34 @@
 import SwiftUI
 
 struct QuoteItemView: View {
+    
     var quote: Quote
     var body: some View {
         VStack(alignment: .leading) {
-            Text(quote.text)
+            Text(quote.text ?? "")
                 .multilineTextAlignment(.leading)
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(3)
-               
+            
             Divider()
             HStack(alignment: .top) {
-                Text("\(quote.title)  by \(quote.author)").font(.footnote)
-                    
+                Text("\(quote.title ?? "")  by \(quote.author ?? "")").font(.footnote)
+                    .foregroundColor(Color.footnoteRed)
+                Spacer()
+                Text(formatDate(date: quote.dateCreated ??
+                Date())).font(.footnote)
+                .foregroundColor(Color.footnoteRed)
+                
             }.padding(3)
-            
-        }.padding(5)
-        .background(Color.footnoteBabyBlue)
-        .cornerRadius(10)
-        .padding(5)
+        }
         
+    }
+    
+    func formatDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM d y"
+        return formatter.string(from: date)
     }
 }
 

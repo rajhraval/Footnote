@@ -26,11 +26,9 @@ extension Color {
     }
     
     // Palette 1
-    static let footnoteBlue = Color(UIColor(red: 0.15, green: 0.43, blue: 0.83, alpha: 1.00))
-    static let footnoteBabyBlue = Color(UIColor(red: 0.54, green: 0.81, blue: 0.94, alpha: 1.00))
-    static let footnoteCream = Color(UIColor(red: 1.00, green: 1.00, blue: 0.96, alpha: 1.00))
-    static let footnotePurple = Color(UIColor(red: 0.53, green: 0.50, blue: 0.60, alpha: 1.00))
-    static let footnoteDark = Color(UIColor(red: 0.20, green: 0.25, blue: 0.33, alpha: 1.00))
+
+    static let footnoteOrange = Color(UIColor(red: 0.99, green: 0.67, blue: 0.06, alpha: 1.00))
+    static let footnoteRed = Color(UIColor(red: 0.66, green: 0.13, blue: 0.10, alpha: 1.00))
     
 }
 
