@@ -63,7 +63,7 @@ struct ContentView: View {
                                 .resizable()
                                 .frame(width: 50, height: 50)
                                 
-                                .background(Color.white)
+                               
                                 // Needs a background to colour the plus, corner radius to remove box
                                 .cornerRadius(25)
                                 .foregroundColor(Color.footnoteRed)
@@ -108,7 +108,11 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        return ContentView().environment(\.managedObjectContext, context)
+        return Group {
+            ContentView().environment(\.managedObjectContext, context).environment(\.colorScheme, .light)
+            ContentView().environment(\.managedObjectContext, context).environment(\.colorScheme, .dark)
+        }
+         
     }
 }
 #endif
