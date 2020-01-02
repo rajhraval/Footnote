@@ -63,7 +63,7 @@ struct ContentView: View {
                                 .resizable()
                                 .frame(width: 50, height: 50)
                                 
-                                .background(Color.footnoteOrange)
+                                .background(Color.white)
                                 // Needs a background to colour the plus, corner radius to remove box
                                 .cornerRadius(25)
                                 .foregroundColor(Color.footnoteRed)

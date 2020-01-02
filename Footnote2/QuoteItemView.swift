@@ -19,7 +19,7 @@ struct QuoteItemView: View {
                 .fixedSize(horizontal: false, vertical: true)
                 .padding(3)
             
-            Divider()
+            
             HStack(alignment: .top) {
                 VStack(alignment: .leading) {
                     Text("\(quote.title ?? "")").font(.footnote)

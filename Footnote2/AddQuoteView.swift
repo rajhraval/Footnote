@@ -36,7 +36,7 @@ struct AddQuoteView: View {
                     Image(systemName: "plus.circle.fill")
                         .resizable()
                         .frame(width: 50, height: 50)
-                        .foregroundColor(Color.footnoteOrange)
+                        .foregroundColor(Color.white)
                         .padding(.bottom)
                     
                 }.padding(.top)
