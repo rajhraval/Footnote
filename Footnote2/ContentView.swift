@@ -37,7 +37,7 @@ struct ContentView: View {
                     TextField("Search", text: self.$search)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .padding([.leading, .trailing])
-                    Divider()
+                    
                     
                     // TODO: Quote detail view, edit quote.
                     if self.search != "" {
@@ -117,8 +117,6 @@ struct ContentView_Previews: PreviewProvider {
 }
 #endif
 
-
-
 struct FilteredList: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     var fetchRequest: FetchRequest<Quote>
@@ -129,9 +127,10 @@ struct FilteredList: View {
             ], predicate: NSCompoundPredicate(
                 type: .or,
                 subpredicates: [
-                    NSPredicate(format: "text CONTAINS %@", filter),
-                    NSPredicate(format: "author CONTAINS %@", filter),
-                    NSPredicate(format: "title CONTAINS %@", filter)
+                    // [cd] = case and diacritic insensitive
+                    NSPredicate(format: "text CONTAINS[cd] %@", filter),
+                    NSPredicate(format: "author CONTAINS[cd] %@", filter),
+                    NSPredicate(format: "title CONTAINS[cd] %@", filter)
                 ]
         ))
     }
