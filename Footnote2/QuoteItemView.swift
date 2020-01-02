@@ -21,8 +21,12 @@ struct QuoteItemView: View {
             
             Divider()
             HStack(alignment: .top) {
-                Text("\(quote.title ?? "")  by \(quote.author ?? "")").font(.footnote)
-                    .foregroundColor(Color.footnoteRed)
+                VStack(alignment: .leading) {
+                    Text("\(quote.title ?? "")").font(.footnote)
+                        .foregroundColor(Color.footnoteRed)
+                    Text("by \(quote.author ?? "")").font(.footnote)
+                        .foregroundColor(Color.footnoteRed)
+                }
                 Spacer()
                 Text(formatDate(date: quote.dateCreated ??
                 Date())).font(.footnote)

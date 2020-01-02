@@ -14,6 +14,7 @@ struct ContentView: View {
     
     //Controls translation of AddQuoteView
     @State private var offset: CGSize = .zero
+    @State var search = ""
     
     @FetchRequest(
         entity: Quote.entity(),
@@ -27,20 +28,26 @@ struct ContentView: View {
             ZStack {
                 VStack {
                     HStack {
-                    Text("Quotes")
-                        .font(.title)
-                        .fontWeight(.semibold)
-                        .padding([.leading, .top])
+                        Text("Quotes")
+                            .font(.title)
+                            .fontWeight(.semibold)
+                            .padding([.leading, .top])
                         Spacer()
                     }
+                    TextField("Search", text: self.$search)
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .padding([.leading, .trailing])
                     Divider()
                     
                     // TODO: Quote detail view, edit quote.
-                    List {
-                        ForEach(self.quotes, id: \.self) { quote in
-                            QuoteItemView(quote: quote)
-                        }.onDelete(perform: self.removeQuote)
-                        
+                    if self.search != "" {
+                        FilteredList(filter: self.search).environment(\.managedObjectContext, self.managedObjectContext)
+                    } else {
+                        List {
+                            ForEach(self.quotes, id: \.self) { quote in
+                                QuoteItemView(quote: quote)
+                            }.onDelete(perform: self.removeQuote)
+                        }
                     }
                 }
                 
@@ -65,25 +72,25 @@ struct ContentView: View {
                         }
                     }
                 }
-            
+                
                 // TODO: Keyboard Guardian
-          
+                
                 AddQuoteView().environment(\.managedObjectContext, self.managedObjectContext).offset(x: 0, y: geometry.size.height)
-                .animation(.spring())
-                .gesture(DragGesture()
-                    .onEnded {_ in
-                        self.offset = .init(width: 0, height: 0)
-                        // Dismiss keyboard
-                        UIApplication.shared.endEditing()
-                })
-                .offset(x: 0, y: self.offset.height)
+                    .animation(.spring())
+                    .gesture(DragGesture()
+                        .onEnded {_ in
+                            self.offset = .init(width: 0, height: 0)
+                            // Dismiss keyboard
+                            UIApplication.shared.endEditing()
+                    })
+                    .offset(x: 0, y: self.offset.height)
                 
             }
             
         }
     }
     
-   func removeQuote(at offsets: IndexSet) {
+    func removeQuote(at offsets: IndexSet) {
         for index in offsets {
             let quote = quotes[index]
             managedObjectContext.delete(quote)
@@ -105,3 +112,44 @@ struct ContentView_Previews: PreviewProvider {
     }
 }
 #endif
+
+
+
+struct FilteredList: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    var fetchRequest: FetchRequest<Quote>
+    
+    init(filter: String) {
+        fetchRequest = FetchRequest<Quote>(entity: Quote.entity(), sortDescriptors: [
+            NSSortDescriptor(keyPath: \Quote.dateCreated, ascending: false)
+            ], predicate: NSCompoundPredicate(
+                type: .or,
+                subpredicates: [
+                    NSPredicate(format: "text CONTAINS %@", filter),
+                    NSPredicate(format: "author CONTAINS %@", filter),
+                    NSPredicate(format: "title CONTAINS %@", filter)
+                ]
+        ))
+    }
+    var body: some View {
+
+        List {
+            ForEach(fetchRequest.wrappedValue, id: \.self) { quote in
+                QuoteItemView(quote: quote)
+            }.onDelete(perform: self.removeQuote)
+        }
+
+    }
+    
+    func removeQuote(at offsets: IndexSet) {
+        for index in offsets {
+            let quote = fetchRequest.wrappedValue[index]
+            managedObjectContext.delete(quote)
+        }
+        do {
+            try managedObjectContext.save()
+        } catch {
+            // handle the Core Data error
+        }
+    }
+}
