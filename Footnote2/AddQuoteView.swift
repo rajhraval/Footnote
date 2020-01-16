@@ -26,10 +26,15 @@ struct AddQuoteView: View {
                     .textContentType(.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding([.leading, .trailing, .bottom])
+                    .disableAutocorrection(true)
                 TextField("Author", text: self.$author)
                     .textContentType(.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding([.leading, .trailing, .bottom])
+                    .disableAutocorrection(true)
+                
+                SuggestionsView(filter: self.author, filterType: "author").environment(\.managedObjectContext, self.managedObjectContext)
+                
                 Button(action: {
                     self.addQuote()
                 }) {
@@ -69,6 +74,36 @@ struct AddQuoteView: View {
         text = ""
         author = ""
     }
+}
+
+struct SuggestionsView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    var fetchRequest: FetchRequest<Quote>
+
+    
+    init(filter: String, filterType: String) {
+        fetchRequest = FetchRequest<Quote>(entity: Quote.entity(), sortDescriptors: [
+            NSSortDescriptor(keyPath: \Quote.dateCreated, ascending: false)
+            ], predicate: NSCompoundPredicate(
+                type: .or,
+                subpredicates: [
+                    // [cd] = case and diacritic insensitive
+                    NSPredicate(format: "author CONTAINS[cd] %@", filter),
+                    NSPredicate(format: "title CONTAINS[cd] %@", filter)
+                ]
+        ))
+    }
+    var body: some View {
+        
+        ScrollView(.horizontal) {
+            HStack {
+                ForEach(fetchRequest.wrappedValue, id: \.self) { quote in
+                    Circle().fill(Color.white)
+                }
+            }
+        }
+    }
+    
 }
 
 struct AddQuoteView_Previews: PreviewProvider {

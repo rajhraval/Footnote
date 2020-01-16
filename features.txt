@@ -1,0 +1,6 @@
+ - No autocorrect on author and title
+ - Auto caps on author and title
+ - Suggested authors and titles as you type
+ - Export
+ - Ratings, sort by ratings
+ - Edit quotes
