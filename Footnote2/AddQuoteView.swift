@@ -19,6 +19,16 @@ struct AddQuoteView: View {
         
         GeometryReader { geometry in
             VStack {
+                Button(action: {
+                    self.addQuote()
+                }) {
+                    Image(systemName: "plus.circle.fill")
+                        .resizable()
+                        .frame(width: 50, height: 50)
+                        .foregroundColor(Color.white)
+                     
+                    
+                }
                 TextField("Text", text: self.$text)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding()
@@ -27,24 +37,19 @@ struct AddQuoteView: View {
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                     .padding([.leading, .trailing, .bottom])
                     .disableAutocorrection(true)
+                
                 TextField("Author", text: self.$author)
                     .textContentType(.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding([.leading, .trailing, .bottom])
+                    .padding([.leading, .trailing])
                     .disableAutocorrection(true)
                 
-                SuggestionsView(filter: self.author, filterType: "author").environment(\.managedObjectContext, self.managedObjectContext)
+                SuggestionsView(filter: self.author, filterType: "author", author: self.$author, title: self.$title).environment(\.managedObjectContext, self.managedObjectContext)
+                    .frame(width: geometry.size.width - 30, height: 50)
+                SuggestionsView(filter: self.title, filterType: "title", author: self.$author, title: self.$title).environment(\.managedObjectContext, self.managedObjectContext)
+                .frame(width: geometry.size.width - 30, height: 50)
                 
-                Button(action: {
-                    self.addQuote()
-                }) {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(Color.white)
-                        .padding(.bottom)
-                    
-                }.padding(.top)
+                
                 
                 Text("Add Quote").font(.title).foregroundColor(Color.white)
                 Text("Swipe to dismiss").font(.footnote).foregroundColor(Color.white)
@@ -79,29 +84,95 @@ struct AddQuoteView: View {
 struct SuggestionsView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     var fetchRequest: FetchRequest<Quote>
-
+    var filterType: String
     
-    init(filter: String, filterType: String) {
+    @Binding var author: String
+    @Binding var title: String
+    
+    init(filter: String, filterType: String, author: Binding<String>, title: Binding<String>) {
         fetchRequest = FetchRequest<Quote>(entity: Quote.entity(), sortDescriptors: [
             NSSortDescriptor(keyPath: \Quote.dateCreated, ascending: false)
             ], predicate: NSCompoundPredicate(
                 type: .or,
                 subpredicates: [
                     // [cd] = case and diacritic insensitive
-                    NSPredicate(format: "author CONTAINS[cd] %@", filter),
-                    NSPredicate(format: "title CONTAINS[cd] %@", filter)
+                    NSPredicate(format: "\(filterType) CONTAINS[cd] %@", filter),
+                    
                 ]
         ))
+        
+        // Initialize a binding variable
+        self._author = author
+        self._title = title
+        self.filterType = filterType
+        
+        
     }
     var body: some View {
-        
-        ScrollView(.horizontal) {
+        GeometryReader { geometry in
+            
             HStack {
-                ForEach(fetchRequest.wrappedValue, id: \.self) { quote in
-                    Circle().fill(Color.white)
+                
+                // Couldn't figure out fetchlimit with SwiftUI, leading to this monstrosity.
+                if self.fetchRequest.wrappedValue.count >= 2 {
+                    Group {
+                        Button(action: {
+                            if self.filterType == "author" {
+                                self.author = self.fetchRequest.wrappedValue[0].author ?? ""
+                            } else if self.filterType == "title" {
+                                self.title = self.fetchRequest.wrappedValue[0].title ?? ""
+                            }
+                        }) {
+                            Text(self.filterType == "author" ? self.fetchRequest.wrappedValue[0].author ?? "" : self.fetchRequest.wrappedValue[0].title ?? "")
+                                .foregroundColor(Color.footnoteOrange)
+                            .padding(5)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .frame(width: geometry.size.width / 2 - 5, height: 50)
+                                
+                        }
+                        
+                       Button(action: {
+                            if self.filterType == "author" {
+                                self.author = self.fetchRequest.wrappedValue[1].author ?? ""
+                            } else if self.filterType == "title" {
+                                self.title = self.fetchRequest.wrappedValue[1].title ?? ""
+                            }
+                        }) {
+                            Text(self.filterType == "author" ? self.fetchRequest.wrappedValue[1].author ?? "" : self.fetchRequest.wrappedValue[1].title ?? "")
+                                .foregroundColor(Color.footnoteOrange)
+                            .padding(5)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .frame(width: geometry.size.width / 2 - 5, height: 50)
+                        }
+                    }
+                } else {
+                    ForEach(self.fetchRequest.wrappedValue, id: \.self) { quote in
+                        Button(action: {
+                            if self.filterType == "author" {
+                                self.author = quote.author ?? ""
+                            } else if self.filterType == "title" {
+                                self.title = quote.title ?? ""
+                            }
+                        }) {
+                            Text(self.filterType == "author" ? quote.author ?? "" : quote.title ?? "")
+                                .foregroundColor(Color.footnoteOrange)
+                            .padding(5)
+                            .background(Color.white)
+                            .cornerRadius(10)
+                            .frame(width: geometry.size.width / 2 - 5, height: 50)
+                        }
+                    }
                 }
+                
+                Spacer()
+                
             }
         }
+        
+        
+        
     }
     
 }

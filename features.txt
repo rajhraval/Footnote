@@ -1,5 +1,5 @@
- - No autocorrect on author and title
- - Auto caps on author and title
+ - No autocorrect on author and title - complete
+ - Auto caps on author and title - complete
  - Suggested authors and titles as you type
  - Export
  - Ratings, sort by ratings
