@@ -4,3 +4,4 @@
  - Export
  - Ratings, sort by ratings
  - Edit quotes
+- when creating new quote, add author and title to a list if they havent already been added. use these lists in suggestions instead  
