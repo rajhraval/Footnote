@@ -1,6 +1,7 @@
  - No autocorrect on author and title - complete
  - Auto caps on author and title - complete
- - Suggested authors and titles as you type
+ - Suggested authors and titles as you type - complete
  - Export
  - Ratings, sort by ratings
  - Edit quotes
+ - Show most used authors / titles
