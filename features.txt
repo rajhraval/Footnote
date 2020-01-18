@@ -5,3 +5,4 @@
  - Ratings, sort by ratings
  - Edit quotes
  - Show most used authors / titles
+- when creating new quote, add author and title to a list if they havent already been added. use these lists in suggestions instead  

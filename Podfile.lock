@@ -1,0 +1,16 @@
+PODS:
+  - SwiftyImage (1.5.1)
+
+DEPENDENCIES:
+  - SwiftyImage (~> 1.1)
+
+SPEC REPOS:
+  trunk:
+    - SwiftyImage
+
+SPEC CHECKSUMS:
+  SwiftyImage: 88a8c90ee3963a498de728c4ccdb079b4820cef0
+
+PODFILE CHECKSUM: c37c00ba8a3273b247f861c7246bf42ad35f864f
+
+COCOAPODS: 1.8.1
