@@ -15,22 +15,53 @@ struct AddQuoteView: View {
     @State var author: String = ""
     @State var title: String = ""
     
+    @State private var image: Image?
+    @State private var showingImagePicker = false
+    @State private var inputImage: UIImage?
+    
     var body: some View {
         
         GeometryReader { geometry in
             VStack {
-                Button(action: {
-                    self.addQuote()
-                }) {
-                    VStack {
-                        Image(systemName: "plus.circle.fill")
+                HStack {
+                    Button(action: {
+                        print("Select cover")
+                        self.showingImagePicker = true
+                    }) {
+                        VStack {
+                            Image(systemName: "book.fill")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(Color.white)
+                                .padding(.top, 5)
+                            Text("Add Cover")
+                                .foregroundColor(Color.white)
+                                .padding([.leading, .bottom], 5)
+                        }
+                    }
+                    
+                    Spacer()
+                    
+                    if self.image != nil {
+                        self.image?
                             .resizable()
-                            .frame(width: 50, height: 50)
-                            .foregroundColor(Color.white)
-                            .padding(.top, 5)
-                        Text("Save")
-                            .foregroundColor(Color.white)
-                            .padding(.bottom, 5)
+                            .scaledToFit()
+                    }
+                    
+                    Spacer()
+                    Button(action: {
+                        self.addQuote()
+                    }) {
+                        VStack {
+                            Image(systemName: "plus.circle.fill")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                                .foregroundColor(Color.white)
+                                .padding([.trailing, .top], 5)
+                            Text("Save")
+                                .foregroundColor(Color.white)
+                                .padding(.bottom, 5)
+                        }
                     }
                 }
                 
@@ -63,10 +94,18 @@ struct AddQuoteView: View {
                 Text("Swipe to dismiss").font(.footnote).foregroundColor(Color.white)
                 Spacer()
                 
-            }.frame(width: geometry.size.width - 20, height: geometry.size.height)
+            }.sheet(isPresented: self.$showingImagePicker, onDismiss: self.loadImage) {
+                ImagePicker(image: self.$inputImage)
+            }
+            .frame(width: geometry.size.width - 20, height: geometry.size.height)
                 .background(Color.footnoteRed)
                 .cornerRadius(10)
         }
+    }
+    
+    func loadImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
     }
     
     func addQuote() {

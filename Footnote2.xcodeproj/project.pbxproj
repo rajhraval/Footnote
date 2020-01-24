@@ -21,6 +21,7 @@
 		FCD0C85223A0742600EFA591 /* QuoteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C85123A0742600EFA591 /* QuoteItemView.swift */; };
 		FCD0C85823A077C500EFA591 /* AddQuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C85723A077C500EFA591 /* AddQuoteView.swift */; };
 		FCD2A1B623DA8E6700FF266A /* QuoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD2A1B523DA8E6700FF266A /* QuoteDetailView.swift */; };
+		FCFB9F7223DBA6EE00A5BD96 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFB9F7123DBA6EE00A5BD96 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -42,6 +43,7 @@
 		FCD0C85123A0742600EFA591 /* QuoteItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteItemView.swift; sourceTree = "<group>"; };
 		FCD0C85723A077C500EFA591 /* AddQuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuoteView.swift; sourceTree = "<group>"; };
 		FCD2A1B523DA8E6700FF266A /* QuoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteDetailView.swift; sourceTree = "<group>"; };
+		FCFB9F7123DBA6EE00A5BD96 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				FCD0C83223A070FE00EFA591 /* AppDelegate.swift */,
 				FCD0C83423A070FE00EFA591 /* SceneDelegate.swift */,
 				FCD0C83923A070FE00EFA591 /* ContentView.swift */,
+				FCFB9F7123DBA6EE00A5BD96 /* ImagePicker.swift */,
 				FCD0C85123A0742600EFA591 /* QuoteItemView.swift */,
 				FCD0C84F23A073E900EFA591 /* Cosmetics.swift */,
 				FCD2A1B523DA8E6700FF266A /* QuoteDetailView.swift */,
@@ -242,6 +245,7 @@
 				FCD2A1B623DA8E6700FF266A /* QuoteDetailView.swift in Sources */,
 				FCD0C85223A0742600EFA591 /* QuoteItemView.swift in Sources */,
 				FCD0C83A23A070FE00EFA591 /* ContentView.swift in Sources */,
+				FCFB9F7223DBA6EE00A5BD96 /* ImagePicker.swift in Sources */,
 				FC057CCB23BBF31800257732 /* Quote+CoreDataProperties.swift in Sources */,
 				FC057CCA23BBF31800257732 /* Quote+CoreDataClass.swift in Sources */,
 				FCD0C83523A070FE00EFA591 /* SceneDelegate.swift in Sources */,
