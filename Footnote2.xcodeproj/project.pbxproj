@@ -20,6 +20,7 @@
 		FCD0C85023A073E900EFA591 /* Cosmetics.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C84F23A073E900EFA591 /* Cosmetics.swift */; };
 		FCD0C85223A0742600EFA591 /* QuoteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C85123A0742600EFA591 /* QuoteItemView.swift */; };
 		FCD0C85823A077C500EFA591 /* AddQuoteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C85723A077C500EFA591 /* AddQuoteView.swift */; };
+		FCD2A1B623DA8E6700FF266A /* QuoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD2A1B523DA8E6700FF266A /* QuoteDetailView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +41,7 @@
 		FCD0C84F23A073E900EFA591 /* Cosmetics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Cosmetics.swift; sourceTree = "<group>"; };
 		FCD0C85123A0742600EFA591 /* QuoteItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteItemView.swift; sourceTree = "<group>"; };
 		FCD0C85723A077C500EFA591 /* AddQuoteView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuoteView.swift; sourceTree = "<group>"; };
+		FCD2A1B523DA8E6700FF266A /* QuoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteDetailView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,6 +102,7 @@
 				FCD0C83923A070FE00EFA591 /* ContentView.swift */,
 				FCD0C85123A0742600EFA591 /* QuoteItemView.swift */,
 				FCD0C84F23A073E900EFA591 /* Cosmetics.swift */,
+				FCD2A1B523DA8E6700FF266A /* QuoteDetailView.swift */,
 				FCD0C83B23A070FF00EFA591 /* Assets.xcassets */,
 				FCD0C84023A070FF00EFA591 /* LaunchScreen.storyboard */,
 				FCD0C84323A070FF00EFA591 /* Info.plist */,
@@ -236,6 +239,7 @@
 				FCD0C83323A070FE00EFA591 /* AppDelegate.swift in Sources */,
 				FCD0C85023A073E900EFA591 /* Cosmetics.swift in Sources */,
 				FCD0C83823A070FE00EFA591 /* Footnote2.xcdatamodeld in Sources */,
+				FCD2A1B623DA8E6700FF266A /* QuoteDetailView.swift in Sources */,
 				FCD0C85223A0742600EFA591 /* QuoteItemView.swift in Sources */,
 				FCD0C83A23A070FE00EFA591 /* ContentView.swift in Sources */,
 				FC057CCB23BBF31800257732 /* Quote+CoreDataProperties.swift in Sources */,
@@ -378,15 +382,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Footnote2/Preview Content\"";
 				DEVELOPMENT_TEAM = N2WWEZ627P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Footnote2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bardell.Footnote2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bardell.footnote;
 				PRODUCT_NAME = Footnote;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -399,15 +405,17 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Footnote2/Preview Content\"";
 				DEVELOPMENT_TEAM = N2WWEZ627P;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Footnote2/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bardell.Footnote2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bardell.footnote;
 				PRODUCT_NAME = Footnote;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

@@ -25,8 +25,8 @@
         </uniquenessConstraints>
     </entity>
     <elements>
-        <element name="Quote" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="Author" positionX="-63" positionY="9" width="128" height="73"/>
+        <element name="Quote" positionX="-63" positionY="-18" width="128" height="103"/>
         <element name="Title" positionX="-54" positionY="18" width="128" height="73"/>
     </elements>
 </model>

@@ -25,67 +25,70 @@ struct ContentView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ZStack {
-                VStack {
-                    HStack {
-                        Text("Quotes")
-                            .font(.title)
-                            .fontWeight(.semibold)
-                            .padding([.leading, .top])
-                        Spacer()
-                    }
-                    TextField("Search", text: self.$search)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding([.leading, .trailing])
+            
+                ZStack {
                     
-                    
-                    // TODO: Quote detail view, edit quote.
-                    if self.search != "" {
-                        FilteredList(filter: self.search).environment(\.managedObjectContext, self.managedObjectContext)
-                    } else {
-                        List {
-                            ForEach(self.quotes, id: \.self) { quote in
-                                QuoteItemView(quote: quote)
-                            }.onDelete(perform: self.removeQuote)
-                        }
-                    }
-                }
-                
-                // Embedded stacks to put button in bottom corner
-                HStack {
-                    Spacer()
-                    VStack {
-                        Spacer()
-                        Button(action: {
-                            self.offset = .init(width: 0, height: -550)
-                        }) {
-                            Image(systemName: "plus.circle.fill")
-                                .resizable()
-                                .frame(width: 50, height: 50)
+                    NavigationView {
+                        VStack {
+                                TextField("Search", text: self.$search)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .padding([.leading, .trailing])
                                 
-                               
-                                // Needs a background to colour the plus, corner radius to remove box
-                                .cornerRadius(25)
-                                .foregroundColor(Color.footnoteRed)
-                                .padding()
-                            
+                                
+                                // TODO: Quote detail view, edit quote.
+                                if self.search != "" {
+                                    FilteredList(filter: self.search).environment(\.managedObjectContext, self.managedObjectContext)
+                                } else {
+                                    List {
+                                        ForEach(self.quotes, id: \.self) { quote in
+                                            NavigationLink(destination: QuoteDetailView(text: quote.text ?? "", title: quote.title ?? "", author: quote.author ?? "", quote: quote).environment(\.managedObjectContext, self.managedObjectContext)) {
+                                                QuoteItemView(quote: quote)
+                                            }
+                                            
+                                        }.onDelete(perform: self.removeQuote)
+                                    }
+                                }
                         }
                     }
-                }
-                
-                // TODO: Keyboard Guardian
-                
-                AddQuoteView().environment(\.managedObjectContext, self.managedObjectContext).offset(x: 0, y: geometry.size.height)
-                    .animation(.spring())
-                    .gesture(DragGesture()
-                        .onEnded {_ in
-                            self.offset = .init(width: 0, height: 0)
-                            // Dismiss keyboard
-                            UIApplication.shared.endEditing()
-                    })
-                    .offset(x: 0, y: self.offset.height)
-                
-            }
+                    
+                    
+                    // Embedded stacks to put button in bottom corner
+                    HStack {
+                        Spacer()
+                        VStack {
+                            Spacer()
+                            Button(action: {
+                                self.offset = .init(width: 0, height: -550)
+                            }) {
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    
+                                   
+                                    // Needs a background to colour the plus, corner radius to remove box
+                                    .cornerRadius(25)
+                                    .foregroundColor(Color.footnoteRed)
+                                    .padding()
+                                
+                            }
+                        }
+                    }
+                    
+                    // TODO: Keyboard Guardian
+                    
+                    AddQuoteView().environment(\.managedObjectContext, self.managedObjectContext).offset(x: 0, y: geometry.size.height)
+                        .animation(.spring())
+                        
+                        .offset(x: 0, y: self.offset.height)
+                    
+                }.gesture(DragGesture()
+                    .onEnded {_ in
+                        print("drag")
+                        self.offset = .init(width: 0, height: 0)
+                        // Dismiss keyboard
+                        UIApplication.shared.endEditing()
+                }) 
+            
             
         }
     }

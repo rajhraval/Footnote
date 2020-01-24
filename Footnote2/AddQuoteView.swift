@@ -22,26 +22,35 @@ struct AddQuoteView: View {
                 Button(action: {
                     self.addQuote()
                 }) {
-                    Image(systemName: "plus.circle.fill")
-                        .resizable()
-                        .frame(width: 50, height: 50)
-                        .foregroundColor(Color.white)
-                     
-                    
+                    VStack {
+                        Image(systemName: "plus.circle.fill")
+                            .resizable()
+                            .frame(width: 50, height: 50)
+                            .foregroundColor(Color.white)
+                            .padding(.top, 5)
+                        Text("Save")
+                            .foregroundColor(Color.white)
+                            .padding(.bottom, 5)
+                    }
                 }
+                
+               
+
+                
                 TextField("Text", text: self.$text)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding()
+                    .padding(5)
+                
                 TextField("Title", text: self.$title)
                     .textContentType(.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding([.leading, .trailing, .bottom])
+                    .padding([.leading, .trailing, .bottom], 5)
                     .disableAutocorrection(true)
                 
                 TextField("Author", text: self.$author)
                     .textContentType(.name)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding([.leading, .trailing])
+                    .padding([.leading, .trailing], 5)
                     .disableAutocorrection(true)
                 
                 AuthorSuggestionsView(filter: self.author, text: self.$author).environment(\.managedObjectContext, self.managedObjectContext)
@@ -241,8 +250,16 @@ struct TitleSuggestionsView: View {
 }
 
 
+// To preview with CoreData
+#if DEBUG
 struct AddQuoteView_Previews: PreviewProvider {
     static var previews: some View {
-        AddQuoteView()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        return Group {
+            AddQuoteView().environment(\.managedObjectContext, context).environment(\.colorScheme, .light)
+            
+        }
+         
     }
 }
+#endif
