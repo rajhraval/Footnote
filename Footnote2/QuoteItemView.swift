@@ -12,28 +12,39 @@ struct QuoteItemView: View {
     
     var quote: Quote
     var body: some View {
-        VStack(alignment: .leading) {
-            Text(quote.text ?? "")
-                .multilineTextAlignment(.leading)
-                .lineLimit(nil)
-                .fixedSize(horizontal: false, vertical: true)
-                .padding(3)
+        HStack {
+            if quote.coverImage != nil {
+                Image(uiImage: UIImage(data: quote.coverImage!)!)
+                .resizable()
+                    .frame(width: 60, height: 80)
+                    
+            }
             
-            
-            HStack(alignment: .top) {
-                VStack(alignment: .leading) {
-                    Text("\(quote.title ?? "")").font(.footnote)
-                        .foregroundColor(Color.footnoteRed)
-                    Text("by \(quote.author ?? "")").font(.footnote)
-                        .foregroundColor(Color.footnoteRed)
-                }
-                Spacer()
-                Text(formatDate(date: quote.dateCreated ??
-                Date())).font(.footnote)
-                .foregroundColor(Color.footnoteRed)
+            VStack(alignment: .leading) {
                 
-            }.padding(3)
+                Text(quote.text ?? "")
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(nil)
+                    .fixedSize(horizontal: false, vertical: true)
+                    .padding(3)
+                
+                
+                HStack(alignment: .top) {
+                    VStack(alignment: .leading) {
+                        Text("\(quote.title ?? "")").font(.footnote)
+                            .foregroundColor(Color.footnoteRed)
+                        Text("by \(quote.author ?? "")").font(.footnote)
+                            .foregroundColor(Color.footnoteRed)
+                    }
+                    Spacer()
+                    Text(formatDate(date: quote.dateCreated ??
+                    Date())).font(.footnote)
+                    .foregroundColor(Color.footnoteRed)
+                    
+                }.padding(3)
+            }
         }
+        
         
     }
     
@@ -43,6 +54,7 @@ struct QuoteItemView: View {
         return formatter.string(from: date)
     }
 }
+
 
 //struct QuoteItemView_Previews: PreviewProvider {
 //    static var previews: some View {

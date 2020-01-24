@@ -124,6 +124,11 @@ struct AddQuoteView: View {
         titleItem.text = self.title
         titleItem.count += 1
         
+        if inputImage != nil {
+            quote.coverImage = inputImage!.pngData() as Data?
+        }
+        
+        
         do {
             try self.managedObjectContext.save()
         } catch {

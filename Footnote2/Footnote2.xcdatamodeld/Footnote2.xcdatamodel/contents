@@ -9,8 +9,9 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
-    <entity name="Quote" representedClassName="Quote" syncable="YES">
+    <entity name="Quote" representedClassName="Quote" syncable="YES" codeGenerationType="class">
         <attribute name="author" optional="YES" attributeType="String"/>
+        <attribute name="coverImage" optional="YES" attributeType="Binary"/>
         <attribute name="dateCreated" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="text" optional="YES" attributeType="String"/>
         <attribute name="title" optional="YES" attributeType="String"/>
@@ -26,7 +27,7 @@
     </entity>
     <elements>
         <element name="Author" positionX="-63" positionY="9" width="128" height="73"/>
-        <element name="Quote" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Quote" positionX="-63" positionY="-18" width="128" height="118"/>
         <element name="Title" positionX="-54" positionY="18" width="128" height="73"/>
     </elements>
 </model>
