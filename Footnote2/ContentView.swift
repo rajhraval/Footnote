@@ -80,14 +80,15 @@ struct ContentView: View {
                     .animation(.spring())
                     
                     .offset(x: 0, y: self.offset.height)
+                .gesture(DragGesture()
+                    .onEnded {_ in
+                        print("drag")
+                        self.offset = .init(width: 0, height: 0)
+                        // Dismiss keyboard
+                        UIApplication.shared.endEditing()
+                })
                 
-            }.gesture(DragGesture()
-                .onEnded {_ in
-                    print("drag")
-                    self.offset = .init(width: 0, height: 0)
-                    // Dismiss keyboard
-                    UIApplication.shared.endEditing()
-            })
+            }
             
             
         }

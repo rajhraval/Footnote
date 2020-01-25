@@ -22,33 +22,35 @@ struct AddQuoteView: View {
     var body: some View {
         
         GeometryReader { geometry in
-            VStack {
+            VStack(spacing: 5) {
                 HStack {
-                    Button(action: {
-                        print("Select cover")
-                        self.showingImagePicker = true
-                    }) {
-                        VStack {
-                            Image(systemName: "book.fill")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                                .foregroundColor(Color.white)
-                                .padding(.top, 5)
-                            Text("Add Cover")
-                                .foregroundColor(Color.white)
-                                .padding([.leading, .bottom], 5)
+                    if self.image != nil {
+                        self.image?
+                        .resizable()
+                            .frame(width: 50, height: 70)
+                        .padding(5)
+                    } else {
+                        Button(action: {
+                            print("Select cover")
+                            self.showingImagePicker = true
+                        }) {
+                            VStack {
+                                Image(systemName: "book.fill")
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    .foregroundColor(Color.white)
+                                    .padding(.top, 5)
+                                Text("Add Cover")
+                                    .foregroundColor(Color.white)
+                                    .padding([.leading, .bottom], 5)
+                            }
                         }
                     }
                     
-                    Spacer()
-                    
-                    if self.image != nil {
-                        self.image?
-                            .resizable()
-                            .scaledToFit()
-                    }
                     
                     Spacer()
+                    
+                    
                     Button(action: {
                         self.addQuote()
                     }) {
@@ -65,12 +67,10 @@ struct AddQuoteView: View {
                     }
                 }
                 
-               
-
-                
                 TextField("Text", text: self.$text)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                    .padding(5)
+                    .padding([.leading, .trailing, .bottom], 5)
+                
                 
                 TextField("Title", text: self.$title)
                     .textContentType(.name)

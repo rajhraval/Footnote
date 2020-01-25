@@ -12,37 +12,33 @@ struct QuoteItemView: View {
     
     var quote: Quote
     var body: some View {
-        HStack {
-            if quote.coverImage != nil {
-                Image(uiImage: UIImage(data: quote.coverImage!)!)
-                .resizable()
-                    .frame(width: 60, height: 80)
-                    
-            }
-            
-            VStack(alignment: .leading) {
-                
+        VStack {
+            HStack(alignment: .top) {
+                if quote.coverImage != nil {
+                    Image(uiImage: UIImage(data: quote.coverImage!)!)
+                    .resizable()
+                        .frame(width: 60, height: 80)
+                        
+                }
                 Text(quote.text ?? "")
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(nil)
-                    .fixedSize(horizontal: false, vertical: true)
-                    .padding(3)
+                .multilineTextAlignment(.leading)
+                .lineLimit(nil)
+                .fixedSize(horizontal: false, vertical: true)
                 
-                
-                HStack(alignment: .top) {
-                    VStack(alignment: .leading) {
-                        Text("\(quote.title ?? "")").font(.footnote)
-                            .foregroundColor(Color.footnoteRed)
-                        Text("by \(quote.author ?? "")").font(.footnote)
-                            .foregroundColor(Color.footnoteRed)
-                    }
-                    Spacer()
-                    Text(formatDate(date: quote.dateCreated ??
-                    Date())).font(.footnote)
-                    .foregroundColor(Color.footnoteRed)
-                    
-                }.padding(3)
             }
+            HStack(alignment: .top) {
+                VStack(alignment: .leading) {
+                    Text("\(quote.title ?? "")").font(.footnote)
+                        .foregroundColor(Color.footnoteRed)
+                    Text("by \(quote.author ?? "")").font(.footnote)
+                        .foregroundColor(Color.footnoteRed)
+                }
+                Spacer()
+                Text(formatDate(date: quote.dateCreated ??
+                Date())).font(.footnote)
+                .foregroundColor(Color.footnoteRed)
+                
+            }.padding(3)
         }
         
         
