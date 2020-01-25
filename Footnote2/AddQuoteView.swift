@@ -175,7 +175,7 @@ struct AuthorSuggestionsView: View {
                             
                         }) {
                             Text(self.fetchRequest.wrappedValue[0].text ?? "")
-                                .foregroundColor(Color.footnoteOrange)
+                                .foregroundColor(Color.footnoteRed)
                             .padding(5)
                             .background(Color.white)
                             .cornerRadius(10)
@@ -188,7 +188,7 @@ struct AuthorSuggestionsView: View {
                             
                         }) {
                             Text(self.fetchRequest.wrappedValue[1].text ?? "")
-                                .foregroundColor(Color.footnoteOrange)
+                                .foregroundColor(Color.footnoteRed)
                             .padding(5)
                             .background(Color.white)
                             .cornerRadius(10)
@@ -203,7 +203,7 @@ struct AuthorSuggestionsView: View {
             
                         }) {
                             Text(item.text ?? "")
-                                .foregroundColor(Color.footnoteOrange)
+                                .foregroundColor(Color.footnoteRed)
                             .padding(5)
                             .background(Color.white)
                             .cornerRadius(10)
@@ -251,7 +251,7 @@ struct TitleSuggestionsView: View {
                             
                         }) {
                             Text(self.fetchRequest.wrappedValue[0].text ?? "")
-                                .foregroundColor(Color.footnoteOrange)
+                                .foregroundColor(Color.footnoteRed)
                             .padding(5)
                             .background(Color.white)
                             .cornerRadius(10)
@@ -264,7 +264,7 @@ struct TitleSuggestionsView: View {
 
                         }) {
                             Text(self.fetchRequest.wrappedValue[1].text ?? "")
-                                .foregroundColor(Color.footnoteOrange)
+                                .foregroundColor(Color.footnoteRed)
                             .padding(5)
                             .background(Color.white)
                             .cornerRadius(10)
@@ -279,7 +279,7 @@ struct TitleSuggestionsView: View {
             
                         }) {
                             Text(item.text ?? "")
-                                .foregroundColor(Color.footnoteOrange)
+                                .foregroundColor(Color.footnoteRed)
                             .padding(5)
                             .background(Color.white)
                             .cornerRadius(10)

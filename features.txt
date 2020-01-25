@@ -6,5 +6,5 @@
  - Edit quotes
  - Show most used authors / titles
 - when creating new quote, add author and title to a list if they haven't already been added. use these lists in suggestions instead - complete
-- Picture of cover next to quote
+- Picture of cover next to quote - complete
 - Tags with custom colours
