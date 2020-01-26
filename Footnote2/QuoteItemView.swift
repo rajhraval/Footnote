@@ -15,9 +15,8 @@ struct QuoteItemView: View {
         VStack {
             HStack(alignment: .top) {
                 if quote.coverImage != nil {
-                    Image(uiImage: UIImage(data: quote.coverImage!)!)
-                    .resizable()
-                        .frame(width: 60, height: 80)
+                    BookCoverView(image: Image(uiImage: UIImage(data: quote.coverImage!)!))
+                   
                         
                 }
                 Text(quote.text ?? "")

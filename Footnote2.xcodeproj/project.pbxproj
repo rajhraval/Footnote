@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8AFD54DEF43AB69AC2B8AC53 /* Pods_Footnote2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBC3388438159553D8F76F2 /* Pods_Footnote2.framework */; };
+		FC0AC73223DCD94B003219A1 /* BookCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0AC73123DCD94B003219A1 /* BookCoverView.swift */; };
+		FC8E91A423DD281000BC1365 /* ImageCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E91A323DD281000BC1365 /* ImageCreator.swift */; };
 		FCD0C83323A070FE00EFA591 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C83223A070FE00EFA591 /* AppDelegate.swift */; };
 		FCD0C83523A070FE00EFA591 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C83423A070FE00EFA591 /* SceneDelegate.swift */; };
 		FCD0C83823A070FE00EFA591 /* Footnote2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C83623A070FE00EFA591 /* Footnote2.xcdatamodeld */; };
@@ -26,6 +28,8 @@
 		2610CA4C3F36B8C7F2B8DF18 /* Pods-Footnote2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Footnote2.debug.xcconfig"; path = "Target Support Files/Pods-Footnote2/Pods-Footnote2.debug.xcconfig"; sourceTree = "<group>"; };
 		2BBC3388438159553D8F76F2 /* Pods_Footnote2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Footnote2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6EAC291AE787ACBB1FA9530D /* Pods-Footnote2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Footnote2.release.xcconfig"; path = "Target Support Files/Pods-Footnote2/Pods-Footnote2.release.xcconfig"; sourceTree = "<group>"; };
+		FC0AC73123DCD94B003219A1 /* BookCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCoverView.swift; sourceTree = "<group>"; };
+		FC8E91A323DD281000BC1365 /* ImageCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCreator.swift; sourceTree = "<group>"; };
 		FCD0C82F23A070FE00EFA591 /* Footnote.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Footnote.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FCD0C83223A070FE00EFA591 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		FCD0C83423A070FE00EFA591 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -96,8 +100,10 @@
 				FCD0C83223A070FE00EFA591 /* AppDelegate.swift */,
 				FCD0C83423A070FE00EFA591 /* SceneDelegate.swift */,
 				FCD0C83923A070FE00EFA591 /* ContentView.swift */,
+				FC0AC73123DCD94B003219A1 /* BookCoverView.swift */,
 				FCFB9F7123DBA6EE00A5BD96 /* ImagePicker.swift */,
 				FCD0C85123A0742600EFA591 /* QuoteItemView.swift */,
+				FC8E91A323DD281000BC1365 /* ImageCreator.swift */,
 				FCD0C84F23A073E900EFA591 /* Cosmetics.swift */,
 				FCD2A1B523DA8E6700FF266A /* QuoteDetailView.swift */,
 				FCD0C83B23A070FF00EFA591 /* Assets.xcassets */,
@@ -235,12 +241,14 @@
 				FCD0C85823A077C500EFA591 /* AddQuoteView.swift in Sources */,
 				FCD0C83323A070FE00EFA591 /* AppDelegate.swift in Sources */,
 				FCD0C85023A073E900EFA591 /* Cosmetics.swift in Sources */,
+				FC8E91A423DD281000BC1365 /* ImageCreator.swift in Sources */,
 				FCD0C83823A070FE00EFA591 /* Footnote2.xcdatamodeld in Sources */,
 				FCD2A1B623DA8E6700FF266A /* QuoteDetailView.swift in Sources */,
 				FCD0C85223A0742600EFA591 /* QuoteItemView.swift in Sources */,
 				FCD0C83A23A070FE00EFA591 /* ContentView.swift in Sources */,
 				FCFB9F7223DBA6EE00A5BD96 /* ImagePicker.swift in Sources */,
 				FCD0C83523A070FE00EFA591 /* SceneDelegate.swift in Sources */,
+				FC0AC73223DCD94B003219A1 /* BookCoverView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -378,7 +386,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Footnote2/Preview Content\"";
 				DEVELOPMENT_TEAM = N2WWEZ627P;
 				ENABLE_PREVIEWS = YES;
@@ -401,7 +409,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"Footnote2/Preview Content\"";
 				DEVELOPMENT_TEAM = N2WWEZ627P;
 				ENABLE_PREVIEWS = YES;

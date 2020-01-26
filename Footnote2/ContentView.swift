@@ -32,7 +32,7 @@ struct ContentView: View {
                 VStack {
                     TextField("Search", text: self.$search)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding([.leading, .trailing])
+                        .padding([.leading, .trailing, .top])
                     
                     
                     // TODO: Quote detail view, edit quote.
@@ -78,15 +78,14 @@ struct ContentView: View {
                 
                 AddQuoteView().environment(\.managedObjectContext, self.managedObjectContext).offset(x: 0, y: geometry.size.height)
                     .animation(.spring())
-                    
                     .offset(x: 0, y: self.offset.height)
-                .gesture(DragGesture()
-                    .onEnded {_ in
-                        print("drag")
-                        self.offset = .init(width: 0, height: 0)
-                        // Dismiss keyboard
-                        UIApplication.shared.endEditing()
-                })
+                    .gesture(DragGesture()
+                        .onEnded {_ in
+                            print("drag")
+                            self.offset = .init(width: 0, height: 0)
+                            // Dismiss keyboard
+                            UIApplication.shared.endEditing()
+                    })
                 
             }
             
