@@ -10,10 +10,9 @@ import SwiftUI
 
 struct ImageCreator: View {
     var text: String
+    var source: String
     
- 
-    
-    var colors: [UIColor] = [.yellow, .kellyGreen, .crayonRed, .tiffanyBlue, .pastelGreen, .paleRobinEggBlue, .safetyOrange, .harvardCrimson, .bordeaux, .uclaBlue, .tuftsBlue, .deepFuchsia]
+    var colors: [UIColor] = [.black, .uclaBlue, .tuftsBlue, .tiffanyBlue, .paleRobinEggBlue, .pastelGreen, .kellyGreen, .yellow, .sunglow, .westSide, .safetyOrange, .crayonRed, .harvardCrimson, .bordeaux, .deepFuchsia]
     
     var fonts: [String] = [
         "Merriweather-Regular",
@@ -38,24 +37,32 @@ struct ImageCreator: View {
                 self.drawImage(width: geometry.size.width - 10, height: geometry.size.height / 2)
                     .border(Color.black)
                     .gesture(DragGesture().onChanged { value in
-                            self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
+                        self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
                     }   // 4.
                         .onEnded { value in
                             self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
                             print(self.newPosition.width)
                             self.newPosition = self.currentPosition
-                        })
+                    })
                 
                 Spacer()
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(self.fonts, id: \.self) { font in
                             Button(action: {
-                                self.selectedFont = font
+                                withAnimation(.easeInOut) {
+                                    self.selectedFont = font
+                                }
+                                
+                                
                             }) {
                                 Text(font)
-                                    .foregroundColor(self.selectedFont == font ? Color(self.selectedColor) : .black)
-                                .font(.custom(font, size: 20))
+                                    .foregroundColor(self.selectedFont == font ? .white : .black)
+                                    .font(.custom(font, size: 15))
+                                    .padding(5)
+                                    .background(self.selectedFont == font ? Color(self.selectedColor) : .white)
+                                    .cornerRadius(5)
+                                    
                                 
                             }
                             
@@ -66,7 +73,10 @@ struct ImageCreator: View {
                     HStack {
                         ForEach(self.colors, id: \.self) { color in
                             Button(action: {
-                                self.selectedColor = color
+                                withAnimation(.easeInOut) {
+                                    self.selectedColor = color
+                                }
+                                
                             }) {
                                 Circle().foregroundColor(Color(color))
                                     .frame(width: 40, height: 40)
@@ -77,8 +87,12 @@ struct ImageCreator: View {
                     }.padding()
                 }
                 
-                Slider(value: self.$fontSize, in: 1...100, step: 1)
-                    .padding()
+                HStack {
+                    Text("Font size")
+                        .padding(.leading)
+                    Slider(value: self.$fontSize, in: 1...50, step: 1)
+                        .padding()
+                }
                 
                 Button(action: {
                     self.saveImage(image: self.drawUIImage(width: geometry.size.width, height: geometry.size.height / 2))
@@ -87,7 +101,7 @@ struct ImageCreator: View {
                         .foregroundColor(.white)
                         .background(Color.footnoteRed)
                         .cornerRadius(10)
-                        .padding(5)
+                        .padding(.bottom, 10)
                 }
             }
         }
@@ -117,19 +131,36 @@ struct ImageCreator: View {
             ]
             
             
-            let attributedString = NSAttributedString(string: text, attributes: attrs)
+            let attributedString = NSMutableAttributedString(string: text, attributes: attrs)
             
+            let sourceAttributedString = NSAttributedString(string: "\n\n —\(self.source)", attributes: attrs)
+            
+            attributedString.append(sourceAttributedString)
             // 5
-            attributedString.draw(with: CGRect(x: self.currentPosition.width, y: self.currentPosition.height, width: width, height: height), options: .usesLineFragmentOrigin, context: nil)
+            attributedString.draw(with: CGRect(x: self.currentPosition.width + 5, y: self.currentPosition.height, width: width - 10, height: height), options: .usesLineFragmentOrigin, context: nil)
             
+            
+            let watermarkAttrs: [NSAttributedString.Key: Any] = [
+                .font: UIFont.systemFont(ofSize: 29)
+            ]
+            
+            let attributedWatermark = NSMutableAttributedString(string: "Footnote", attributes: watermarkAttrs)
+            
+            let watermarkAttachment = NSTextAttachment()
+                       watermarkAttachment.image = UIImage(named: "icon2")
+                       let iconString = NSAttributedString(attachment: watermarkAttachment)
+            attributedWatermark.append(iconString)
+            
+            
+            attributedWatermark.draw(with: CGRect(x: width - 150, y: height - 40, width: width, height: height), options: .usesLineFragmentOrigin, context: nil)
             
         }
         
         // Prints all available font names
-//        for family in UIFont.familyNames.sorted() {
-//            let names = UIFont.fontNames(forFamilyName: family)
-//            print("Family: \(family) Font names: \(names)")
-//        }
+        //        for family in UIFont.familyNames.sorted() {
+        //            let names = UIFont.fontNames(forFamilyName: family)
+        //            print("Family: \(family) Font names: \(names)")
+        //        }
         
         return Image(uiImage: img)
     }
@@ -142,19 +173,30 @@ struct ImageCreator: View {
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
             
+            guard let customFont = UIFont(name: self.selectedFont, size: CGFloat(self.fontSize)) else {
+                fatalError("""
+                    Failed to load the "CustomFont-Light" font.
+                    Make sure the font file is included in the project and the font name is spelled correctly.
+                    """
+                )
+            }
+            
             // 3
             let attrs: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: CGFloat(self.fontSize)),
+                .font: customFont,
                 .paragraphStyle: paragraphStyle,
                 .foregroundColor: self.selectedColor
             ]
             
+            
             let attributedString = NSAttributedString(string: text, attributes: attrs)
             
             // 5
-            attributedString.draw(with: CGRect(x: 5, y: height / 2.5, width: width - 10, height: height), options: .usesLineFragmentOrigin, context: nil)
-        }
+            attributedString.draw(with: CGRect(x: self.currentPosition.width + 5, y: self.currentPosition.height, width: width - 10, height: height), options: .usesLineFragmentOrigin, context: nil)
             
+            
+        }
+        
         
         return img
     }
@@ -168,6 +210,6 @@ struct ImageCreator: View {
 
 struct ImageCreator_Previews: PreviewProvider {
     static var previews: some View {
-        ImageCreator(text: "All work and no play makes Jack a dull boy.")
+        ImageCreator(text: "All work and no play makes Jack a dull boy.", source: "Jack Nicholson")
     }
 }
