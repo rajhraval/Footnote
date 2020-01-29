@@ -23,9 +23,10 @@ struct QuoteItemView: View {
                 .multilineTextAlignment(.leading)
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
+                Spacer()
                 
             }
-            HStack(alignment: .top) {
+            HStack(alignment: .bottom) {
                 VStack(alignment: .leading) {
                     Text("\(quote.title ?? "")").font(.footnote)
                         .foregroundColor(Color.footnoteRed)

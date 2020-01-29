@@ -2,6 +2,17 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>Bangers-Regular.ttf</string>
+		<string>CabinSketch-Regular.ttf</string>
+		<string>CormorantGaramond-Medium.ttf</string>
+		<string>LifeSavers-Regular.ttf</string>
+		<string>Merriweather-Regular.ttf</string>
+		<string>PermanentMarker-Regular.ttf</string>
+		<string>PlayfairDisplay-VariableFont:wght.ttf</string>
+		<string>Lobster-Regular.ttf</string>
+	</array>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>Save quote image to camera roll. </string>
 	<key>CFBundleDevelopmentRegion</key>
