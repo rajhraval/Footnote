@@ -62,7 +62,6 @@ struct ImageCreator: View {
                                     .padding(5)
                                     .background(self.selectedFont == font ? Color(self.selectedColor) : .white)
                                     .cornerRadius(5)
-                                    
                                 
                             }
                             
@@ -95,7 +94,7 @@ struct ImageCreator: View {
                 }
                 
                 Button(action: {
-                    self.saveImage(image: self.drawUIImage(width: geometry.size.width, height: geometry.size.height / 2))
+                    self.saveImage(image: self.renderImage(width: geometry.size.width, height: geometry.size.height / 2))
                 }) {
                     Text("Save").padding()
                         .foregroundColor(.white)
@@ -107,7 +106,7 @@ struct ImageCreator: View {
         }
     }
     
-    func drawImage(width: CGFloat, height: CGFloat) -> Image {
+    func renderImage(width: CGFloat, height: CGFloat) -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: width, height: height))
         
         let img = renderer.image { ctx in
@@ -137,7 +136,7 @@ struct ImageCreator: View {
             
             attributedString.append(sourceAttributedString)
             // 5
-            attributedString.draw(with: CGRect(x: self.currentPosition.width + 5, y: self.currentPosition.height, width: width - 10, height: height), options: .usesLineFragmentOrigin, context: nil)
+            attributedString.draw(with: CGRect(x: self.currentPosition.width + 5, y: self.currentPosition.height + 20, width: width - 10, height: height), options: .usesLineFragmentOrigin, context: nil)
             
             
             let watermarkAttrs: [NSAttributedString.Key: Any] = [
@@ -156,55 +155,46 @@ struct ImageCreator: View {
             
         }
         
+        return img
+        
         // Prints all available font names
         //        for family in UIFont.familyNames.sorted() {
         //            let names = UIFont.fontNames(forFamilyName: family)
         //            print("Family: \(family) Font names: \(names)")
         //        }
-        
-        return Image(uiImage: img)
     }
     
-    func drawUIImage(width: CGFloat, height: CGFloat) -> UIImage {
-        let renderer = UIGraphicsImageRenderer(size: CGSize(width: width, height: height))
-        
-        let img = renderer.image { ctx in
-            // 2
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .center
-            
-            guard let customFont = UIFont(name: self.selectedFont, size: CGFloat(self.fontSize)) else {
-                fatalError("""
-                    Failed to load the "CustomFont-Light" font.
-                    Make sure the font file is included in the project and the font name is spelled correctly.
-                    """
-                )
-            }
-            
-            // 3
-            let attrs: [NSAttributedString.Key: Any] = [
-                .font: customFont,
-                .paragraphStyle: paragraphStyle,
-                .foregroundColor: self.selectedColor
-            ]
-            
-            
-            let attributedString = NSAttributedString(string: text, attributes: attrs)
-            
-            // 5
-            attributedString.draw(with: CGRect(x: self.currentPosition.width + 5, y: self.currentPosition.height, width: width - 10, height: height), options: .usesLineFragmentOrigin, context: nil)
-            
-            
-        }
-        
-        
-        return img
+    func drawImage(width: CGFloat, height: CGFloat) -> Image {
+        return Image(uiImage: renderImage(width: width, height: height))
     }
     
     func saveImage(image: UIImage) {
         // TODO: what happens if saving fails. https://www.hackingwithswift.com/books/ios-swiftui/how-to-save-images-to-the-users-photo-library
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
+    
+    // Copied from StackOverflow, not tested.
+//    func shareToInstagram(deepLinkString : String){
+//        let url = URL(string: "instagram-stories://share")!
+//        if UIApplication.shared.canOpenURL(url){
+//
+//            let backgroundData = UIImage(named: "shop_placeholder")!.jpegData(compressionQuality: 1.0)!
+//            let creditCardImage = UIImage(named: "share_instagram")!
+//            let stickerData = creditCardImage.pngData()!
+//            let pasteBoardItems = [
+//                ["com.instagram.sharedSticker.backgroundImage" : backgroundData],
+//                ["com.instagram.sharedSticker.stickerImage" : stickerData],
+//            ]
+//
+//            if #available(iOS 10.0, *) {
+//
+//                UIPasteboard.general.setItems(pasteBoardItems, options: [.expirationDate: Date().addingTimeInterval(60 * 5)])
+//            } else {
+//                UIPasteboard.general.items = pasteBoardItems
+//            }
+//            UIApplication.shared.openURL(url)
+//        }
+//    }
 }
 
 
