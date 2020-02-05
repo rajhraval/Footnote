@@ -16,6 +16,8 @@ struct ContentView: View {
     @State private var offset: CGSize = .zero
     @State var search = ""
     
+    @State var showImageCreator = false
+    
     @FetchRequest(
         entity: Quote.entity(),
         sortDescriptors: [
@@ -42,10 +44,14 @@ struct ContentView: View {
                         List {
                             ForEach(self.quotes, id: \.self) { quote in
                                 
-                                QuoteItemView(quote: quote)
+                                QuoteItemView(showImageCreator: self.$showImageCreator, quote: quote)
+                                    .sheet(isPresented: self.$showImageCreator) {
+                                    ImageCreator(text: quote.text ?? "", source: quote.title ?? "")
+                                }
                                 
                                 
                             }.onDelete(perform: self.removeQuote)
+                            
                         }
                     }
                 }
@@ -122,6 +128,7 @@ struct ContentView_Previews: PreviewProvider {
 
 struct FilteredList: View {
     @Environment(\.managedObjectContext) var managedObjectContext
+    @State var showImageCreator = false
     var fetchRequest: FetchRequest<Quote>
     
     init(filter: String) {
@@ -141,7 +148,7 @@ struct FilteredList: View {
         
         List {
             ForEach(fetchRequest.wrappedValue, id: \.self) { quote in
-                QuoteItemView(quote: quote)
+                QuoteItemView(showImageCreator: self.$showImageCreator, quote: quote)
             }.onDelete(perform: self.removeQuote)
         }
         

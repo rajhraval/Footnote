@@ -87,10 +87,13 @@ struct ImageCreator: View {
                 }
                 
                 HStack {
-                    Text("Font size")
-                        .padding(.leading)
+                    Text("Font size").padding(5)
+                        .foregroundColor(.white)
+                        .background(Color(self.selectedColor))
+                        .cornerRadius(10)
+                        .padding(.leading, 5)
                     Slider(value: self.$fontSize, in: 1...50, step: 1)
-                        .padding()
+                        .padding(.trailing).accentColor(Color(self.selectedColor))
                 }
                 
                 Button(action: {
@@ -98,7 +101,7 @@ struct ImageCreator: View {
                 }) {
                     Text("Save").padding()
                         .foregroundColor(.white)
-                        .background(Color.footnoteRed)
+                        .background(Color(self.selectedColor))
                         .cornerRadius(10)
                         .padding(.bottom, 10)
                 }

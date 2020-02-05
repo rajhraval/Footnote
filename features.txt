@@ -9,4 +9,7 @@
 - Picture of cover next to quote - complete
 - Tags with custom colors
 - Custom colors throughout
-- Sort by title, author, etc. Not just date. 
+- Sort by title, author, etc. Not just date.
+- Quote backgrounds / templates on sharing
+- IAP for more quote backgrounds on templates. Basically a tip jar. https://www.appcoda.com/in-app-purchases-guide/
+- Share to social media
