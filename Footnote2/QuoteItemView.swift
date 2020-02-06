@@ -31,7 +31,7 @@ struct QuoteItemView: View {
                 }) {
                     Image(systemName: "square.and.arrow.up")
                     .resizable()
-                        .frame(width: 50, height: 50)
+                        .frame(width: 15, height: 20)
                 }
                 
             }
