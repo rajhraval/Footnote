@@ -139,9 +139,13 @@ struct ImageCreator: View {
         let img = renderer.image { ctx in
             // 2
             
-            if self.inputImage != nil {
-                inputImage?.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+            if let background = inputImage {
+                let resizable = background.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .stretch)
+                resizable.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+
             }
+            
+                        
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
             
@@ -170,19 +174,19 @@ struct ImageCreator: View {
             attributedString.draw(with: CGRect(x: self.currentPosition.width + 5, y: self.currentPosition.height + 50, width: width - 10, height: height), options: .usesLineFragmentOrigin, context: nil)
             
             
-            let watermarkAttrs: [NSAttributedString.Key: Any] = [
-                .font: UIFont.systemFont(ofSize: 29)
-            ]
-            
-            let attributedWatermark = NSMutableAttributedString(string: "Footnote", attributes: watermarkAttrs)
-            
-            let watermarkAttachment = NSTextAttachment()
-                       watermarkAttachment.image = UIImage(named: "icon2")
-                       let iconString = NSAttributedString(attachment: watermarkAttachment)
-            attributedWatermark.append(iconString)
-            
-            
-            attributedWatermark.draw(with: CGRect(x: width - 150, y: height - 40, width: width, height: height), options: .usesLineFragmentOrigin, context: nil)
+//            let watermarkAttrs: [NSAttributedString.Key: Any] = [
+//                .font: UIFont.systemFont(ofSize: 29)
+//            ]
+//
+//            let attributedWatermark = NSMutableAttributedString(string: "Footnote", attributes: watermarkAttrs)
+//
+//            let watermarkAttachment = NSTextAttachment()
+//                       watermarkAttachment.image = UIImage(named: "icon2")
+//                       let iconString = NSAttributedString(attachment: watermarkAttachment)
+//            attributedWatermark.append(iconString)
+//
+//
+//            attributedWatermark.draw(with: CGRect(x: width - 150, y: height - 40, width: width, height: height), options: .usesLineFragmentOrigin, context: nil)
             
         }
         
