@@ -64,13 +64,11 @@ struct ContentView: View {
                     VStack {
                         Spacer()
                         Button(action: {
-                            self.offset = .init(width: 0, height: -550)
+                            self.offset = .init(width: 0, height: -650)
                         }) {
                             Image(systemName: "plus.circle.fill")
                                 .resizable()
                                 .frame(width: 50, height: 50)
-                                
-                                
                                 // Needs a background to colour the plus, corner radius to remove box
                                 .cornerRadius(25)
                                 .foregroundColor(Color.footnoteRed)
@@ -82,7 +80,7 @@ struct ContentView: View {
                 
                 // TODO: Keyboard Guardian
                 
-                AddQuoteView().environment(\.managedObjectContext, self.managedObjectContext).offset(x: 0, y: geometry.size.height)
+                AddQuoteView().environment(\.managedObjectContext, self.managedObjectContext).offset(x: 0, y: geometry.size.height + 100)
                     .animation(.spring())
                     .offset(x: 0, y: self.offset.height)
                     .gesture(DragGesture()

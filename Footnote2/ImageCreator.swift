@@ -31,6 +31,10 @@ struct ImageCreator: View {
     @State private var currentPosition: CGSize = .zero
     @State private var newPosition: CGSize = .zero
     
+    @State private var image: Image?
+    @State private var showingImagePicker = false
+    @State private var inputImage: UIImage?
+    
     var body: some View {
         GeometryReader { geometry in
             VStack {
@@ -44,8 +48,23 @@ struct ImageCreator: View {
                             print(self.newPosition.width)
                             self.newPosition = self.currentPosition
                     })
+                    .padding(.top)
                 
                 Spacer()
+                Button(action: {
+                    print("Image picker")
+                    self.showingImagePicker = true
+
+                }) {
+                    Text("Add a background image")
+                        .foregroundColor(.white)
+                        .padding(5)
+                        .background(Color(self.selectedColor))
+                        .cornerRadius(5)
+                }.sheet(isPresented: self.$showingImagePicker, onDismiss: self.loadBackgroundImage) {
+                    ImagePicker(image: self.$inputImage)
+                }
+                
                 ScrollView(.horizontal) {
                     HStack {
                         ForEach(self.fonts, id: \.self) { font in
@@ -109,11 +128,20 @@ struct ImageCreator: View {
         }
     }
     
+    func loadBackgroundImage() {
+        guard let inputImage = inputImage else { return }
+        image = Image(uiImage: inputImage)
+    }
+    
     func renderImage(width: CGFloat, height: CGFloat) -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: width, height: height))
         
         let img = renderer.image { ctx in
             // 2
+            
+            if self.inputImage != nil {
+                inputImage?.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
+            }
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
             
@@ -139,7 +167,7 @@ struct ImageCreator: View {
             
             attributedString.append(sourceAttributedString)
             // 5
-            attributedString.draw(with: CGRect(x: self.currentPosition.width + 5, y: self.currentPosition.height + 20, width: width - 10, height: height), options: .usesLineFragmentOrigin, context: nil)
+            attributedString.draw(with: CGRect(x: self.currentPosition.width + 5, y: self.currentPosition.height + 50, width: width - 10, height: height), options: .usesLineFragmentOrigin, context: nil)
             
             
             let watermarkAttrs: [NSAttributedString.Key: Any] = [
