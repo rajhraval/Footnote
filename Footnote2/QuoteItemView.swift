@@ -10,8 +10,6 @@ import SwiftUI
 
 struct QuoteItemView: View {
     
-    @Binding var showImageCreator: Bool
-    
     var quote: Quote
     var body: some View {
         VStack {
@@ -26,13 +24,6 @@ struct QuoteItemView: View {
                 .lineLimit(nil)
                 .fixedSize(horizontal: false, vertical: true)
                 Spacer()
-                Button(action: {
-                    self.showImageCreator = true
-                }) {
-                    Image(systemName: "square.and.arrow.up")
-                    .resizable()
-                        .frame(width: 15, height: 20)
-                }
                 
             }
             

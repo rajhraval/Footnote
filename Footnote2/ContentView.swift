@@ -16,8 +16,6 @@ struct ContentView: View {
     @State private var offset: CGSize = .zero
     @State var search = ""
     
-    @State var showImageCreator = false
-    
     @FetchRequest(
         entity: Quote.entity(),
         sortDescriptors: [
@@ -46,11 +44,7 @@ struct ContentView: View {
                                 ForEach(self.quotes, id: \.self) { quote in
                                     
                                     NavigationLink(destination: QuoteDetailView(text: quote.text ?? "", title: quote.title ?? "", author: quote.author ?? "", quote: quote)) {
-                                        QuoteItemView(showImageCreator: self.$showImageCreator, quote: quote)
-                                            .sheet(isPresented: self.$showImageCreator) {
-                                                ImageCreator(text: quote.text ?? "", source: quote.title ?? "")
-                                        }
-                                        
+                                        QuoteItemView(quote: quote)
                                     }
                                     
                                     
@@ -152,7 +146,7 @@ struct FilteredList: View {
         
         List {
             ForEach(fetchRequest.wrappedValue, id: \.self) { quote in
-                QuoteItemView(showImageCreator: self.$showImageCreator, quote: quote)
+                QuoteItemView(quote: quote)
             }.onDelete(perform: self.removeQuote)
         }
         

@@ -15,9 +15,9 @@ struct QuoteDetailView: View {
     @State var text: String
     @State var title: String
     @State var author: String
+    
+    @State var showImageCreator = false
     var quote: Quote
-    
-    
     
     var body: some View {
         VStack {
@@ -34,7 +34,25 @@ struct QuoteDetailView: View {
                 self.updateQuote()
             }) {
                 Text("Save Changes")
+                    .foregroundColor(.white)
+                    .padding(5)
+                    .background(Color.footnoteRed)
+                    .cornerRadius(10)
+            }.padding(.bottom)
+            
+            Button(action: {
+                self.showImageCreator = true
+            }) {
+                Text("Share quote")
+                    .foregroundColor(.white)
+                    .padding(5)
+                    .background(Color.footnoteRed)
+                    .cornerRadius(10)
+                .sheet(isPresented: self.$showImageCreator) {
+                    ImageCreator(text: self.quote.text ?? "", source: self.quote.title ?? "")
+                }
             }
+            Spacer()
         }
     }
     
