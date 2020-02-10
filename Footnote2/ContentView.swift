@@ -30,31 +30,37 @@ struct ContentView: View {
             
             ZStack {
                 
-                
-                VStack {
-                    TextField("Search", text: self.$search)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                        .padding([.leading, .trailing, .top])
-                    
-                    
-                    // TODO: Quote detail view, edit quote.
-                    if self.search != "" {
-                        FilteredList(filter: self.search).environment(\.managedObjectContext, self.managedObjectContext)
-                    } else {
-                        List {
-                            ForEach(self.quotes, id: \.self) { quote in
-                                
-                                QuoteItemView(showImageCreator: self.$showImageCreator, quote: quote)
-                                    .sheet(isPresented: self.$showImageCreator) {
-                                    ImageCreator(text: quote.text ?? "", source: quote.title ?? "")
-                                }
-                                
-                                
-                            }.onDelete(perform: self.removeQuote)
+                NavigationView {
+                    VStack {
+                        TextField("Search", text: self.$search)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                            .padding([.leading, .trailing, .top])
+                        
+                        
+                        // TODO: Quote detail view, edit quote.
+                        if self.search != "" {
+                            FilteredList(filter: self.search).environment(\.managedObjectContext, self.managedObjectContext)
+                        } else {
                             
+                            List {
+                                ForEach(self.quotes, id: \.self) { quote in
+                                    
+                                    NavigationLink(destination: QuoteDetailView(text: quote.text ?? "", title: quote.title ?? "", author: quote.author ?? "", quote: quote)) {
+                                        QuoteItemView(showImageCreator: self.$showImageCreator, quote: quote)
+                                            .sheet(isPresented: self.$showImageCreator) {
+                                                ImageCreator(text: quote.text ?? "", source: quote.title ?? "")
+                                        }
+                                        
+                                    }
+                                    
+                                    
+                                }.onDelete(perform: self.removeQuote)
+                                
+                            }.navigationBarTitle("")
+                                .navigationBarHidden(true)
                         }
                     }
-                }
+                }.accentColor(.footnoteRed)
                 
                 
                 
