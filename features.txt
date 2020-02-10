@@ -3,13 +3,13 @@
  - Suggested authors and titles as you type - complete
  - Export
  - Ratings, sort by ratings
- - Edit quotes
+ - Edit quotes - complete
  - Show most used authors / titles
 - when creating new quote, add author and title to a list if they haven't already been added. use these lists in suggestions instead - complete
 - Picture of cover next to quote - complete
 - Tags with custom colors
 - Custom colors throughout
 - Sort by title, author, etc. Not just date.
-- Quote backgrounds / templates on sharing
+- Quote backgrounds / templates on sharing - complete
 - IAP for more quote backgrounds on templates. Basically a tip jar. https://www.appcoda.com/in-app-purchases-guide/
-- Share to social media
+- Share to social media - complete

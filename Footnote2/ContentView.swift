@@ -144,12 +144,16 @@ struct FilteredList: View {
     }
     var body: some View {
         
-        List {
-            ForEach(fetchRequest.wrappedValue, id: \.self) { quote in
-                QuoteItemView(quote: quote)
-            }.onDelete(perform: self.removeQuote)
-        }
-        
+        NavigationView {
+            List {
+                ForEach(fetchRequest.wrappedValue, id: \.self) { quote in
+                    NavigationLink(destination: QuoteDetailView(text: quote.text ?? "", title: quote.title ?? "", author: quote.author ?? "", quote: quote)) {
+                        QuoteItemView(quote: quote)
+                    }
+                }.onDelete(perform: self.removeQuote)
+            }
+        }.navigationBarTitle("")
+        .navigationBarHidden(true)
     }
     
     func removeQuote(at offsets: IndexSet) {
