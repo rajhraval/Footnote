@@ -23,19 +23,19 @@ struct QuoteDetailView: View {
         VStack {
             TextField("Text", text: $text)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                .padding([.bottom, .leading, .trailing])
             TextField("Title", text: $title)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                .padding([.bottom, .leading, .trailing])
             TextField("Author", text: $author)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding()
+                .padding([.bottom, .leading, .trailing])
             Button(action: {
                 self.updateQuote()
             }) {
-                Text("Save Changes")
+                Text("Save changes")
                     .foregroundColor(.white)
-                    .padding(5)
+                    .padding(8)
                     .background(Color.footnoteRed)
                     .cornerRadius(10)
             }.padding(.bottom)
@@ -45,7 +45,7 @@ struct QuoteDetailView: View {
             }) {
                 Text("Share quote")
                     .foregroundColor(.white)
-                    .padding(5)
+                    .padding(8)
                     .background(Color.footnoteRed)
                     .cornerRadius(10)
                 .sheet(isPresented: self.$showImageCreator) {
