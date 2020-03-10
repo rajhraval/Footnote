@@ -25,14 +25,14 @@ struct AddQuoteUIKit: View {
             VStack(spacing: 4) {
                 TextView(text: self.$text, placeholder: "Add a quote...")
                     .frame(width: geometry.size.width - 20, height: geometry.size.height / 6)
-                    .border(Color.footnoteRed)
+                    
                 
                 TitleSuggestionsView(filter: self.title, text: self.$title).environment(\.managedObjectContext, self.managedObjectContext)
                     .frame(width: geometry.size.width - 30, height: 50)
                 
                 TextView(text: self.$title, placeholder: "Title...")
                     .frame(width: geometry.size.width - 20, height: 30)
-                    .border(Color.footnoteRed)
+                    
                 
                 
                 AuthorSuggestionsView(filter: self.author, text: self.$author).environment(\.managedObjectContext, self.managedObjectContext)
@@ -40,7 +40,7 @@ struct AddQuoteUIKit: View {
                 
                 TextView(text: self.$author, placeholder: "Author...")
                     .frame(width: geometry.size.width - 20, height: 30)
-                    .border(Color.footnoteRed)
+                    
                 
                 Button(action: {
                     self.addQuote()
@@ -49,10 +49,10 @@ struct AddQuoteUIKit: View {
                         Image(systemName: "plus.circle.fill")
                             .resizable()
                             .frame(width: 50, height: 50)
-                            .foregroundColor(Color.footnoteRed)
+                            .foregroundColor(Color.white)
                             
                         Text("Save")
-                            .foregroundColor(Color.footnoteRed)
+                            .foregroundColor(Color.white)
                             
                     }.padding(.top)
                 }
@@ -128,6 +128,7 @@ struct TextView: UIViewRepresentable {
         myTextView.isEditable = true
         myTextView.isUserInteractionEnabled = true
         myTextView.text = placeholder
+        
         
         return myTextView
     }

@@ -45,9 +45,9 @@ struct AuthorSuggestionsView: View {
                             
                         }) {
                             Text(self.fetchRequest.wrappedValue[0].text ?? "")
-                                .foregroundColor(Color.white)
+                                .foregroundColor(Color.footnoteRed)
                             .padding(5)
-                            .background(Color.footnoteRed)
+                            .background(Color.white)
                             .cornerRadius(10)
                             .frame(width: geometry.size.width / 2 - 5, height: 50)
                         }
@@ -58,9 +58,9 @@ struct AuthorSuggestionsView: View {
                             
                         }) {
                             Text(self.fetchRequest.wrappedValue[1].text ?? "")
-                                .foregroundColor(Color.white)
+                                .foregroundColor(Color.footnoteRed)
                             .padding(5)
-                            .background(Color.footnoteRed)
+                            .background(Color.white)
                             .cornerRadius(10)
                             .frame(width: geometry.size.width / 2 - 5, height: 50)
                         }
@@ -73,9 +73,9 @@ struct AuthorSuggestionsView: View {
             
                         }) {
                             Text(item.text ?? "")
-                                .foregroundColor(Color.white)
+                                .foregroundColor(Color.footnoteRed)
                             .padding(5)
-                            .background(Color.footnoteRed)
+                            .background(Color.white)
                             .cornerRadius(10)
                             .frame(width: geometry.size.width / 2 - 5, height: 50)
                         }
@@ -121,9 +121,9 @@ struct TitleSuggestionsView: View {
                             
                         }) {
                             Text(self.fetchRequest.wrappedValue[0].text ?? "")
-                                .foregroundColor(Color.white)
+                                .foregroundColor(Color.footnoteRed)
                             .padding(5)
-                            .background(Color.footnoteRed)
+                            .background(Color.white)
                             .cornerRadius(10)
                             .frame(width: geometry.size.width / 2 - 5, height: 50)
                         }
@@ -134,9 +134,9 @@ struct TitleSuggestionsView: View {
 
                         }) {
                             Text(self.fetchRequest.wrappedValue[1].text ?? "")
-                                .foregroundColor(Color.white)
+                                .foregroundColor(Color.footnoteRed)
                             .padding(5)
-                            .background(Color.footnoteRed)
+                            .background(Color.white)
                             .cornerRadius(10)
                             .frame(width: geometry.size.width / 2 - 5, height: 50)
                         }
@@ -149,9 +149,9 @@ struct TitleSuggestionsView: View {
             
                         }) {
                             Text(item.text ?? "")
-                                .foregroundColor(Color.white)
+                                .foregroundColor(Color.footnoteRed)
                             .padding(5)
-                            .background(Color.footnoteRed)
+                            .background(Color.white)
                             .cornerRadius(10)
                             .frame(width: geometry.size.width / 2 - 5, height: 50)
                         }

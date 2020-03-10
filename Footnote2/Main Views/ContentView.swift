@@ -101,6 +101,7 @@ struct ContentView: View {
             
         }.sheet(isPresented: $showAddQuote) {
             AddQuoteUIKit().environment(\.managedObjectContext, self.managedObjectContext)
+            .background(Color.footnoteRed)
         }
     }
     
