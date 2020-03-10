@@ -22,11 +22,10 @@ struct AddQuoteUIKit: View {
     
     var body: some View {
         GeometryReader { geometry in
-            VStack {
+            VStack(spacing: 4) {
                 TextView(text: self.$text, placeholder: "Add a quote...")
-                    .frame(width: geometry.size.width - 20, height: geometry.size.height / 4)
+                    .frame(width: geometry.size.width - 20, height: geometry.size.height / 6)
                     .border(Color.footnoteRed)
-                
                 
                 TitleSuggestionsView(filter: self.title, text: self.$title).environment(\.managedObjectContext, self.managedObjectContext)
                     .frame(width: geometry.size.width - 30, height: 50)
@@ -60,7 +59,7 @@ struct AddQuoteUIKit: View {
                 
                 
                 Spacer()
-            }
+            }.padding(.top)
         }
     }
     
@@ -128,6 +127,7 @@ struct TextView: UIViewRepresentable {
         myTextView.isScrollEnabled = true
         myTextView.isEditable = true
         myTextView.isUserInteractionEnabled = true
+        myTextView.text = placeholder
         
         return myTextView
     }
@@ -156,14 +156,13 @@ struct TextView: UIViewRepresentable {
         
         func textViewDidBeginEditing(_ textView: UITextView) {
             if textView.textColor == UIColor.lightGray {
-                textView.text = nil
+                textView.text = ""
                 textView.textColor = UIColor.black
             }
         }
         
         func textViewDidEndEditing(_ textView: UITextView) {
             if textView.text.isEmpty {
-                textView.text = placeholder
                 textView.textColor = UIColor.lightGray
             }
         }

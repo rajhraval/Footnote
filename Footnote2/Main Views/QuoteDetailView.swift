@@ -20,39 +20,42 @@ struct QuoteDetailView: View {
     var quote: Quote
     
     var body: some View {
-        VStack {
-            TextField("Text", text: $text)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding([.bottom, .leading, .trailing])
-            TextField("Title", text: $title)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding([.bottom, .leading, .trailing])
-            TextField("Author", text: $author)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .padding([.bottom, .leading, .trailing])
-            Button(action: {
-                self.updateQuote()
-            }) {
-                Text("Save changes")
-                    .foregroundColor(.white)
-                    .padding(8)
-                    .background(Color.footnoteRed)
-                    .cornerRadius(10)
-            }.padding(.bottom)
-            
-            Button(action: {
-                self.showImageCreator = true
-            }) {
-                Text("Share quote")
-                    .foregroundColor(.white)
-                    .padding(8)
-                    .background(Color.footnoteRed)
-                    .cornerRadius(10)
-                .sheet(isPresented: self.$showImageCreator) {
-                    ImageCreator(text: self.quote.text ?? "", source: self.quote.title ?? "")
+        GeometryReader { geometry in 
+            VStack {
+                TextView(text: self.$text, placeholder: "Add a quote...")
+                .frame(width: geometry.size.width - 20, height: geometry.size.height / 6)
+                .border(Color.footnoteRed)
+
+                TextView(text: self.$title, placeholder: "Title...")
+                .frame(width: geometry.size.width - 20, height: 30)
+                .border(Color.footnoteRed)
+                TextView(text: self.$author, placeholder: "Author...")
+                .frame(width: geometry.size.width - 20, height: 30)
+                .border(Color.footnoteRed)
+                Button(action: {
+                    self.updateQuote()
+                }) {
+                    Text("Save changes")
+                        .foregroundColor(.white)
+                        .padding(8)
+                        .background(Color.footnoteRed)
+                        .cornerRadius(10)
+                }.padding(.bottom)
+                
+                Button(action: {
+                    self.showImageCreator = true
+                }) {
+                    Text("Share quote")
+                        .foregroundColor(.white)
+                        .padding(8)
+                        .background(Color.footnoteRed)
+                        .cornerRadius(10)
+                    .sheet(isPresented: self.$showImageCreator) {
+                        ImageCreator(text: self.quote.text ?? "", source: self.quote.title ?? "")
+                    }
                 }
+                Spacer()
             }
-            Spacer()
         }
     }
     
