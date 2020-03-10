@@ -71,23 +71,24 @@ struct AddQuoteUIKit: View {
         quote.author = self.author
         quote.dateCreated = Date()
         
-        let authorItem = Author(context: self.managedObjectContext)
-        authorItem.text = self.author
-        authorItem.count += 1
-        
-        let titleItem = Title(context: self.managedObjectContext)
-        titleItem.text = self.title
-        titleItem.count += 1
+//        let authorItem = Author(context: self.managedObjectContext)
+//        authorItem.text = self.author
+//        authorItem.count += 1
+//
+//        let titleItem = Title(context: self.managedObjectContext)
+//        titleItem.text = self.title
+//        titleItem.count += 1
         
         if inputImage != nil {
             quote.coverImage = inputImage!.pngData() as Data?
         }
         
-        
         do {
             try self.managedObjectContext.save()
         } catch {
             // handle the Core Data error
+            print("Failed to save new item. Error = \(error)")
+            managedObjectContext.delete(quote)  
         }
         
         title = ""

@@ -30,7 +30,6 @@ struct ContentView: View {
             NavigationView {
                 ZStack {
                     
-                    
                     VStack {
                         TextField("Search", text: self.$search)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
