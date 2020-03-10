@@ -15,6 +15,7 @@ struct ContentView: View {
     //Controls translation of AddQuoteView
     @State private var offset: CGSize = .zero
     @State var search = ""
+    @State var showAddQuote = false
     
     @FetchRequest(
         entity: Quote.entity(),
@@ -26,9 +27,10 @@ struct ContentView: View {
     var body: some View {
         GeometryReader { geometry in
             
-            ZStack {
-                
-                NavigationView {
+            NavigationView {
+                ZStack {
+                    
+                    
                     VStack {
                         TextField("Search", text: self.$search)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -54,46 +56,51 @@ struct ContentView: View {
                                 .navigationBarHidden(true)
                         }
                     }
-                }.accentColor(.footnoteRed)
-                
-                
-                
-                // Embedded stacks to put button in bottom corner
-                HStack {
-                    Spacer()
-                    VStack {
+                    
+                    
+                    
+                    // Embedded stacks to put button in bottom corner
+                    HStack {
                         Spacer()
-                        Button(action: {
-                            self.offset = .init(width: 0, height: -650)
-                        }) {
-                            Image(systemName: "plus.circle.fill")
-                                .resizable()
-                                .frame(width: 50, height: 50)
-                                // Needs a background to colour the plus, corner radius to remove box
-                                .cornerRadius(25)
-                                .foregroundColor(Color.footnoteRed)
-                                .padding()
+                        VStack {
+                            Spacer()
+                            Button(action: {
+                                self.showAddQuote.toggle()
+                            }) {
+                                Image(systemName: "plus.circle.fill")
+                                    .resizable()
+                                    .frame(width: 50, height: 50)
+                                    // Needs a background to colour the plus, corner radius to remove box
+                                    .cornerRadius(25)
+                                    .foregroundColor(Color.footnoteRed)
+                                    .padding()
+                                
+                                
+                            }
+                            
                             
                         }
                     }
+                    
+                    // TODO: Keyboard Guardian
+                    
+                    //                AddQuoteView().environment(\.managedObjectContext, self.managedObjectContext).offset(x: 0, y: geometry.size.height + 100)
+                    //                    .animation(.spring())
+                    //                    .offset(x: 0, y: self.offset.height)
+                    //                    .gesture(DragGesture()
+                    //                        .onEnded {_ in
+                    //                            print("drag")
+                    //                            self.offset = .init(width: 0, height: 0)
+                    //                            // Dismiss keyboard
+                    //                            UIApplication.shared.endEditing()
+                    //                    })
+                    
                 }
-                
-                // TODO: Keyboard Guardian
-                
-                AddQuoteView().environment(\.managedObjectContext, self.managedObjectContext).offset(x: 0, y: geometry.size.height + 100)
-                    .animation(.spring())
-                    .offset(x: 0, y: self.offset.height)
-                    .gesture(DragGesture()
-                        .onEnded {_ in
-                            print("drag")
-                            self.offset = .init(width: 0, height: 0)
-                            // Dismiss keyboard
-                            UIApplication.shared.endEditing()
-                    })
-                
-            }
+            }.accentColor(Color.footnoteRed)
             
             
+        }.sheet(isPresented: $showAddQuote) {
+            AddQuoteUIKit().environment(\.managedObjectContext, self.managedObjectContext)
         }
     }
     
@@ -142,6 +149,7 @@ struct FilteredList: View {
                 ]
         ))
     }
+    
     var body: some View {
         
         NavigationView {
@@ -153,7 +161,7 @@ struct FilteredList: View {
                 }.onDelete(perform: self.removeQuote)
             }
         }.navigationBarTitle("")
-        .navigationBarHidden(true)
+            .navigationBarHidden(true)
     }
     
     func removeQuote(at offsets: IndexSet) {
