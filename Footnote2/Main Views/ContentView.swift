@@ -56,8 +56,6 @@ struct ContentView: View {
                         }
                     }
                     
-                    
-                    
                     // Embedded stacks to put button in bottom corner
                     HStack {
                         Spacer()
@@ -69,30 +67,13 @@ struct ContentView: View {
                                 Image(systemName: "plus.circle.fill")
                                     .resizable()
                                     .frame(width: 50, height: 50)
-                                    // Needs a background to colour the plus, corner radius to remove box
-                                    .cornerRadius(25)
                                     .foregroundColor(Color.footnoteRed)
                                     .padding()
-                                
-                                
                             }
-                            
-                            
                         }
                     }
                     
-                    // TODO: Keyboard Guardian
                     
-                    //                AddQuoteView().environment(\.managedObjectContext, self.managedObjectContext).offset(x: 0, y: geometry.size.height + 100)
-                    //                    .animation(.spring())
-                    //                    .offset(x: 0, y: self.offset.height)
-                    //                    .gesture(DragGesture()
-                    //                        .onEnded {_ in
-                    //                            print("drag")
-                    //                            self.offset = .init(width: 0, height: 0)
-                    //                            // Dismiss keyboard
-                    //                            UIApplication.shared.endEditing()
-                    //                    })
                     
                 }
             }.accentColor(Color.footnoteRed)
@@ -101,6 +82,7 @@ struct ContentView: View {
         }.sheet(isPresented: $showAddQuote) {
             AddQuoteUIKit().environment(\.managedObjectContext, self.managedObjectContext)
             .background(Color.footnoteRed)
+                .edgesIgnoringSafeArea(.bottom)
         }
     }
     

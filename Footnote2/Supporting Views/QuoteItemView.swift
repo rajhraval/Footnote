@@ -7,12 +7,13 @@
 //
 
 import SwiftUI
+import CoreData
 
 struct QuoteItemView: View {
     
     var quote: Quote
     var body: some View {
-        VStack {
+        VStack(spacing: 10) {
             HStack(alignment: .top) {
                 if quote.coverImage != nil {
                     BookCoverView(image: Image(uiImage: UIImage(data: quote.coverImage!)!))
@@ -28,7 +29,7 @@ struct QuoteItemView: View {
             }
             
             HStack(alignment: .bottom) {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 10) {
                     Text("\(quote.title ?? "")").font(.footnote)
                         .foregroundColor(Color.footnoteRed)
                     Text("by \(quote.author ?? "")").font(.footnote)
@@ -54,6 +55,18 @@ struct QuoteItemView: View {
 
 
 //struct QuoteItemView_Previews: PreviewProvider {
+//
+//
 //    static var previews: some View {
-//        QuoteItemView()
+//        QuoteItemView(quote: coreDataPreview())
+//    }
+//}
+//
+//func coreDataPreview() -> Quote {
+//    let managedObjectContext = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//    let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Quote")
+//
+//    let documentTemplate = try! managedObjectContext.fetch(request).first as! Quote
+//
+//    return documentTemplate
 //}
