@@ -26,7 +26,7 @@ struct QuoteDetailView: View {
     
     var textFieldHeight: CGFloat {
         let minHeight: CGFloat = 10
-        let maxHeight: CGFloat = 70
+        let maxHeight: CGFloat = 100
         
         if textHeight < minHeight {
             return minHeight
@@ -69,38 +69,64 @@ struct QuoteDetailView: View {
     
     var body: some View {
         
-        VStack {
-            DynamicHeightTextField(text: $text, height: $textHeight)
-                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+        VStack(spacing: 15) {
+            RoundedRectangle(cornerRadius: 8.0)
+                .stroke(Color.footnoteRed, lineWidth: 0.5)
                 .frame(height: textFieldHeight)
-            .border(Color.black, width: 1)
+                .shadow(radius: 5)
+                .overlay(
+                    DynamicHeightTextField(text: $text, height: $textHeight)
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        .frame(height: textFieldHeight)
+            ).padding(.horizontal)
             
-            DynamicHeightTextField(text: $title, height: $titleHeight).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                .frame(height: titleFieldHeight)
-            .border(Color.black, width: 1)
-            
-            DynamicHeightTextField(text: $author, height: $authorHeight).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+            RoundedRectangle(cornerRadius: 8.0)
+                .stroke(Color.footnoteRed, lineWidth: 0.5)
                 .frame(height: authorFieldHeight)
-                .border(Color.black, width: 1)
+                .shadow(radius: 5)
+                .overlay(
+                    DynamicHeightTextField(text: $title, height: $titleHeight).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        .frame(height: titleFieldHeight)
+                    
+            ).padding(.horizontal)
+            
+            RoundedRectangle(cornerRadius: 8.0)
+                .stroke(Color.footnoteRed, lineWidth: 0.5)
+                .frame(height: authorFieldHeight)
+                .shadow(radius: 5)
+                .overlay(
+                    DynamicHeightTextField(text: $author, height: $authorHeight).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        .frame(height: authorFieldHeight)
+                    
+            ).padding(.horizontal)
             
             Button(action: {
                 self.updateQuote()
             }) {
-                Text("Save changes")
-                    .foregroundColor(.white)
-                    .padding(8)
-                    .background(Color.footnoteRed)
-                    .cornerRadius(10)
-            }.padding(.bottom)
+                RoundedRectangle(cornerRadius: 8)
+                    .foregroundColor(.footnoteRed)
+                    .frame(height: 40)
+                    .padding(.horizontal)
+                    .overlay (
+                        Text("Save changes")
+                            .foregroundColor(.white)
+                        
+                )
+                
+            }
             
             Button(action: {
                 self.showImageCreator = true
             }) {
-                Text("Share quote")
-                    .foregroundColor(.white)
-                    .padding(8)
-                    .background(Color.footnoteRed)
-                    .cornerRadius(10)
+                RoundedRectangle(cornerRadius: 8)
+                    .foregroundColor(.footnoteRed)
+                    .frame(height: 40)
+                    .padding(.horizontal)
+                    .overlay (
+                        Text("Share quote")
+                            .foregroundColor(.white)
+                        
+                )
                     .sheet(isPresented: self.$showImageCreator) {
                         ImageCreator(text: self.quote.text ?? "", source: self.quote.title ?? "")
                 }

@@ -39,7 +39,11 @@ struct ImageCreator: View {
         GeometryReader { geometry in
             VStack {
                 self.drawImage(width: geometry.size.width - 10, height: geometry.size.height / 2)
-                    .border(Color.black)
+                .overlay(
+                    RoundedRectangle(cornerRadius: 8)
+                        .stroke(lineWidth: 1)
+                        .foregroundColor(Color(self.selectedColor))
+                )
                     .gesture(DragGesture().onChanged { value in
                         self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
                     }   // 4.

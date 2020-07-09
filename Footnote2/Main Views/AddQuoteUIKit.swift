@@ -16,51 +16,143 @@ struct AddQuoteUIKit: View {
     @State var author: String = ""
     @State var title: String = ""
     
+    // For the height of the text field.
+    @State var textHeight: CGFloat = 0
+    @State var authorHeight: CGFloat = 0
+    @State var titleHeight: CGFloat = 0
+    
+    var textFieldHeight: CGFloat {
+        let minHeight: CGFloat = 30
+        let maxHeight: CGFloat = 100
+        
+        if textHeight < minHeight {
+            return minHeight
+        }
+        
+        if textHeight > maxHeight {
+            return maxHeight
+        }
+        
+        return textHeight
+    }
+    var titleFieldHeight: CGFloat {
+        let minHeight: CGFloat = 30
+        let maxHeight: CGFloat = 70
+        
+        if titleHeight < minHeight {
+            return minHeight
+        }
+        
+        if titleHeight > maxHeight {
+            return maxHeight
+        }
+        
+        return titleHeight
+    }
+    var authorFieldHeight: CGFloat {
+        let minHeight: CGFloat = 30
+        let maxHeight: CGFloat = 70
+        
+        if authorHeight < minHeight {
+            return minHeight
+        }
+        
+        if authorHeight > maxHeight {
+            return maxHeight
+        }
+        
+        return authorHeight
+    }
+    
     @State private var image: Image?
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
     
     var body: some View {
-        GeometryReader { geometry in
-            VStack(spacing: 4) {
-                TextView(text: self.$text, placeholder: "Add a quote...")
-                    .frame(width: geometry.size.width - 20, height: geometry.size.height / 6)
+        
+        VStack(spacing: 15) {
+            RoundedRectangle(cornerRadius: 8.0)
+                .foregroundColor(.white)
+                .frame(height: textFieldHeight)
+                .shadow(radius: 5)
+                .overlay(
+                    ZStack {
+                        DynamicHeightTextField(text: $text, height: $textHeight)
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            .frame(height: textFieldHeight)
+                        if text.isEmpty {
+                            HStack {
+                                Text("Text")
+                                    .foregroundColor(.gray)
+                                    .padding(.horizontal)
+                                Spacer()
+                            }
+                        }
+                    }
                     
-                
-                TitleSuggestionsView(filter: self.title, text: self.$title).environment(\.managedObjectContext, self.managedObjectContext)
-                    .frame(width: geometry.size.width - 30, height: 50)
-                
-                TextView(text: self.$title, placeholder: "Title...")
-                    .frame(width: geometry.size.width - 20, height: 30)
-                    
-                
-                
-                AuthorSuggestionsView(filter: self.author, text: self.$author).environment(\.managedObjectContext, self.managedObjectContext)
-                    .frame(width: geometry.size.width - 30, height: 50)
-                
-                TextView(text: self.$author, placeholder: "Author...")
-                    .frame(width: geometry.size.width - 20, height: 30)
-                    
-                
-                Button(action: {
-                    self.addQuote()
-                }) {
-                    VStack {
-                        Image(systemName: "plus.circle.fill")
-                            .resizable()
-                            .frame(width: 50, height: 50)
-                            .foregroundColor(Color.white)
+            ).padding(.horizontal)
+            
+            RoundedRectangle(cornerRadius: 8.0)
+                .foregroundColor(.white)
+                .frame(height: authorFieldHeight)
+                .shadow(radius: 5)
+                .overlay(
+                    ZStack {
+                        DynamicHeightTextField(text: $title, height: $titleHeight).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            .frame(height: titleFieldHeight)
+                        if title.isEmpty {
+                            HStack {
+                                Text("Title").padding(.horizontal)
+                                    .foregroundColor(.gray)
+                                Spacer()
+                            }
                             
-                        Text("Save")
-                            .foregroundColor(Color.white)
-                            
-                    }.padding(.top)
-                }
-                
-                
-                Spacer()
-            }.padding(.top)
-        }
+                        }
+                    }
+                    
+                    
+            ).padding(.horizontal)
+            
+            RoundedRectangle(cornerRadius: 8.0)
+                .foregroundColor(.white)
+                .frame(height: authorFieldHeight)
+                .shadow(radius: 5)
+                .overlay(
+                    ZStack {
+                        DynamicHeightTextField(text: $author, height: $authorHeight).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                            .frame(height: authorFieldHeight)
+                        if author.isEmpty {
+                            HStack {
+                                Text("Author")
+                                    .foregroundColor(.gray)
+                                    .padding(.horizontal)
+                                Spacer()
+                            }
+                        }
+                    }
+                    
+            ).padding(.horizontal)
+            
+            
+            Button(action: {
+                self.addQuote()
+            }) {
+                RoundedRectangle(cornerRadius: 8)
+                    .foregroundColor(.white)
+                    .frame(height: 40)
+                    .padding(.horizontal)
+                    .overlay (
+                        Text("Save changes")
+                            .foregroundColor(.footnoteRed)
+                        
+                )
+            }
+            
+            
+            Spacer()
+        }.padding(.top)
+            .edgesIgnoringSafeArea(.bottom)
+            .background(Color.footnoteRed)
     }
     
     func addQuote() {
@@ -71,13 +163,13 @@ struct AddQuoteUIKit: View {
         quote.author = self.author
         quote.dateCreated = Date()
         
-//        let authorItem = Author(context: self.managedObjectContext)
-//        authorItem.text = self.author
-//        authorItem.count += 1
-//
-//        let titleItem = Title(context: self.managedObjectContext)
-//        titleItem.text = self.title
-//        titleItem.count += 1
+        //        let authorItem = Author(context: self.managedObjectContext)
+        //        authorItem.text = self.author
+        //        authorItem.count += 1
+        //
+        //        let titleItem = Title(context: self.managedObjectContext)
+        //        titleItem.text = self.title
+        //        titleItem.count += 1
         
         if inputImage != nil {
             quote.coverImage = inputImage!.pngData() as Data?
