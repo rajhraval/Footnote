@@ -19,44 +19,95 @@ struct QuoteDetailView: View {
     @State var showImageCreator = false
     var quote: Quote
     
+    // For the height of the text field.
+    @State var textHeight: CGFloat = 0
+    @State var authorHeight: CGFloat = 0
+    @State var titleHeight: CGFloat = 0
+    
+    var textFieldHeight: CGFloat {
+        let minHeight: CGFloat = 10
+        let maxHeight: CGFloat = 70
+        
+        if textHeight < minHeight {
+            return minHeight
+        }
+        
+        if textHeight > maxHeight {
+            return maxHeight
+        }
+        
+        return textHeight
+    }
+    var titleFieldHeight: CGFloat {
+        let minHeight: CGFloat = 10
+        let maxHeight: CGFloat = 70
+        
+        if titleHeight < minHeight {
+            return minHeight
+        }
+        
+        if titleHeight > maxHeight {
+            return maxHeight
+        }
+        
+        return titleHeight
+    }
+    var authorFieldHeight: CGFloat {
+        let minHeight: CGFloat = 10
+        let maxHeight: CGFloat = 70
+        
+        if authorHeight < minHeight {
+            return minHeight
+        }
+        
+        if authorHeight > maxHeight {
+            return maxHeight
+        }
+        
+        return authorHeight
+    }
+    
     var body: some View {
-        GeometryReader { geometry in 
-            VStack {
-                TextView(text: self.$text, placeholder: "Add a quote...")
-                .frame(width: geometry.size.width - 20, height: geometry.size.height / 6)
-                .border(Color.footnoteRed)
-
-                TextView(text: self.$title, placeholder: "Title...")
-                .frame(width: geometry.size.width - 20, height: 30)
-                .border(Color.footnoteRed)
-                TextView(text: self.$author, placeholder: "Author...")
-                .frame(width: geometry.size.width - 20, height: 30)
-                .border(Color.footnoteRed)
-                Button(action: {
-                    self.updateQuote()
-                }) {
-                    Text("Save changes")
-                        .foregroundColor(.white)
-                        .padding(8)
-                        .background(Color.footnoteRed)
-                        .cornerRadius(10)
-                }.padding(.bottom)
-                
-                Button(action: {
-                    self.showImageCreator = true
-                }) {
-                    Text("Share quote")
-                        .foregroundColor(.white)
-                        .padding(8)
-                        .background(Color.footnoteRed)
-                        .cornerRadius(10)
+        
+        VStack {
+            DynamicHeightTextField(text: $text, height: $textHeight)
+                .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .frame(height: textFieldHeight)
+            .border(Color.black, width: 1)
+            
+            DynamicHeightTextField(text: $title, height: $titleHeight).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .frame(height: titleFieldHeight)
+            .border(Color.black, width: 1)
+            
+            DynamicHeightTextField(text: $author, height: $authorHeight).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                .frame(height: authorFieldHeight)
+                .border(Color.black, width: 1)
+            
+            Button(action: {
+                self.updateQuote()
+            }) {
+                Text("Save changes")
+                    .foregroundColor(.white)
+                    .padding(8)
+                    .background(Color.footnoteRed)
+                    .cornerRadius(10)
+            }.padding(.bottom)
+            
+            Button(action: {
+                self.showImageCreator = true
+            }) {
+                Text("Share quote")
+                    .foregroundColor(.white)
+                    .padding(8)
+                    .background(Color.footnoteRed)
+                    .cornerRadius(10)
                     .sheet(isPresented: self.$showImageCreator) {
                         ImageCreator(text: self.quote.text ?? "", source: self.quote.title ?? "")
-                    }
                 }
-                Spacer()
             }
+            Spacer()
         }
+        
     }
     
     func updateQuote() {
@@ -74,4 +125,24 @@ struct QuoteDetailView: View {
         
     }
 }
+
+struct QuoteDetailView_Preview: PreviewProvider {
+    
+    static var previews: some View {
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        
+        let text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et urna vitae nunc ullamcorper auctor id a justo. Ut rutrum sapien metus, at congue arcu imperdiet sed. Sed tristique quam ullamcorper magna lobortis dapibus."
+        let author = "author"
+        let title = "title"
+        
+        let newQuote = Quote.init(context: context)
+        newQuote.text = text
+        newQuote.title = title
+        newQuote.author = author
+        newQuote.dateCreated = Date()
+        return QuoteDetailView(text: text, title: title, author: author, quote: newQuote).padding()
+        
+    }
+}
+
 
