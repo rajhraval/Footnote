@@ -16,6 +16,7 @@ struct ContentView: View {
     @State private var offset: CGSize = .zero
     @State var search = ""
     @State var showAddQuote = false
+    @State var refreshing = false
     
     @FetchRequest(
         entity: Quote.entity(),
@@ -25,7 +26,7 @@ struct ContentView: View {
     ) var quotes: FetchedResults<Quote>
     
     var body: some View {
-        GeometryReader { geometry in
+        
             
             NavigationView {
                 ZStack {
@@ -73,14 +74,17 @@ struct ContentView: View {
                         }
                     }
                     
-                    
-                    
                 }
-            }.accentColor(Color.footnoteRed)
+            .accentColor(Color.footnoteRed)
             
             
-        }.sheet(isPresented: $showAddQuote) {
+        }.onAppear {
+            self.refreshing.toggle()
+            print("refreshing")
+        }
+        .sheet(isPresented: $showAddQuote) {
             AddQuoteUIKit().environment(\.managedObjectContext, self.managedObjectContext)
+            
                 
                 
         }

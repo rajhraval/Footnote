@@ -25,7 +25,7 @@ struct QuoteDetailView: View {
     @State var titleHeight: CGFloat = 0
     
     var textFieldHeight: CGFloat {
-        let minHeight: CGFloat = 10
+        let minHeight: CGFloat = 40
         let maxHeight: CGFloat = 100
         
         if textHeight < minHeight {
@@ -39,7 +39,7 @@ struct QuoteDetailView: View {
         return textHeight
     }
     var titleFieldHeight: CGFloat {
-        let minHeight: CGFloat = 10
+        let minHeight: CGFloat = 40
         let maxHeight: CGFloat = 70
         
         if titleHeight < minHeight {
@@ -53,7 +53,7 @@ struct QuoteDetailView: View {
         return titleHeight
     }
     var authorFieldHeight: CGFloat {
-        let minHeight: CGFloat = 10
+        let minHeight: CGFloat = 40
         let maxHeight: CGFloat = 70
         
         if authorHeight < minHeight {
@@ -69,7 +69,7 @@ struct QuoteDetailView: View {
     
     var body: some View {
         
-        VStack(spacing: 15) {
+        VStack(spacing: 20) {
             RoundedRectangle(cornerRadius: 8.0)
                 .stroke(Color.footnoteRed, lineWidth: 0.5)
                 .frame(height: textFieldHeight)
@@ -147,7 +147,7 @@ struct QuoteDetailView: View {
         } catch {
             print(error)
         }
-        self.managedObjectContext.refreshAllObjects()
+        
         
     }
 }

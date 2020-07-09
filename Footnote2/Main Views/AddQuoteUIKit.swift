@@ -22,7 +22,7 @@ struct AddQuoteUIKit: View {
     @State var titleHeight: CGFloat = 0
     
     var textFieldHeight: CGFloat {
-        let minHeight: CGFloat = 30
+        let minHeight: CGFloat = 40
         let maxHeight: CGFloat = 100
         
         if textHeight < minHeight {
@@ -36,7 +36,7 @@ struct AddQuoteUIKit: View {
         return textHeight
     }
     var titleFieldHeight: CGFloat {
-        let minHeight: CGFloat = 30
+        let minHeight: CGFloat = 40
         let maxHeight: CGFloat = 70
         
         if titleHeight < minHeight {
@@ -50,7 +50,7 @@ struct AddQuoteUIKit: View {
         return titleHeight
     }
     var authorFieldHeight: CGFloat {
-        let minHeight: CGFloat = 30
+        let minHeight: CGFloat = 40
         let maxHeight: CGFloat = 70
         
         if authorHeight < minHeight {
@@ -70,7 +70,7 @@ struct AddQuoteUIKit: View {
     
     var body: some View {
         
-        VStack(spacing: 15) {
+        VStack(spacing: 20) {
             RoundedRectangle(cornerRadius: 8.0)
                 .foregroundColor(.white)
                 .frame(height: textFieldHeight)
@@ -91,6 +91,7 @@ struct AddQuoteUIKit: View {
                     }
                     
             ).padding(.horizontal)
+                .padding(.top)
             
             RoundedRectangle(cornerRadius: 8.0)
                 .foregroundColor(.white)
@@ -151,8 +152,10 @@ struct AddQuoteUIKit: View {
             
             Spacer()
         }.padding(.top)
-            .edgesIgnoringSafeArea(.bottom)
             .background(Color.footnoteRed)
+        .edgesIgnoringSafeArea(.bottom)
+        
+        
     }
     
     func addQuote() {
@@ -201,74 +204,5 @@ struct AddQuoteUIKit_Previews: PreviewProvider {
     }
 }
 #endif
-
-
-struct TextView: UIViewRepresentable {
-    @Binding var text: String
-    var placeholder: String
-    
-    func makeCoordinator() -> Coordinator {
-        Coordinator(self, placeholder: placeholder)
-    }
-    
-    func makeUIView(context: Context) -> UITextView {
-        
-        let myTextView = UITextView()
-        myTextView.delegate = context.coordinator
-        
-        myTextView.font = UIFont(name: "HelveticaNeue", size: 15)
-        myTextView.isScrollEnabled = true
-        myTextView.isEditable = true
-        myTextView.isUserInteractionEnabled = true
-        myTextView.text = placeholder
-        
-        
-        return myTextView
-    }
-    
-    func updateUIView(_ uiView: UITextView, context: Context) {
-        if uiView.text != "" {
-            uiView.text = text
-        } else {
-            uiView.text = placeholder
-            uiView.textColor = UIColor.lightGray
-        }
-        
-    }
-    
-    
-    
-    class Coordinator : NSObject, UITextViewDelegate {
-        
-        var parent: TextView
-        var placeholder: String
-        
-        init(_ uiTextView: TextView, placeholder: String) {
-            self.parent = uiTextView
-            self.placeholder = placeholder
-        }
-        
-        func textViewDidBeginEditing(_ textView: UITextView) {
-            if textView.textColor == UIColor.lightGray {
-                textView.text = ""
-                textView.textColor = UIColor.black
-            }
-        }
-        
-        func textViewDidEndEditing(_ textView: UITextView) {
-            if textView.text.isEmpty {
-                textView.textColor = UIColor.lightGray
-            }
-        }
-        
-        func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-            return true
-        }
-        
-        func textViewDidChange(_ textView: UITextView) {
-            self.parent.text = textView.text
-        }
-    }
-}
 
 
