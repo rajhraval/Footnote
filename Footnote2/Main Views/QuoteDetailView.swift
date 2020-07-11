@@ -102,6 +102,7 @@ struct QuoteDetailView: View {
             
             Button(action: {
                 self.updateQuote()
+                
             }) {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.footnoteRed)
@@ -152,23 +153,24 @@ struct QuoteDetailView: View {
     }
 }
 
-struct QuoteDetailView_Preview: PreviewProvider {
-    
-    static var previews: some View {
-        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-        
-        let text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et urna vitae nunc ullamcorper auctor id a justo. Ut rutrum sapien metus, at congue arcu imperdiet sed. Sed tristique quam ullamcorper magna lobortis dapibus."
-        let author = "author"
-        let title = "title"
-        
-        let newQuote = Quote.init(context: context)
-        newQuote.text = text
-        newQuote.title = title
-        newQuote.author = author
-        newQuote.dateCreated = Date()
-        return QuoteDetailView(text: text, title: title, author: author, quote: newQuote).padding()
-        
-    }
-}
+//struct QuoteDetailView_Preview: PreviewProvider {
+//    
+//    static var previews: some View {
+//        let refresh = false
+//        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+//        
+//        let text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et urna vitae nunc ullamcorper auctor id a justo. Ut rutrum sapien metus, at congue arcu imperdiet sed. Sed tristique quam ullamcorper magna lobortis dapibus."
+//        let author = "author"
+//        let title = "title"
+//        
+//        let newQuote = Quote.init(context: context)
+//        newQuote.text = text
+//        newQuote.title = title
+//        newQuote.author = author
+//        newQuote.dateCreated = Date()
+//        return QuoteDetailView(text: text, title: title, author: author, quote: newQuote, refresh: false).padding()
+//        
+//    }
+//}
 
 

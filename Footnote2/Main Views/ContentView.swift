@@ -16,7 +16,10 @@ struct ContentView: View {
     @State private var offset: CGSize = .zero
     @State var search = ""
     @State var showAddQuote = false
-    @State var refreshing = false
+    
+    @State private var refreshing = false
+    private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
+
     
     @FetchRequest(
         entity: Quote.entity(),
@@ -30,7 +33,6 @@ struct ContentView: View {
             
             NavigationView {
                 ZStack {
-                    
                     VStack {
                         TextField("Search", text: self.$search)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -45,8 +47,12 @@ struct ContentView: View {
                             List {
                                 ForEach(self.quotes, id: \.self) { quote in
                                     
-                                    NavigationLink(destination: QuoteDetailView(text: quote.text ?? "", title: quote.title ?? "", author: quote.author ?? "", quote: quote)) {
+                                    NavigationLink(destination: QuoteDetailView(text: quote.text ?? "", title: quote.title ?? "", author: quote.author ?? "", quote: quote).environment(\.managedObjectContext, self.managedObjectContext)) {
                                         QuoteItemView(quote: quote)
+                                    }
+                                    .onReceive(self.didSave) { _ in
+                                        self.refreshing.toggle()
+                                        print("refresh")
                                     }
                                     
                                     
@@ -56,7 +62,7 @@ struct ContentView: View {
                                 .navigationBarHidden(true)
                         }
                     }
-                    
+                   
                     // Embedded stacks to put button in bottom corner
                     HStack {
                         Spacer()
@@ -78,9 +84,6 @@ struct ContentView: View {
             .accentColor(Color.footnoteRed)
             
             
-        }.onAppear {
-            self.refreshing.toggle()
-            print("refreshing")
         }
         .sheet(isPresented: $showAddQuote) {
             AddQuoteUIKit().environment(\.managedObjectContext, self.managedObjectContext)
@@ -121,6 +124,7 @@ struct FilteredList: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @State var showImageCreator = false
     var fetchRequest: FetchRequest<Quote>
+    
     
     init(filter: String) {
         fetchRequest = FetchRequest<Quote>(entity: Quote.entity(), sortDescriptors: [

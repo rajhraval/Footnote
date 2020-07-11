@@ -10,7 +10,7 @@ import SwiftUI
 import CoreData
 
 struct QuoteItemView: View {
-    var quote: Quote
+    @ObservedObject var quote: Quote
     
     var body: some View {
         VStack(spacing: 10) {
