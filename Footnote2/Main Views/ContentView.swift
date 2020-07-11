@@ -30,7 +30,6 @@ struct ContentView: View {
     
     var body: some View {
         
-            
             NavigationView {
                 ZStack {
                     VStack {
@@ -81,10 +80,8 @@ struct ContentView: View {
                     }
                     
                 }
-            .accentColor(Color.footnoteRed)
-            
-            
-        }
+                
+        }.accentColor(Color.footnoteRed)
         .sheet(isPresented: $showAddQuote) {
             AddQuoteUIKit().environment(\.managedObjectContext, self.managedObjectContext)
             

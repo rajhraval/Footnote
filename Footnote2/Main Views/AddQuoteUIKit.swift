@@ -144,15 +144,14 @@ struct AddQuoteUIKit: View {
                     .padding(.horizontal)
                     .overlay (
                         Text("Save changes")
-                            .foregroundColor(.footnoteRed)
-                        
+                            .foregroundColor(.black)
                 )
             }
             
             
             Spacer()
         }.padding(.top)
-            .background(Color.footnoteRed)
+            .background(LinearGradient(gradient: Gradient(colors: [.footnoteRed, .footnoteOrange]), startPoint: .top, endPoint: .bottom))
         .edgesIgnoringSafeArea(.bottom)
         
         
