@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0867228A24B69A6100B6938D /* DynamicHeightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867228924B69A6100B6938D /* DynamicHeightTextField.swift */; };
-		8AFD54DEF43AB69AC2B8AC53 /* Pods_Footnote2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2BBC3388438159553D8F76F2 /* Pods_Footnote2.framework */; };
 		FC0AC73223DCD94B003219A1 /* BookCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0AC73123DCD94B003219A1 /* BookCoverView.swift */; };
 		FC50DF2324131B0600CB5EB7 /* AddQuoteUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC50DF2224131B0600CB5EB7 /* AddQuoteUIKit.swift */; };
 		FC50DF27241321B600CB5EB7 /* SuggestionViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC50DF26241321B600CB5EB7 /* SuggestionViews.swift */; };
@@ -37,9 +36,6 @@
 
 /* Begin PBXFileReference section */
 		0867228924B69A6100B6938D /* DynamicHeightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextField.swift; sourceTree = "<group>"; };
-		2610CA4C3F36B8C7F2B8DF18 /* Pods-Footnote2.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Footnote2.debug.xcconfig"; path = "Target Support Files/Pods-Footnote2/Pods-Footnote2.debug.xcconfig"; sourceTree = "<group>"; };
-		2BBC3388438159553D8F76F2 /* Pods_Footnote2.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Footnote2.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6EAC291AE787ACBB1FA9530D /* Pods-Footnote2.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Footnote2.release.xcconfig"; path = "Target Support Files/Pods-Footnote2/Pods-Footnote2.release.xcconfig"; sourceTree = "<group>"; };
 		FC0AC73123DCD94B003219A1 /* BookCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCoverView.swift; sourceTree = "<group>"; };
 		FC50DF2224131B0600CB5EB7 /* AddQuoteUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuoteUIKit.swift; sourceTree = "<group>"; };
 		FC50DF26241321B600CB5EB7 /* SuggestionViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViews.swift; sourceTree = "<group>"; };
@@ -73,7 +69,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8AFD54DEF43AB69AC2B8AC53 /* Pods_Footnote2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,18 +78,8 @@
 		75A802C35F5F67C20D296E8E /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				2610CA4C3F36B8C7F2B8DF18 /* Pods-Footnote2.debug.xcconfig */,
-				6EAC291AE787ACBB1FA9530D /* Pods-Footnote2.release.xcconfig */,
 			);
 			path = Pods;
-			sourceTree = "<group>";
-		};
-		EA844E125BAE2A213B1B3E85 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				2BBC3388438159553D8F76F2 /* Pods_Footnote2.framework */,
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		FC50DF242413218100CB5EB7 /* Main Views */ = {
@@ -141,7 +126,6 @@
 				FCD0C83123A070FE00EFA591 /* Footnote2 */,
 				FCD0C83023A070FE00EFA591 /* Products */,
 				75A802C35F5F67C20D296E8E /* Pods */,
-				EA844E125BAE2A213B1B3E85 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -187,11 +171,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCD0C84623A070FF00EFA591 /* Build configuration list for PBXNativeTarget "Footnote2" */;
 			buildPhases = (
-				F5E2514C10DCD7F848988E99 /* [CP] Check Pods Manifest.lock */,
 				FCD0C82B23A070FE00EFA591 /* Sources */,
 				FCD0C82C23A070FE00EFA591 /* Frameworks */,
 				FCD0C82D23A070FE00EFA591 /* Resources */,
-				54A9287C1FA9644A81B863BF /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -255,48 +237,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		54A9287C1FA9644A81B863BF /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Footnote2/Pods-Footnote2-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Footnote2/Pods-Footnote2-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Footnote2/Pods-Footnote2-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		F5E2514C10DCD7F848988E99 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Footnote2-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		FCD0C82B23A070FE00EFA591 /* Sources */ = {
@@ -450,7 +390,6 @@
 		};
 		FCD0C84723A070FF00EFA591 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2610CA4C3F36B8C7F2B8DF18 /* Pods-Footnote2.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -474,7 +413,6 @@
 		};
 		FCD0C84823A070FF00EFA591 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6EAC291AE787ACBB1FA9530D /* Pods-Footnote2.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -1,6 +1,0 @@
-framework module Pods_Footnote2 {
-  umbrella header "Pods-Footnote2-umbrella.h"
-
-  export *
-  module * { export * }
-}
