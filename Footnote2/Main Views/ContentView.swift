@@ -38,7 +38,6 @@ struct ContentView: View {
                             .padding([.leading, .trailing, .top])
                         
                         
-                        // TODO: Quote detail view, edit quote.
                         if self.search != "" {
                             FilteredList(filter: self.search).environment(\.managedObjectContext, self.managedObjectContext)
                         } else {
