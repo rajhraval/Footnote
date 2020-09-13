@@ -8,6 +8,7 @@
 
 import SwiftUI
 import UIKit
+import Alamofire
 
 struct AddQuoteUIKit: View {
     
@@ -99,7 +100,8 @@ struct AddQuoteUIKit: View {
                 .shadow(radius: 5)
                 .overlay(
                     ZStack {
-                        DynamicHeightTextField(text: $title, height: $titleHeight).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        DynamicHeightTextField(text: $title, height: $titleHeight)
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             .frame(height: titleFieldHeight)
                         if title.isEmpty {
                             HStack {
@@ -120,7 +122,8 @@ struct AddQuoteUIKit: View {
                 .shadow(radius: 5)
                 .overlay(
                     ZStack {
-                        DynamicHeightTextField(text: $author, height: $authorHeight).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                        DynamicHeightTextField(text: $author, height: $authorHeight)
+                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             .frame(height: authorFieldHeight)
                         if author.isEmpty {
                             HStack {
@@ -133,7 +136,9 @@ struct AddQuoteUIKit: View {
                     }
                     
             ).padding(.horizontal)
-            
+            Divider()
+            SuggestionsView(searchString: self.title)
+                .background(Color.white)
             
             Button(action: {
                 self.addQuote()
@@ -147,13 +152,11 @@ struct AddQuoteUIKit: View {
                             .foregroundColor(.black)
                 )
             }
-            
-            
             Spacer()
+            
         }.padding(.top)
-            .background(LinearGradient(gradient: Gradient(colors: [.footnoteRed, .footnoteOrange]), startPoint: .top, endPoint: .bottom))
+            .background(Color.footnoteRed)
         .edgesIgnoringSafeArea(.bottom)
-        
         
     }
     
@@ -189,6 +192,8 @@ struct AddQuoteUIKit: View {
         text = ""
         author = ""
     }
+    
+    
 }
 
 // To preview with CoreData
