@@ -1,4 +1,4 @@
-//
+`//
 //  ContentView.swift
 //  Footnote2
 //
@@ -109,7 +109,7 @@ struct ContentView_Previews: PreviewProvider {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         return Group {
             ContentView().environment(\.managedObjectContext, context).environment(\.colorScheme, .light)
-            ContentView().environment(\.managedObjectContext, context).environment(\.colorScheme, .dark)
+            
         }
         
     }

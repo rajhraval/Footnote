@@ -11,23 +11,53 @@ import Alamofire
 
 struct SuggestionsView: View {
     
-    @State var bookList: [Book] = []
-    @State var searchString: String
+    @State var bookList = [Book]()
+    
+    init(searchString: String) {
+        getBooks(searchString: searchString)
+    }
     
     var body: some View {
         VStack {
-            Text(searchString)
             HStack {
                 Text("See Me")
+                VStack {
+                    ForEach(self.bookList, id: \.self) { book in
+                        Text(book.title)
+                    }
+                }
+                
                 
             }
         }.background(Color.white)
     }
     
-    func updateBooks() {
-        self.bookList = getBooks(searchString: searchString)
+    func getBooks(searchString: String) {
+        print(searchString)
+        let queryItems = [URLQueryItem(name: "q", value: searchString), URLQueryItem(name: "page", value: "1")]
+        var urlComps = URLComponents(string: "https://openlibrary.org/search.json")!
+        urlComps.queryItems = queryItems
+        let result = urlComps.url!
+        let request = URLRequest(url: result)
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let decodedResponse = try? JSONDecoder().decode(Books.self, from: data) {
+                    DispatchQueue.main.async {
+                        print(decodedResponse.allBooks)
+                        self.bookList = decodedResponse.allBooks
+                    }
+                    return
+                }
+            }
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+        }.resume()
+        
     }
     
+    func updateBooks(books: [Book]) {
+        self.bookList = books
+    }
 }
 
 struct SuggestionsView_Previews: PreviewProvider {
@@ -36,24 +66,9 @@ struct SuggestionsView_Previews: PreviewProvider {
     }
 }
 
-func getBooks(searchString: String) -> [Book]  {
-    print(searchString)
-    let url = "https://openlibrary.org/search.json"
-    var returnedBooks: [Book] = []
-    let parameters: [String: String] = ["q": searchString, "page": "1"]
-    let request = AF.request(url, parameters: parameters)
-    
-    request.validate()
-        .responseDecodable(of: Books.self) { response in
-            guard let books = response.value else { return }
-            print(books.allBooks)
-            returnedBooks = books.allBooks
-    }
-    
-    return returnedBooks
-}
 
-struct Book: Decodable {
+
+struct Book: Decodable, Hashable {
     
     let title: String
     let author_names: [String]
