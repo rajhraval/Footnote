@@ -7,7 +7,6 @@
 //
 
 import SwiftUI
-import Alamofire
 
 struct SuggestionsView: View {
     
@@ -26,8 +25,6 @@ struct SuggestionsView: View {
                         Text(book.title)
                     }
                 }
-                
-                
             }
         }.background(Color.white)
     }
@@ -38,7 +35,6 @@ struct SuggestionsView_Previews: PreviewProvider {
         SuggestionsView(searchString: "The Golem and the Jinni")
     }
 }
-
 
 public class BookFetcher: ObservableObject {
 
@@ -69,7 +65,6 @@ public class BookFetcher: ObservableObject {
          
     }
 }
-
 
 struct Book: Decodable, Hashable {
     
