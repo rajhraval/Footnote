@@ -4,6 +4,9 @@ Footnote is a SwiftUI + Core Data app that I initially created as a personal lea
 ## What the Hell is Open Source? 
 This project is intended to be a place for beginners to learn what open source software is about. Terminology and jargon can be a barrier for many people new to open source software. A wonderful guide to all things open source can be found at [opensource.guide](https://opensource.guide/). Please don't hesitate to reach out via email at cameronbardell@hey.com, or twitter [@cameronbardell](https://twitter.com/cameronbardell). This is also my first time as a maintainer, so if you have any suggestions of how I can better facilitate this project, let me know. 
 
+## Will my work be on the App Store? Will I get credited? 
+Yes and yes. The current version of the app is on the App Store [here](https://apps.apple.com/us/app/id1495437038). At the end of October, I'll submit version 2.0 with all the changes made during Hacktoberfest, and a contributors page with a link to the GitHub profile of everyone who helped out, with code or otherwise. 
+
 ## Contributing
 Please review [contributing.md](https://github.com/cambardell/Footnote/blob/master/contributing.md) before creating a PR. 
 
