@@ -9,11 +9,3 @@ There are several kinds of issues open, including bug fixes, feature requests, a
 2. Please refrain from submitting a pull request for issues that have not been assigned to you. This is to ensure that beginners have an equal chance to contribute, in the spirit of Hacktoberfest. Issues with the good-first-issue label will be reserved for developers who are new to Swift, OSS, or development in general. 
 3. You may merge the pull request once it has been reviewed by a project maintainer. 
 
-### Commit message conventions
-
-We tend to use a Type:Description style for commit messages so it's easy to see what type of change is being made. Common types are:
-
-- DOCS - Creating of new documents
-- FIX - Bug fixes
-- EDIT - Usually a follow up commit if a small error was spotted in a previous version
-- REFACTOR
