@@ -7,6 +7,9 @@ This project is intended to be a place for beginners to learn what open source s
 ## Will my work be on the App Store? Will I get credited? 
 Yes and yes. The current version of the app is on the App Store [here](https://apps.apple.com/us/app/id1495437038). At the end of October, I'll submit version 2.0 with all the changes made during Hacktoberfest, and a contributors page with a link to the GitHub profile of everyone who helped out, with code or otherwise. 
 
+## I have a feature request/bug report/question
+Either create an issue, or contact me with the methods listed above. You can't do anything wrong that can't be easily fixed (that's the magic of git and github) so don't hesitate!
+
 ## Contributing
 Please review [contributing.md](https://github.com/cambardell/Footnote/blob/master/contributing.md) before creating a PR. 
 
