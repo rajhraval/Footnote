@@ -1,7 +1,7 @@
 # Footnote
 Footnote is a SwiftUI + Core Data app that I initially created as a personal learning project. Now, I'm open sourcing it as part of [Hacktoberfest 2020](https://hacktoberfest.digitalocean.com). This project is specifically intended to support junior developers and developers who are new to SwiftUI and/or Open Source Software. 
 
-## What the Hell is Open Source? 
+## What the hell is open source? 
 This project is intended to be a place for beginners to learn what open source software is about. Terminology and jargon can be a barrier for many people new to open source software. A wonderful guide to all things open source can be found at [opensource.guide](https://opensource.guide/). Please don't hesitate to reach out via email at cameronbardell@hey.com, or twitter [@cameronbardell](https://twitter.com/cameronbardell). This is also my first time as a maintainer, so if you have any suggestions of how I can better facilitate this project, let me know. 
 
 ## Will my work be on the App Store? Will I get credited? 
