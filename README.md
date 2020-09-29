@@ -1,4 +1,7 @@
 # Footnote
+
+Hello! Before you interact with this repository, please check out our [Code of Conduct](https://github.com/cambardell/Footnote/blob/master/CODE_OF_CONDUCT.md) and [Contributing Guidelines](https://github.com/cambardell/Footnote/blob/master/contributing.md).
+
 Footnote is a SwiftUI + Core Data app that I initially created as a personal learning project. Now, I'm open sourcing it as part of [Hacktoberfest 2020](https://hacktoberfest.digitalocean.com). This project is specifically intended to support junior developers and developers who are new to SwiftUI and/or Open Source Software. 
 
 ## What the hell is open source? 
