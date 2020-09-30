@@ -57,6 +57,7 @@ struct ContentView: View {
                                 }.onDelete(perform: self.removeQuote)
                                 
                             }
+                            .listStyle(PlainListStyle())
                             .navigationBarTitle("Footnote", displayMode: .inline)
                             .navigationBarItems(trailing:
                                     
