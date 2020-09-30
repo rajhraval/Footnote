@@ -15,7 +15,8 @@ struct ContentView: View {
     //Controls translation of AddQuoteView
     @State private var offset: CGSize = .zero
     @State var search = ""
-    @State var showAddQuote = false
+    @State var showModal = false
+    @State var showView: ContentViewModals = .addQuoteView
     
     @State private var refreshing = false
     private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
@@ -31,7 +32,6 @@ struct ContentView: View {
     var body: some View {
         
             NavigationView {
-                ZStack {
                     VStack {
                         TextField("Search", text: self.$search)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -56,36 +56,28 @@ struct ContentView: View {
                                     
                                 }.onDelete(perform: self.removeQuote)
                                 
-                            }.navigationBarTitle("")
-                                .navigationBarHidden(true)
-                        }
-                    }
-                   
-                    // Embedded stacks to put button in bottom corner
-                    HStack {
-                        Spacer()
-                        VStack {
-                            Spacer()
-                            Button(action: {
-                                self.showAddQuote.toggle()
-                            }) {
-                                Image(systemName: "plus.circle.fill")
-                                    .resizable()
-                                    .frame(width: 50, height: 50)
-                                    .foregroundColor(Color.footnoteRed)
-                                    .padding()
                             }
+                            .navigationBarTitle("Footnote", displayMode: .inline)
+                            .navigationBarItems(trailing:
+                                    
+                                    Button(action: {
+                                        self.showView = .addQuoteView
+                                        self.showModal.toggle()
+                                    } ) {
+                                    Image(systemName: "plus")
+                                } )
                         }
                     }
-                    
-                }
-                
         }.accentColor(Color.footnoteRed)
-        .sheet(isPresented: $showAddQuote) {
-            AddQuoteUIKit().environment(\.managedObjectContext, self.managedObjectContext)
-            
-                
-                
+        .sheet(isPresented: $showModal) {
+            if self.showView == .addQuoteView {
+
+                AddQuoteUIKit().environment(\.managedObjectContext, self.managedObjectContext)
+
+            } else {
+                // modals...
+            }
+
         }
     }
     
@@ -100,6 +92,12 @@ struct ContentView: View {
             // handle the Core Data error
         }
     }
+}
+
+/// contentView modals
+enum ContentViewModals {
+    case addQuoteView
+    case contributorView
 }
 
 // To preview with CoreData

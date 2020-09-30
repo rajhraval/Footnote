@@ -70,6 +70,8 @@ struct QuoteDetailView: View {
     var body: some View {
         
         VStack(spacing: 20) {
+            Spacer()
+                .frame(height: 5)
             RoundedRectangle(cornerRadius: 8.0)
                 .stroke(Color.footnoteRed, lineWidth: 0.5)
                 .frame(height: textFieldHeight)
