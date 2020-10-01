@@ -12,6 +12,10 @@ import UIKit
 struct AddQuoteUIKit: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
+    
+    // Issue #17: Indicates the media type of the quote being added
+    @State private var mediaType = MediaType.book
+    
     @State var text: String = ""
     @State var author: String = ""
     @State var title: String = ""
@@ -81,6 +85,19 @@ struct AddQuoteUIKit: View {
     var body: some View {
         
         VStack(spacing: 20) {
+            // Issue #17: Provides the user a choice of media types to use with their quote. It is displayed in a segmented picker control
+            Picker("Media Type", selection: $mediaType) {
+                ForEach(MediaType.allCases, id:\.rawValue) {type in
+                    Text(type.stringValue).font(.largeTitle)
+                        .tag(type)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
+            .accentColor(.blue)
+            
+            Divider()
+            
             RoundedRectangle(cornerRadius: 8.0)
                 .foregroundColor(.white)
                 .frame(height: textFieldHeight)
@@ -136,7 +153,8 @@ struct AddQuoteUIKit: View {
                             .frame(height: authorFieldHeight)
                         if author.isEmpty {
                             HStack {
-                                Text("Author")
+                                // Issue #17: Changed Author to Content Creator to align with different media type options provided to the user
+                                Text("Content Creator")
                                     .foregroundColor(.gray)
                                     .padding(.horizontal)
                                 Spacer()
@@ -183,6 +201,9 @@ struct AddQuoteUIKit: View {
         quote.text = self.text
         quote.author = self.author
         quote.dateCreated = Date()
+        
+        // Issue #17: Save the media type along with the quote in coredata
+        quote.mediaType = self.mediaType.rawCoreDataValue()
         
         //        let authorItem = Author(context: self.managedObjectContext)
         //        authorItem.text = self.author

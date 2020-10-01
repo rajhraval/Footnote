@@ -16,6 +16,10 @@ struct QuoteDetailView: View {
     @State var title: String
     @State var author: String
     
+
+    // Issue #17: Provide the user an option to change the media type
+    @State var mediaType: MediaType
+
     // Textfield Validation
     @State private var showEmptyTextFieldAlert = false
     private var textFieldsAreNonEmpty: Bool {
@@ -25,6 +29,7 @@ struct QuoteDetailView: View {
         
         return !trimmedText.isEmpty && !trimmedAuthor.isEmpty && !trimmedTitle.isEmpty
     }
+
     
     @State var showImageCreator = false
     var quote: Quote
@@ -82,6 +87,20 @@ struct QuoteDetailView: View {
         VStack(spacing: 20) {
             Spacer()
                 .frame(height: 5)
+            
+            // Issue #17: Show the user the media type of their quote
+            Picker("Media Type", selection: $mediaType) {
+                ForEach(MediaType.allCases, id:\.rawValue) {type in
+                    Text(type.stringValue).font(.largeTitle)
+                        .tag(type)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
+            .accentColor(.blue)
+            
+            Divider()
+            
             RoundedRectangle(cornerRadius: 8.0)
                 .stroke(Color.footnoteRed, lineWidth: 0.5)
                 .frame(height: textFieldHeight)
@@ -160,6 +179,10 @@ struct QuoteDetailView: View {
         quote.text = self.text
         quote.title = self.title
         quote.author = self.author
+        
+        // Issue #17: Persist media type in core data
+        quote.mediaType = self.mediaType.rawCoreDataValue()
+        
         do {
             try self.managedObjectContext.save()
         } catch {
