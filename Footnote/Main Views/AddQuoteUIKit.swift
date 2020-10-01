@@ -12,9 +12,23 @@ import UIKit
 struct AddQuoteUIKit: View {
     
     @Environment(\.managedObjectContext) var managedObjectContext
+    
+    // Issue #17: Indicates the media type of the quote being added
+    @State private var mediaType = MediaType.book
+    
     @State var text: String = ""
     @State var author: String = ""
     @State var title: String = ""
+    
+    // Textfield Validation
+    @State private var showEmptyTextFieldAlert = false
+    private var textFieldsAreNonEmpty: Bool {
+        let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedAuthor = author.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return !trimmedText.isEmpty && !trimmedAuthor.isEmpty && !trimmedTitle.isEmpty
+    }
     
     // For the height of the text field.
     @State var textHeight: CGFloat = 0
@@ -73,6 +87,19 @@ struct AddQuoteUIKit: View {
     var body: some View {
         
         VStack(spacing: 20) {
+            // Issue #17: Provides the user a choice of media types to use with their quote. It is displayed in a segmented picker control
+            Picker("Media Type", selection: $mediaType) {
+                ForEach(MediaType.allCases, id:\.rawValue) {type in
+                    Text(type.stringValue).font(.largeTitle)
+                        .tag(type)
+                }
+            }
+            .pickerStyle(SegmentedPickerStyle())
+            .padding(.horizontal)
+            .accentColor(.blue)
+            
+            Divider()
+            
             RoundedRectangle(cornerRadius: 8.0)
                 .foregroundColor(.white)
                 .frame(height: textFieldHeight)
@@ -128,7 +155,8 @@ struct AddQuoteUIKit: View {
                             .frame(height: authorFieldHeight)
                         if author.isEmpty {
                             HStack {
-                                Text("Author")
+                                // Issue #17: Changed Author to Content Creator to align with different media type options provided to the user
+                                Text("Content Creator")
                                     .foregroundColor(.gray)
                                     .padding(.horizontal)
                                 Spacer()
@@ -142,8 +170,12 @@ struct AddQuoteUIKit: View {
                 .background(Color.white)
             
             Button(action: {
-                self.addQuote()
-                self.showModal.toggle()
+                if textFieldsAreNonEmpty {
+                    self.addQuote()
+                    self.showModal.toggle()
+                } else {
+                    self.showEmptyTextFieldAlert = true
+                }
             }) {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.white)
@@ -154,6 +186,9 @@ struct AddQuoteUIKit: View {
                             .foregroundColor(.black)
                 )
             }
+            .alert(isPresented: $showEmptyTextFieldAlert, content: {
+                Alert(title: Text("Error Saving Quote"), message: Text("Please ensure that all text fields are filled before saving."), dismissButton: .default(Text("Ok")))
+            })
             Spacer()
             
         }.padding(.top)
@@ -169,6 +204,9 @@ struct AddQuoteUIKit: View {
         quote.text = self.text
         quote.author = self.author
         quote.dateCreated = Date()
+        
+        // Issue #17: Save the media type along with the quote in coredata
+        quote.mediaType = self.mediaType.rawCoreDataValue()
         
         //        let authorItem = Author(context: self.managedObjectContext)
         //        authorItem.text = self.author

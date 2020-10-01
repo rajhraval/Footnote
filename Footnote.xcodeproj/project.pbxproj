@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0867228A24B69A6100B6938D /* DynamicHeightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867228924B69A6100B6938D /* DynamicHeightTextField.swift */; };
+		B17E06052525265C00DA0E44 /* MediaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E06042525265C00DA0E44 /* MediaTypes.swift */; };
 		FC0AC73223DCD94B003219A1 /* BookCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0AC73123DCD94B003219A1 /* BookCoverView.swift */; };
 		FC50DF2324131B0600CB5EB7 /* AddQuoteUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC50DF2224131B0600CB5EB7 /* AddQuoteUIKit.swift */; };
 		FC7C208724FB49C600A5A963 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7C208624FB49C600A5A963 /* SuggestionsView.swift */; };
@@ -36,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		0867228924B69A6100B6938D /* DynamicHeightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextField.swift; sourceTree = "<group>"; };
+		B17E06042525265C00DA0E44 /* MediaTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTypes.swift; sourceTree = "<group>"; };
+		B17E060A252529C800DA0E44 /* FootnoteV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FootnoteV2.xcdatamodel; sourceTree = "<group>"; };
 		FC0AC73123DCD94B003219A1 /* BookCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCoverView.swift; sourceTree = "<group>"; };
 		FC50DF2224131B0600CB5EB7 /* AddQuoteUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuoteUIKit.swift; sourceTree = "<group>"; };
 		FC7C208624FB49C600A5A963 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
@@ -137,6 +140,7 @@
 				FCD0C83223A070FE00EFA591 /* AppDelegate.swift */,
 				FCD0C83423A070FE00EFA591 /* SceneDelegate.swift */,
 				FCD0C84F23A073E900EFA591 /* Cosmetics.swift */,
+				B17E06042525265C00DA0E44 /* MediaTypes.swift */,
 				FC96BFEC23E1071C00F4BE94 /* UIColor+FootnoteQuoteColors.swift */,
 				FCD0C83B23A070FF00EFA591 /* Assets.xcassets */,
 				FCD0C84023A070FF00EFA591 /* LaunchScreen.storyboard */,
@@ -239,6 +243,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B17E06052525265C00DA0E44 /* MediaTypes.swift in Sources */,
 				FC7C208724FB49C600A5A963 /* SuggestionsView.swift in Sources */,
 				FCD0C83323A070FE00EFA591 /* AppDelegate.swift in Sources */,
 				FCD0C85023A073E900EFA591 /* Cosmetics.swift in Sources */,
@@ -393,7 +398,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Footnote/Preview Content\"";
-				DEVELOPMENT_TEAM = N2WWEZ627P;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Footnote/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -416,7 +421,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Footnote/Preview Content\"";
-				DEVELOPMENT_TEAM = N2WWEZ627P;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Footnote/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -459,9 +464,10 @@
 		FCD0C83623A070FE00EFA591 /* Footnote2.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				B17E060A252529C800DA0E44 /* FootnoteV2.xcdatamodel */,
 				FCD0C83723A070FE00EFA591 /* Footnote2.xcdatamodel */,
 			);
-			currentVersion = FCD0C83723A070FE00EFA591 /* Footnote2.xcdatamodel */;
+			currentVersion = B17E060A252529C800DA0E44 /* FootnoteV2.xcdatamodel */;
 			path = Footnote2.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
