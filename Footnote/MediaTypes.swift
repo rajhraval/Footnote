@@ -9,33 +9,39 @@
 
 import Foundation
 
-enum MediaType: Int {
+enum MediaType: Int, CaseIterable {
     case book = 0
     case podcast
     case movie
     case tvShow
     
+    var stringValue: String {
+        switch self {
+        case .book:
+            return "Book"
+        case .podcast:
+            return "Podcast"
+        case .movie:
+            return "Movie"
+        case .tvShow:
+            return "TV Show"
+        }
+    }
+    
     func rawCoreDataValue() -> Int16 {
         Int16(self.rawValue)
     }
-}
-
-struct MediaTypeImageSystemName {
-    static var bookImageName = "book.circle.fill"
-    static var podcastImageName = "mic.circle.fill"
-    static var movieImageName = "film.fill"
-    static var tvShowImageName = "tv.circle.fill"
     
-    static func getImage(forMediaType mediaType: MediaType) -> String {
-        switch mediaType {
+    func getImage() -> String {
+        switch self {
         case .book:
-            return bookImageName
+            return "book.circle.fill"
         case .podcast:
-            return podcastImageName
+            return "mic.circle.fill"
         case .movie:
-            return movieImageName
+            return "film.fill"
         case .tvShow:
-            return tvShowImageName
+            return "tv.circle.fill"
         }
     }
 }

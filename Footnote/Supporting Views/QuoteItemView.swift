@@ -29,8 +29,9 @@ struct QuoteItemView: View {
             
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 10) {
+                    // Issue #17: Instead of just displaying the title of the quote, app displays the associated media type as an image preceding the title
                     HStack {
-                        Image(systemName: MediaTypeImageSystemName.getImage(forMediaType: MediaType(rawValue: Int(quote.mediaType)) ?? .book))
+                        Image(systemName: (MediaType(rawValue: Int(quote.mediaType)) ?? .book).getImage())
                             .foregroundColor(Color.footnoteLightRed)
                             .font(.title)
                         
