@@ -18,6 +18,9 @@ struct ContentView: View {
     @State var showModal = false
     @State var showView: ContentViewModals = .addQuoteView
     
+    // Onboarding via Sheet
+    @State private var showOnboarding = false
+    
     @State private var refreshing = false
     private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
 
@@ -80,7 +83,34 @@ struct ContentView: View {
             }
 
         }
+        .sheet(isPresented: $showOnboarding) {
+            OnboardingView()
+        }
+        .onAppear(perform: checkForUpdate)
     }
+    
+    // MARK: One-time onboarding based on update/new app user.
+    
+    func getCurrentAppVersion() -> String {
+        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
+        let version = (appVersion as! String)
+        return version
+    }
+    
+    func checkForUpdate() {
+        let savedVersionKey = "savedVersion"
+        let version = getCurrentAppVersion()
+        let savedVersion = UserDefaults.standard.string(forKey: savedVersionKey)
+        
+        if savedVersion == version {
+            print("Application has no new updates.")
+        } else {
+            showOnboarding.toggle()
+            UserDefaults.standard.set(version, forKey: savedVersionKey)
+        }
+        
+    }
+    
     
     func removeQuote(at offsets: IndexSet) {
         for index in offsets {
