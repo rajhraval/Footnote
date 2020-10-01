@@ -16,6 +16,16 @@ struct AddQuoteUIKit: View {
     @State var author: String = ""
     @State var title: String = ""
     
+    // Textfield Validation
+    @State private var showEmptyTextFieldAlert = false
+    private var textFieldsAreNonEmpty: Bool {
+        let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedAuthor = author.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return !trimmedText.isEmpty && !trimmedAuthor.isEmpty && !trimmedTitle.isEmpty
+    }
+    
     // For the height of the text field.
     @State var textHeight: CGFloat = 0
     @State var authorHeight: CGFloat = 0
@@ -140,7 +150,11 @@ struct AddQuoteUIKit: View {
                 .background(Color.white)
             
             Button(action: {
-                self.addQuote()
+                if textFieldsAreNonEmpty {
+                    self.addQuote()
+                } else {
+                    self.showEmptyTextFieldAlert = true
+                }
             }) {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.white)
@@ -151,6 +165,9 @@ struct AddQuoteUIKit: View {
                             .foregroundColor(.black)
                 )
             }
+            .alert(isPresented: $showEmptyTextFieldAlert, content: {
+                Alert(title: Text("Error Saving Quote"), message: Text("Please ensure that all text fields are filled before saving."), dismissButton: .default(Text("Ok")))
+            })
             Spacer()
             
         }.padding(.top)
