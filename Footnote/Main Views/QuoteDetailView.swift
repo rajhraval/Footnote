@@ -16,8 +16,20 @@ struct QuoteDetailView: View {
     @State var title: String
     @State var author: String
     
+
     // Issue #17: Provide the user an option to change the media type
     @State var mediaType: MediaType
+
+    // Textfield Validation
+    @State private var showEmptyTextFieldAlert = false
+    private var textFieldsAreNonEmpty: Bool {
+        let trimmedText = text.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedAuthor = author.trimmingCharacters(in: .whitespacesAndNewlines)
+        let trimmedTitle = title.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        return !trimmedText.isEmpty && !trimmedAuthor.isEmpty && !trimmedTitle.isEmpty
+    }
+
     
     @State var showImageCreator = false
     var quote: Quote
@@ -120,8 +132,11 @@ struct QuoteDetailView: View {
             ).padding(.horizontal)
             
             Button(action: {
-                self.updateQuote()
-                
+                if textFieldsAreNonEmpty {
+                    self.updateQuote()
+                } else {
+                    self.showEmptyTextFieldAlert = true
+                }
             }) {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.footnoteRed)
@@ -132,8 +147,10 @@ struct QuoteDetailView: View {
                             .foregroundColor(.white)
                         
                 )
-                
             }
+            .alert(isPresented: $showEmptyTextFieldAlert, content: {
+                    Alert(title: Text("Error Updating Quote"), message: Text("Please ensure that all text fields are filled before updating."), dismissButton: .default(Text("Ok")))
+            })
             
             Button(action: {
                 self.showImageCreator = true
