@@ -33,56 +33,64 @@ struct ContentView: View {
     ) var quotes: FetchedResults<Quote>
     
     var body: some View {
-        
             NavigationView {
                     VStack {
                         TextField("Search", text: self.$search)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding([.leading, .trailing, .top])
-                        
+                        Spacer()
                         
                         if self.search != "" {
                             FilteredList(filter: self.search).environment(\.managedObjectContext, self.managedObjectContext)
                         } else {
-                            
-                            List {
-                                ForEach(self.quotes, id: \.self) { quote in
-                                    
-                                    NavigationLink(destination: QuoteDetailView(text: quote.text ?? "", title: quote.title ?? "", author: quote.author ?? "", quote: quote).environment(\.managedObjectContext, self.managedObjectContext)) {
-                                        QuoteItemView(quote: quote)
-                                    }
-                                    .onReceive(self.didSave) { _ in
-                                        self.refreshing.toggle()
-                                        print("refresh")
-                                    }
-                                    
-                                    
-                                }.onDelete(perform: self.removeQuote)
-                                
+                            if quotes.isEmpty {
+                                Image("NoQuotesIcon")
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(width: 122, height: 141)
+                                Spacer()
+                            } else {
+                                List {
+                                    ForEach(self.quotes, id: \.self) { quote in
+                                        
+                                        NavigationLink(destination: QuoteDetailView(text: quote.text ?? "", title: quote.title ?? "", author: quote.author ?? "", quote: quote).environment(\.managedObjectContext, self.managedObjectContext)) {
+                                            QuoteItemView(quote: quote)
+                                        }
+                                        .onReceive(self.didSave) { _ in
+                                            self.refreshing.toggle()
+                                            print("refresh")
+                                        }
+                                        
+                                        
+                                    }.onDelete(perform: self.removeQuote)
+                                }
                             }
-                            .listStyle(PlainListStyle())
-                            .navigationBarTitle("Footnote", displayMode: .inline)
-                            .navigationBarItems(trailing:
-                                    
-                                    Button(action: {
-                                        self.showView = .addQuoteView
-                                        self.showModal.toggle()
-                                    } ) {
-                                    Image(systemName: "plus")
-                                } )
                         }
                     }
+                    .listStyle(PlainListStyle())
+                    .navigationBarTitle("Footnote", displayMode: .inline)
+                    .navigationBarItems(trailing:
+                        Button(action: {
+                            self.showView = .addQuoteView
+                            self.showModal.toggle()
+                        }) {
+                        Image(systemName: "plus")
+                        }
+                        .sheet(isPresented: $showModal) {
+                            AddQuoteUIKit().environment(\.managedObjectContext, self.managedObjectContext)
+                        }
+                    )
         }.accentColor(Color.footnoteRed)
-        .sheet(isPresented: $showModal) {
-            if self.showView == .addQuoteView {
-
-                AddQuoteUIKit().environment(\.managedObjectContext, self.managedObjectContext)
-
-            } else {
-                // modals...
-            }
-
-        }
+//        .sheet(isPresented: $showModal) {
+//            if self.showView == .addQuoteView {
+//
+//
+//
+//            } else {
+//                // modals...
+//            }
+//
+//        }
         .sheet(isPresented: $showOnboarding) {
             OnboardingView()
         }
@@ -91,18 +99,22 @@ struct ContentView: View {
     
     // MARK: One-time onboarding based on update/new app user.
     
+    /// Gets the current app version from the Info.plist
     func getCurrentAppVersion() -> String {
         let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
         let version = (appVersion as! String)
         return version
     }
     
+    /// Checks for app version change.
+    /// if true, the onboarding view is displayed.
     func checkForUpdate() {
         let savedVersionKey = "savedVersion"
         let version = getCurrentAppVersion()
         let savedVersion = UserDefaults.standard.string(forKey: savedVersionKey)
         
         if savedVersion == version {
+            // For Debug Purposes Only
             print("Application has no new updates.")
         } else {
             showOnboarding.toggle()
@@ -129,6 +141,8 @@ struct ContentView: View {
 enum ContentViewModals {
     case addQuoteView
     case contributorView
+    case showOnboardingView
+    case none
 }
 
 // To preview with CoreData
