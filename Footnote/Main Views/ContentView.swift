@@ -44,10 +44,20 @@ struct ContentView: View {
                             FilteredList(filter: self.search).environment(\.managedObjectContext, self.managedObjectContext)
                         } else {
                             if quotes.isEmpty {
-                                Image("NoQuotesIcon")
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(width: 122, height: 141)
+                                VStack(alignment: .center, spacing: 14) {
+                                    Image("QuotePlaceholder")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 85, height: 85)
+                                    VStack(alignment: .center, spacing: 6) {
+                                        Text("No Quotes Added")
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                        Text("Click"+" + Add Quote")
+                                            .font(.caption)
+                                            .foregroundColor(.blue)
+                                    }
+                                }
                                 Spacer()
                             } else {
                                 List {

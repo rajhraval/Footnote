@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "NoQuotesIcon.png",
+      "filename" : "QuotePlaceholder.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "NoQuotesIcon@2x.png",
+      "filename" : "QuotePlaceholder@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "NoQuotesIcon@3x.png",
+      "filename" : "QuotePlaceholder@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
