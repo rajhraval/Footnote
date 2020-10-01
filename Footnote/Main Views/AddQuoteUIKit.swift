@@ -21,6 +21,8 @@ struct AddQuoteUIKit: View {
     @State var authorHeight: CGFloat = 0
     @State var titleHeight: CGFloat = 0
     
+    @Binding var showModal: Bool
+
     var textFieldHeight: CGFloat {
         let minHeight: CGFloat = 40
         let maxHeight: CGFloat = 100
@@ -141,6 +143,7 @@ struct AddQuoteUIKit: View {
             
             Button(action: {
                 self.addQuote()
+                self.showModal.toggle()
             }) {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.white)
@@ -201,7 +204,7 @@ struct AddQuoteUIKit_Previews: PreviewProvider {
     static var previews: some View {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         return Group {
-            AddQuoteUIKit().environment(\.managedObjectContext, context).environment(\.colorScheme, .light)
+            AddQuoteUIKit(showModal: .constant(true)).environment(\.managedObjectContext, context).environment(\.colorScheme, .light)
         }
         
     }

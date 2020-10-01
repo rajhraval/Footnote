@@ -73,7 +73,7 @@ struct ContentView: View {
         .sheet(isPresented: $showModal) {
             if self.showView == .addQuoteView {
 
-                AddQuoteUIKit().environment(\.managedObjectContext, self.managedObjectContext)
+                AddQuoteUIKit(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
 
             } else {
                 // modals...
