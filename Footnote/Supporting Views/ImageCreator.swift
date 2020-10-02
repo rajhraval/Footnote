@@ -148,7 +148,7 @@ struct ImageCreator: View {
                                 .layoutPriority(0)
                             
                             Button(action: {
-                                self.actionSheet(image: self.renderImage(width: geometry.size.width, height: geometry.size.height / 2))
+                                    self.actionSheet(image: self.renderImage(width: geometry.size.width, height: geometry.size.height / 2))
                             }) {
                                 HStack{
                                     Text("Share Image")
@@ -258,8 +258,8 @@ struct ImageCreator: View {
     }
     
     func actionSheet(image: UIImage) {
-        let av = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-        UIApplication.shared.windows.last?.rootViewController?.present(av, animated: true, completion: nil)
+            let av = UIActivityViewController(activityItems: [image], applicationActivities: nil)
+            UIApplication.shared.windows.last?.rootViewController?.present(av, animated: true, completion: nil)
     }
     
     // Copied from StackOverflow, not tested.

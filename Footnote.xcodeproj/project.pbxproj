@@ -403,7 +403,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.03;
-				PRODUCT_BUNDLE_IDENTIFIER = "-020.japneet.footnote";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bardell.footnotedev;
 				PRODUCT_NAME = Footnote;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
@@ -428,7 +428,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.03;
-				PRODUCT_BUNDLE_IDENTIFIER = "-020.japneet.footnote";
+				PRODUCT_BUNDLE_IDENTIFIER = com.bardell.footnotedev;
 				PRODUCT_NAME = Footnote;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
