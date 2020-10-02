@@ -44,8 +44,13 @@ struct ContentView: View {
                             
                             List {
                                 ForEach(self.quotes, id: \.self) { quote in
-                                    
-                                    NavigationLink(destination: QuoteDetailView(text: quote.text ?? "", title: quote.title ?? "", author: quote.author ?? "", quote: quote).environment(\.managedObjectContext, self.managedObjectContext)) {
+                                    // Issue #17: Pass Media type to the detail view
+                                    NavigationLink(destination: QuoteDetailView(text: quote.text ?? "",
+                                                title: quote.title ?? "",
+                                                author: quote.author ?? "",
+                                                mediaType: MediaType(rawValue: Int(quote.mediaType)) ?? MediaType.book,
+                                                quote: quote
+                                    ).environment(\.managedObjectContext, self.managedObjectContext)) {
                                         QuoteItemView(quote: quote)
                                     }
                                     .onReceive(self.didSave) { _ in
@@ -73,7 +78,7 @@ struct ContentView: View {
         .sheet(isPresented: $showModal) {
             if self.showView == .addQuoteView {
 
-                AddQuoteUIKit().environment(\.managedObjectContext, self.managedObjectContext)
+                AddQuoteUIKit(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
 
             } else {
                 // modals...
@@ -140,7 +145,12 @@ struct FilteredList: View {
         NavigationView {
             List {
                 ForEach(fetchRequest.wrappedValue, id: \.self) { quote in
-                    NavigationLink(destination: QuoteDetailView(text: quote.text ?? "", title: quote.title ?? "", author: quote.author ?? "", quote: quote)) {
+                    // Issue #17: Pass Media type to the detail view
+                    NavigationLink(destination: QuoteDetailView(text: quote.text ?? "",
+                                        title: quote.title ?? "",
+                                        author: quote.author ?? "",
+                                        mediaType: MediaType(rawValue: Int(quote.mediaType)) ?? MediaType.book,
+                                        quote: quote)) {
                         QuoteItemView(quote: quote)
                     }
                 }.onDelete(perform: self.removeQuote)
