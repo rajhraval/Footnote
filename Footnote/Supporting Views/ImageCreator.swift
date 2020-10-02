@@ -36,6 +36,8 @@ struct ImageCreator: View {
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
     
+    @State private var showingShareSheet = false
+    
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {
@@ -148,8 +150,7 @@ struct ImageCreator: View {
                                 .layoutPriority(0)
                             
                             Button(action: {
-                                    self.actionSheet(image: self.renderImage(width: geometry.size.width, height: geometry.size.height / 2))
-                            }) {
+                                    self.showingShareSheet = true                            }) {
                                 HStack{
                                     Text("Share Image")
                                     Image(systemName: "square.and.arrow.up")
@@ -161,6 +162,9 @@ struct ImageCreator: View {
                                 .cornerRadius(10)
                             }
                             .layoutPriority(1)
+                            .sheet(isPresented: self.$showingShareSheet){
+                                ShareSheetView(activityItems: [self.renderImage(width: geometry.size.width-10, height: geometry.size.height/2)])
+                            }
                         }
                         .padding()
                     }
@@ -257,10 +261,6 @@ struct ImageCreator: View {
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
     
-    func actionSheet(image: UIImage) {
-            let av = UIActivityViewController(activityItems: [image], applicationActivities: nil)
-            UIApplication.shared.windows.last?.rootViewController?.present(av, animated: true, completion: nil)
-    }
     
     // Copied from StackOverflow, not tested.
 //    func shareToInstagram(deepLinkString : String){
