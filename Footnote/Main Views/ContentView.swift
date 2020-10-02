@@ -70,8 +70,6 @@ struct ContentView: View {
                                             self.refreshing.toggle()
                                             print("refresh")
                                         }
-                                        
-                                        
                                     }.onDelete(perform: self.removeQuote)
                                 }
                             }
@@ -104,35 +102,22 @@ struct ContentView: View {
         .sheet(isPresented: $showOnboarding) {
             OnboardingView()
         }
-        .onAppear(perform: checkForUpdate)
+        .onAppear(perform: checkForFirstTimeDownload)
     }
     
-    // MARK: One-time onboarding based on update/new app user.
+    // MARK: One-time onboarding on first time downloading
     
-    /// Gets the current app version from the Info.plist
-    func getCurrentAppVersion() -> String {
-        let appVersion = Bundle.main.infoDictionary?["CFBundleShortVersionString"]
-        let version = (appVersion as! String)
-        return version
-    }
-    
-    /// Checks for app version change.
-    /// if true, the onboarding view is displayed.
-    func checkForUpdate() {
-        let savedVersionKey = "savedVersion"
-        let version = getCurrentAppVersion()
-        let savedVersion = UserDefaults.standard.string(forKey: savedVersionKey)
-        
-        if savedVersion == version {
-            // For Debug Purposes Only
-            print("Application has no new updates.")
-        } else {
+    /// Checks if the app is a first time download.
+    func checkForFirstTimeDownload() {
+        let launchKey = "didLaunchBefore"
+        if !UserDefaults.standard.bool(forKey: launchKey) {
+            UserDefaults.standard.set(true, forKey: launchKey)
             showOnboarding.toggle()
-            UserDefaults.standard.set(version, forKey: savedVersionKey)
+        } else {
+            // For Debug Purposes Only
+            print("App has launched more than one time")
         }
-        
     }
-    
     
     func removeQuote(at offsets: IndexSet) {
         for index in offsets {
@@ -151,8 +136,6 @@ struct ContentView: View {
 enum ContentViewModals {
     case addQuoteView
     case contributorView
-    case showOnboardingView
-    case none
 }
 
 // To preview with CoreData
