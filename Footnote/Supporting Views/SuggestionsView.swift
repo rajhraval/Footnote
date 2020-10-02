@@ -20,9 +20,11 @@ struct SuggestionsView: View {
         VStack {
             HStack {
                 Text("See Me")
+                    .colorScheme(.light)
                 VStack {
                     ForEach(fetcher.books, id: \.self) { book in
                         Text(book.title)
+                            .colorScheme(.light)
                     }
                 }
             }
