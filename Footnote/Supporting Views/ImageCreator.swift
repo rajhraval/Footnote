@@ -7,6 +7,7 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct ImageCreator: View {
     var text: String
@@ -35,101 +36,149 @@ struct ImageCreator: View {
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
     
+    @State private var showingShareSheet = false
+    
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-        GeometryReader { geometry in
-            VStack {
-                self.drawImage(width: geometry.size.width - 10, height: geometry.size.height / 2)
-                .overlay(
-                    RoundedRectangle(cornerRadius: 8)
-                        .stroke(lineWidth: 1)
-                        .foregroundColor(Color(self.selectedColor))
-                )
-                    .gesture(DragGesture().onChanged { value in
-                        self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
-                    }   // 4.
-                        .onEnded { value in
+        NavigationView{
+            GeometryReader { geometry in
+                VStack {
+                    self.drawImage(width: geometry.size.width - 10, height: geometry.size.height / 2)
+                    .overlay(
+                        RoundedRectangle(cornerRadius: 8)
+                            .stroke(lineWidth: 1)
+                            .foregroundColor(Color(self.selectedColor))
+                    )
+                        .gesture(DragGesture().onChanged { value in
                             self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
-                            print(self.newPosition.width)
-                            self.newPosition = self.currentPosition
-                    })
-                    .padding(.top)
-                
-                Spacer()
-                Button(action: {
-                    print("Image picker")
-                    self.showingImagePicker = true
+                        }   // 4.
+                            .onEnded { value in
+                                self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
+                                print(self.newPosition.width)
+                                self.newPosition = self.currentPosition
+                        })
+                        .padding(.top)
+                    
+                    ScrollView(.vertical){
+                        Button(action: {
+                            print("Image picker")
+                            self.showingImagePicker = true
 
-                }) {
-                    Text("Add a background image")
-                        .foregroundColor(.white)
-                        .padding(5)
-                        .background(Color(self.selectedColor))
-                        .cornerRadius(5)
-                }.sheet(isPresented: self.$showingImagePicker, onDismiss: self.loadBackgroundImage) {
-                    ImagePicker(image: self.$inputImage)
-                }
-                
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(self.fonts, id: \.self) { font in
-                            Button(action: {
-                                withAnimation(.easeInOut) {
-                                    self.selectedFont = font
+                        }) {
+                            Text("Add a background image")
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color(self.selectedColor))
+                                .cornerRadius(10)
+                        }.sheet(isPresented: self.$showingImagePicker, onDismiss: self.loadBackgroundImage) {
+                            ImagePicker(image: self.$inputImage)
+                        }
+                        
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(self.fonts, id: \.self) { font in
+                                    Button(action: {
+                                        withAnimation(.easeInOut) {
+                                            self.selectedFont = font
+                                        }
+                                        
+                                        
+                                    }) {
+                                        Text(font.components(separatedBy: "-")[0])
+                                            .padding()
+                                            .foregroundColor(self.selectedFont == font ? .white : .black)
+                                            .font(.custom(font, size: 15))
+                                            .background(self.selectedFont == font ? Color(self.selectedColor) : .white)
+                                            .cornerRadius(10)
+                                        
+                                    }
+                                    
                                 }
-                                
-                                
-                            }) {
-                                Text(font)
-                                    .foregroundColor(self.selectedFont == font ? .white : .black)
-                                    .font(.custom(font, size: 15))
-                                    .padding(5)
-                                    .background(self.selectedFont == font ? Color(self.selectedColor) : .white)
-                                    .cornerRadius(5)
-                                
                             }
+                        }.padding()
+                        
+                        ScrollView(.horizontal) {
+                            HStack {
+                                ForEach(self.colors, id: \.self) { color in
+                                    Button(action: {
+                                        withAnimation(.easeInOut) {
+                                            self.selectedColor = color
+                                        }
+                                        
+                                    }) {
+                                        Circle().foregroundColor(Color(color))
+                                            .frame(width: 40, height: 40)
+                                            .overlay(
+                                                Circle().stroke(Color.gray, lineWidth: self.selectedColor == color ? 3 : 0))
+                                    }
+                                }
+                            }.padding()
+                        }
+                        
+                        HStack {
+                            Text("Font size")
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color(self.selectedColor))
+                                .cornerRadius(10)
+                                .padding(.leading, 5)
+                            Slider(value: self.$fontSize, in: 1...50, step: 1)
+                                .padding(.trailing).accentColor(Color(self.selectedColor))
+                        }
+                        
+                        
+                        HStack{
                             
-                        }
-                    }
-                }.padding()
-                ScrollView(.horizontal) {
-                    HStack {
-                        ForEach(self.colors, id: \.self) { color in
                             Button(action: {
-                                withAnimation(.easeInOut) {
-                                    self.selectedColor = color
-                                }
-                                
+                                self.saveImage(image: self.renderImage(width: geometry.size.width, height: geometry.size.height / 2))
+                                self.presentationMode.wrappedValue.dismiss()
                             }) {
-                                Circle().foregroundColor(Color(color))
-                                    .frame(width: 40, height: 40)
-                                    .overlay(
-                                        Circle().stroke(Color.gray, lineWidth: self.selectedColor == color ? 3 : 0))
+                                HStack{
+                                    Text("Save to Library")
+                                    Image(systemName: "square.and.arrow.down")
+                                        .font(.headline)
+                                }
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color(self.selectedColor))
+                                .cornerRadius(10)
+                            }
+                            .layoutPriority(1)
+                            
+                            Spacer()
+                                .layoutPriority(0)
+                            
+                            Button(action: {
+                                    self.showingShareSheet = true                            }) {
+                                HStack{
+                                    Text("Share Image")
+                                    Image(systemName: "square.and.arrow.up")
+                                        .font(.headline)
+                                }
+                                .padding()
+                                .foregroundColor(.white)
+                                .background(Color(self.selectedColor))
+                                .cornerRadius(10)
+                            }
+                            .layoutPriority(1)
+                            .sheet(isPresented: self.$showingShareSheet){
+                                ShareSheetView(activityItems: [self.renderImage(width: geometry.size.width-10, height: geometry.size.height/2)])
                             }
                         }
-                    }.padding()
-                }
-                
-                HStack {
-                    Text("Font size").padding(5)
-                        .foregroundColor(.white)
-                        .background(Color(self.selectedColor))
-                        .cornerRadius(10)
-                        .padding(.leading, 5)
-                    Slider(value: self.$fontSize, in: 1...50, step: 1)
-                        .padding(.trailing).accentColor(Color(self.selectedColor))
-                }
-                
-                Button(action: {
-                    self.saveImage(image: self.renderImage(width: geometry.size.width, height: geometry.size.height / 2))
-                }) {
-                    Text("Save").padding()
-                        .foregroundColor(.white)
-                        .background(Color(self.selectedColor))
-                        .cornerRadius(10)
-                        .padding(.bottom, 10)
+                        .padding()
+                    }
+                    
+                   
+                    
                 }
             }
+            .navigationBarTitle("Share Quote", displayMode: .inline)
+            .navigationBarItems(trailing: Button("Cancel"){
+                self.presentationMode.wrappedValue.dismiss()
+            })
         }
+        
     }
     
     func loadBackgroundImage() {
@@ -211,6 +260,7 @@ struct ImageCreator: View {
         // TODO: what happens if saving fails. https://www.hackingwithswift.com/books/ios-swiftui/how-to-save-images-to-the-users-photo-library
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
+    
     
     // Copied from StackOverflow, not tested.
 //    func shareToInstagram(deepLinkString : String){

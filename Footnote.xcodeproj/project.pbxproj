@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0867228A24B69A6100B6938D /* DynamicHeightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867228924B69A6100B6938D /* DynamicHeightTextField.swift */; };
+		3F2500982527683A00FD83E4 /* ShareSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2500972527683A00FD83E4 /* ShareSheetView.swift */; };
 		B17E06052525265C00DA0E44 /* MediaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E06042525265C00DA0E44 /* MediaTypes.swift */; };
 		FC0AC73223DCD94B003219A1 /* BookCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0AC73123DCD94B003219A1 /* BookCoverView.swift */; };
 		FC50DF2324131B0600CB5EB7 /* AddQuoteUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC50DF2224131B0600CB5EB7 /* AddQuoteUIKit.swift */; };
@@ -37,6 +38,7 @@
 
 /* Begin PBXFileReference section */
 		0867228924B69A6100B6938D /* DynamicHeightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextField.swift; sourceTree = "<group>"; };
+		3F2500972527683A00FD83E4 /* ShareSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetView.swift; sourceTree = "<group>"; };
 		B17E06042525265C00DA0E44 /* MediaTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTypes.swift; sourceTree = "<group>"; };
 		B17E060A252529C800DA0E44 /* FootnoteV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FootnoteV2.xcdatamodel; sourceTree = "<group>"; };
 		FC0AC73123DCD94B003219A1 /* BookCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCoverView.swift; sourceTree = "<group>"; };
@@ -95,6 +97,7 @@
 				FCFB9F7123DBA6EE00A5BD96 /* ImagePicker.swift */,
 				FCD0C85123A0742600EFA591 /* QuoteItemView.swift */,
 				FC8E91A323DD281000BC1365 /* ImageCreator.swift */,
+				3F2500972527683A00FD83E4 /* ShareSheetView.swift */,
 				0867228924B69A6100B6938D /* DynamicHeightTextField.swift */,
 				FC7C208624FB49C600A5A963 /* SuggestionsView.swift */,
 			);
@@ -251,6 +254,7 @@
 				FCD0C83823A070FE00EFA591 /* Footnote2.xcdatamodeld in Sources */,
 				0867228A24B69A6100B6938D /* DynamicHeightTextField.swift in Sources */,
 				FCD2A1B623DA8E6700FF266A /* QuoteDetailView.swift in Sources */,
+				3F2500982527683A00FD83E4 /* ShareSheetView.swift in Sources */,
 				FC96BFED23E1071C00F4BE94 /* UIColor+FootnoteQuoteColors.swift in Sources */,
 				FC50DF2324131B0600CB5EB7 /* AddQuoteUIKit.swift in Sources */,
 				FCD0C85223A0742600EFA591 /* QuoteItemView.swift in Sources */,
@@ -395,7 +399,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Footnote/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -409,6 +414,7 @@
 				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bardell.footnote;
 				PRODUCT_NAME = Footnote;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -418,7 +424,8 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Footnote/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -432,6 +439,7 @@
 				MARKETING_VERSION = 1.03;
 				PRODUCT_BUNDLE_IDENTIFIER = com.bardell.footnote;
 				PRODUCT_NAME = Footnote;
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
