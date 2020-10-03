@@ -18,6 +18,9 @@ struct ContentView: View {
     @State var showModal = false
     @State var showView: ContentViewModals = .addQuoteView
     
+    // Onboarding via Sheet
+    @State private var showOnboarding = false
+    
     @State private var refreshing = false
     private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
 
@@ -30,51 +33,71 @@ struct ContentView: View {
     ) var quotes: FetchedResults<Quote>
     
     var body: some View {
-        
             NavigationView {
                     VStack {
                         TextField("Search", text: self.$search)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                             .padding([.leading, .trailing, .top])
-                        
+                        Spacer()
                         
                         if self.search != "" {
                             FilteredList(filter: self.search).environment(\.managedObjectContext, self.managedObjectContext)
                         } else {
+                            if quotes.isEmpty {
+                                VStack(alignment: .center, spacing: 14) {
+                                    Image("QuotePlaceholder")
+                                        .resizable()
+                                        .scaledToFit()
+                                        .frame(width: 85, height: 85)
+                                    VStack(alignment: .center, spacing: 6) {
+                                        Text("No Quotes Added")
+                                            .font(.subheadline)
+                                            .foregroundColor(.secondary)
+                                        Text("Click"+" + Add Quote")
+                                            .font(.caption)
+                                            .foregroundColor(.blue)
+
                             
-                            List {
-                                ForEach(self.quotes, id: \.self) { quote in
-                                    // Issue #17: Pass Media type to the detail view
-                                    NavigationLink(destination: QuoteDetailView(text: quote.text ?? "",
+                            } else {
+                                List {
+                                    ForEach(self.quotes, id: \.self) { quote in
+                                        
+                                        NavigationLink(destination: QuoteDetailView(text: quote.text ?? "",
                                                 title: quote.title ?? "",
                                                 author: quote.author ?? "",
                                                 mediaType: MediaType(rawValue: Int(quote.mediaType)) ?? MediaType.book,
                                                 quote: quote
                                     ).environment(\.managedObjectContext, self.managedObjectContext)) {
                                         QuoteItemView(quote: quote)
+
                                     }
-                                    .onReceive(self.didSave) { _ in
-                                        self.refreshing.toggle()
-                                        print("refresh")
-                                    }
-                                    
-                                    
-                                }.onDelete(perform: self.removeQuote)
-                                
+                                        .onReceive(self.didSave) { _ in
+                                            self.refreshing.toggle()
+                                            print("refresh")
+                                        }
+                                    }.onDelete(perform: self.removeQuote)
+                                }
                             }
-                            .listStyle(PlainListStyle())
-                            .navigationBarTitle("Footnote", displayMode: .inline)
-                            .navigationBarItems(trailing:
-                                    
-                                    Button(action: {
-                                        self.showView = .addQuoteView
-                                        self.showModal.toggle()
-                                    } ) {
-                                    Image(systemName: "plus")
-                                } )
                         }
                     }
+                    .listStyle(PlainListStyle())
+                    .navigationBarTitle("Footnote", displayMode: .inline)
+                    .navigationBarItems(trailing:
+                        Button(action: {
+                            self.showView = .addQuoteView
+                            self.showModal.toggle()
+                        }) {
+                        Image(systemName: "plus")
+                        }
+                        .sheet(isPresented: $showModal) {
+                            AddQuoteUIKit().environment(\.managedObjectContext, self.managedObjectContext)
+                        }
+                    )
         }.accentColor(Color.footnoteRed)
+
+        .sheet(isPresented: $showOnboarding) {
+            OnboardingView()
+        }
         .sheet(isPresented: $showModal) {
             if self.showView == .addQuoteView {
 
@@ -85,6 +108,21 @@ struct ContentView: View {
             }
 
         }
+        .onAppear(perform: checkForFirstTimeDownload)
+    }
+    
+    // MARK: One-time onboarding on first time downloading
+    
+    /// Checks if the app is a first time download.
+    func checkForFirstTimeDownload() {
+        let launchKey = "didLaunchBefore"
+        if !UserDefaults.standard.bool(forKey: launchKey) {
+            UserDefaults.standard.set(true, forKey: launchKey)
+            showOnboarding.toggle()
+        } else {
+            // For Debug Purposes Only
+            print("App has launched more than one time")
+        
     }
     
     func removeQuote(at offsets: IndexSet) {
