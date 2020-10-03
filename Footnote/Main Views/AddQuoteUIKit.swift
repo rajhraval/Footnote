@@ -109,6 +109,7 @@ struct AddQuoteUIKit: View {
                         DynamicHeightTextField(text: $text, height: $textHeight)
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             .frame(height: textFieldHeight)
+                            .colorScheme(.light)
                         if text.isEmpty {
                             HStack {
                                 Text("Text")
@@ -131,6 +132,7 @@ struct AddQuoteUIKit: View {
                         DynamicHeightTextField(text: $title, height: $titleHeight)
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             .frame(height: titleFieldHeight)
+                            .colorScheme(.light)
                         if title.isEmpty {
                             HStack {
                                 Text("Title").padding(.horizontal)
@@ -153,6 +155,7 @@ struct AddQuoteUIKit: View {
                         DynamicHeightTextField(text: $author, height: $authorHeight)
                             .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                             .frame(height: authorFieldHeight)
+                            .colorScheme(.light)
                         if author.isEmpty {
                             HStack {
                                 // Issue #17: Changed Author to Content Creator to align with different media type options provided to the user
