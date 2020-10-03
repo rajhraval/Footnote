@@ -64,14 +64,22 @@ struct ContentView: View {
           }
           .listStyle(PlainListStyle())
           .navigationBarTitle("Footnote", displayMode: .inline)
-          .navigationBarItems(trailing:
-                                
+          .navigationBarItems(leading:
+                                Button(action: {
+                                  self.showView = .settingsView
+                                  self.showModal.toggle()
+                                } ) {
+                                  Image(systemName: "gear")
+                                },
+                              
+                              trailing:
                                 Button(action: {
                                   self.showView = .addQuoteView
                                   self.showModal.toggle()
                                 } ) {
                                   Image(systemName: "plus")
-                                } )
+                                }
+                              )
         }
       }
     }.sheet(isPresented: $showModal) {
@@ -79,8 +87,10 @@ struct ContentView: View {
         
         AddQuoteUIKit(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
         
-      } else {
-        // modals...
+      }
+      
+      if self.showView == .settingsView {
+        SettingsView()
       }
       
     }.accentColor(Color.footnoteRed)
@@ -103,7 +113,8 @@ struct ContentView: View {
 /// contentView modals
 enum ContentViewModals {
   case addQuoteView
-  case contributorView
+  case settingsView
+  
 }
 
 // To preview with CoreData
