@@ -89,9 +89,9 @@ struct ContentView: View {
         
       }
       
-      if self.showView == .settingsView {
-        SettingsView()
-      }
+//      if self.showView == .settingsView {
+//        SettingsView()
+//      }
       
     }.accentColor(Color.footnoteRed)
     
