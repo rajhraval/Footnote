@@ -56,16 +56,21 @@ struct ContentView: View {
                                         Text("Click"+" + Add Quote")
                                             .font(.caption)
                                             .foregroundColor(.blue)
-                                    }
-                                }
-                                Spacer()
+
+                            
                             } else {
                                 List {
                                     ForEach(self.quotes, id: \.self) { quote in
                                         
-                                        NavigationLink(destination: QuoteDetailView(text: quote.text ?? "", title: quote.title ?? "", author: quote.author ?? "", quote: quote).environment(\.managedObjectContext, self.managedObjectContext)) {
-                                            QuoteItemView(quote: quote)
-                                        }
+                                        NavigationLink(destination: QuoteDetailView(text: quote.text ?? "",
+                                                title: quote.title ?? "",
+                                                author: quote.author ?? "",
+                                                mediaType: MediaType(rawValue: Int(quote.mediaType)) ?? MediaType.book,
+                                                quote: quote
+                                    ).environment(\.managedObjectContext, self.managedObjectContext)) {
+                                        QuoteItemView(quote: quote)
+
+                                    }
                                         .onReceive(self.didSave) { _ in
                                             self.refreshing.toggle()
                                             print("refresh")
@@ -89,18 +94,19 @@ struct ContentView: View {
                         }
                     )
         }.accentColor(Color.footnoteRed)
-//        .sheet(isPresented: $showModal) {
-//            if self.showView == .addQuoteView {
-//
-//
-//
-//            } else {
-//                // modals...
-//            }
-//
-//        }
+
         .sheet(isPresented: $showOnboarding) {
             OnboardingView()
+        }
+        .sheet(isPresented: $showModal) {
+            if self.showView == .addQuoteView {
+
+                AddQuoteUIKit(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
+
+            } else {
+                // modals...
+            }
+
         }
         .onAppear(perform: checkForFirstTimeDownload)
     }
@@ -116,7 +122,7 @@ struct ContentView: View {
         } else {
             // For Debug Purposes Only
             print("App has launched more than one time")
-        }
+        
     }
     
     func removeQuote(at offsets: IndexSet) {
@@ -177,7 +183,12 @@ struct FilteredList: View {
         NavigationView {
             List {
                 ForEach(fetchRequest.wrappedValue, id: \.self) { quote in
-                    NavigationLink(destination: QuoteDetailView(text: quote.text ?? "", title: quote.title ?? "", author: quote.author ?? "", quote: quote)) {
+                    // Issue #17: Pass Media type to the detail view
+                    NavigationLink(destination: QuoteDetailView(text: quote.text ?? "",
+                                        title: quote.title ?? "",
+                                        author: quote.author ?? "",
+                                        mediaType: MediaType(rawValue: Int(quote.mediaType)) ?? MediaType.book,
+                                        quote: quote)) {
                         QuoteItemView(quote: quote)
                     }
                 }.onDelete(perform: self.removeQuote)
