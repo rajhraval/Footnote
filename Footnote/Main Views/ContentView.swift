@@ -27,7 +27,11 @@ struct ContentView: View {
     sortDescriptors: [
       NSSortDescriptor(keyPath: \Quote.dateCreated, ascending: false)
     ]
-  ) var quotes: FetchedResults<Quote>
+  ) var quotes: FetchedResults<Quote> {
+    didSet{
+        self.widgetSync()
+    }
+  }
   
   var body: some View {
     
@@ -55,6 +59,7 @@ struct ContentView: View {
               }
               .onReceive(self.didSave) { _ in
                 self.refreshing.toggle()
+                self.widgetSync()
                 print("refresh")
               }
               
@@ -80,6 +85,9 @@ struct ContentView: View {
                                   Image(systemName: "plus")
                                 }
                               )
+          .onAppear(perform: {
+            self.widgetSync()
+          })
         }
       }
     }.sheet(isPresented: $showModal) {
@@ -104,10 +112,32 @@ struct ContentView: View {
     }
     do {
       try managedObjectContext.save()
+        self.widgetSync()
     } catch {
       // handle the Core Data error
     }
   }
+    
+    func widgetSync(){
+        
+        
+        let quotesJSON = self.quotes.map({
+            WidgetContent(date: $0.dateCreated ?? Date(), text: $0.text ?? "Default Text", title: $0.title ?? "Default Title", author: $0.author ?? "Default Author")
+        })
+        
+        print("Syncing")
+        
+        guard let encodedData = try? JSONEncoder().encode(quotesJSON) else {
+            print("Couldnt encode")
+            return }
+        
+        print("encoded to UDs")
+        print(encodedData)
+        
+        print(type(of: quotesJSON))
+        UserDefaults(suiteName: AppGroup.appGroup.rawValue)!.set(encodedData, forKey: "WidgetContent")
+        
+    }
 }
 
 /// contentView modals
@@ -177,6 +207,7 @@ struct FilteredList: View {
     }
     do {
       try managedObjectContext.save()
+        self.widgetSync()
     } catch {
       // handle the Core Data error
     }

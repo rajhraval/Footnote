@@ -16,6 +16,13 @@
 		3F3BD9B625290F250097BC52 /* FootnoteWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BD9B225290F230097BC52 /* FootnoteWidget.intentdefinition */; };
 		3F3BD9B725290F250097BC52 /* FootnoteWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BD9B225290F230097BC52 /* FootnoteWidget.intentdefinition */; };
 		3F3BD9BA25290F250097BC52 /* FootnoteWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F3BD9A925290F230097BC52 /* FootnoteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3FD45D02252A43DC00A22ED1 /* QuoteCodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D01252A43DC00A22ED1 /* QuoteCodableExtension.swift */; };
+		3FD45D0B252A482500A22ED1 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D0A252A482500A22ED1 /* AppGroup.swift */; };
+		3FD45D0F252A491100A22ED1 /* WidgetContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D0E252A491100A22ED1 /* WidgetContent.swift */; };
+		3FD45D12252A4A2A00A22ED1 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D0A252A482500A22ED1 /* AppGroup.swift */; };
+		3FD45D15252A4C3E00A22ED1 /* QuoteCodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D01252A43DC00A22ED1 /* QuoteCodableExtension.swift */; };
+		3FD45D1A252A4E6200A22ED1 /* WidgetContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D0E252A491100A22ED1 /* WidgetContent.swift */; };
+		3FD45D1D252A51D800A22ED1 /* Footnote2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C83623A070FE00EFA591 /* Footnote2.xcdatamodeld */; };
 		B17E06052525265C00DA0E44 /* MediaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E06042525265C00DA0E44 /* MediaTypes.swift */; };
 		FC0AC73223DCD94B003219A1 /* BookCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0AC73123DCD94B003219A1 /* BookCoverView.swift */; };
 		FC50DF2324131B0600CB5EB7 /* AddQuoteUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC50DF2224131B0600CB5EB7 /* AddQuoteUIKit.swift */; };
@@ -77,6 +84,10 @@
 		3F3BD9B225290F230097BC52 /* FootnoteWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = FootnoteWidget.intentdefinition; sourceTree = "<group>"; };
 		3F3BD9B325290F250097BC52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F3BD9B525290F250097BC52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3FD45D01252A43DC00A22ED1 /* QuoteCodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCodableExtension.swift; sourceTree = "<group>"; };
+		3FD45D05252A47E400A22ED1 /* Footnote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Footnote.entitlements; sourceTree = "<group>"; };
+		3FD45D0A252A482500A22ED1 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		3FD45D0E252A491100A22ED1 /* WidgetContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetContent.swift; sourceTree = "<group>"; };
 		B17E06042525265C00DA0E44 /* MediaTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTypes.swift; sourceTree = "<group>"; };
 		B17E060A252529C800DA0E44 /* FootnoteV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FootnoteV2.xcdatamodel; sourceTree = "<group>"; };
 		FC0AC73123DCD94B003219A1 /* BookCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCoverView.swift; sourceTree = "<group>"; };
@@ -143,6 +154,7 @@
 				3F3BD9B225290F230097BC52 /* FootnoteWidget.intentdefinition */,
 				3F3BD9B325290F250097BC52 /* Assets.xcassets */,
 				3F3BD9B525290F250097BC52 /* Info.plist */,
+				3FD45D0E252A491100A22ED1 /* WidgetContent.swift */,
 			);
 			path = FootnoteWidget;
 			sourceTree = "<group>";
@@ -208,6 +220,7 @@
 		FCD0C83123A070FE00EFA591 /* Footnote */ = {
 			isa = PBXGroup;
 			children = (
+				3FD45D05252A47E400A22ED1 /* Footnote.entitlements */,
 				FC50DF242413218100CB5EB7 /* Main Views */,
 				FC50DF252413219B00CB5EB7 /* Supporting Views */,
 				FCD0C83223A070FE00EFA591 /* AppDelegate.swift */,
@@ -221,6 +234,8 @@
 				FCD0C83623A070FE00EFA591 /* Footnote2.xcdatamodeld */,
 				FC93374C23DE33490097FE83 /* Fonts */,
 				FCD0C83D23A070FF00EFA591 /* Preview Content */,
+				3FD45D01252A43DC00A22ED1 /* QuoteCodableExtension.swift */,
+				3FD45D0A252A482500A22ED1 /* AppGroup.swift */,
 			);
 			path = Footnote;
 			sourceTree = "<group>";
@@ -348,7 +363,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				3F3BD9B625290F250097BC52 /* FootnoteWidget.intentdefinition in Sources */,
+				3FD45D12252A4A2A00A22ED1 /* AppGroup.swift in Sources */,
+				3FD45D1A252A4E6200A22ED1 /* WidgetContent.swift in Sources */,
 				3F3BD9B125290F230097BC52 /* FootnoteWidget.swift in Sources */,
+				3FD45D1D252A51D800A22ED1 /* Footnote2.xcdatamodeld in Sources */,
+				3FD45D15252A4C3E00A22ED1 /* QuoteCodableExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,7 +378,9 @@
 				B17E06052525265C00DA0E44 /* MediaTypes.swift in Sources */,
 				FC7C208724FB49C600A5A963 /* SuggestionsView.swift in Sources */,
 				FCD0C83323A070FE00EFA591 /* AppDelegate.swift in Sources */,
+				3FD45D0B252A482500A22ED1 /* AppGroup.swift in Sources */,
 				FCD0C85023A073E900EFA591 /* Cosmetics.swift in Sources */,
+				3FD45D0F252A491100A22ED1 /* WidgetContent.swift in Sources */,
 				FC8E91A423DD281000BC1365 /* ImageCreator.swift in Sources */,
 				FCD0C83823A070FE00EFA591 /* Footnote2.xcdatamodeld in Sources */,
 				0867228A24B69A6100B6938D /* DynamicHeightTextField.swift in Sources */,
@@ -373,6 +394,7 @@
 				FCFB9F7223DBA6EE00A5BD96 /* ImagePicker.swift in Sources */,
 				FCD0C83523A070FE00EFA591 /* SceneDelegate.swift in Sources */,
 				FC0AC73223DCD94B003219A1 /* BookCoverView.swift in Sources */,
+				3FD45D02252A43DC00A22ED1 /* QuoteCodableExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,11 +587,12 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Footnote/Footnote.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Footnote/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = TXPQYU7TF9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Footnote/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -591,6 +614,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Footnote/Footnote.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;

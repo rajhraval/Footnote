@@ -11,27 +11,38 @@ import SwiftUI
 import Intents
 
 struct Provider: IntentTimelineProvider {
+    @AppStorage("WidgetContent", store: UserDefaults(suiteName: AppGroup.appGroup.rawValue)) var quotes = Data()
+    
     func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent())
+        SimpleEntry(date: Date(), configuration: ConfigurationIntent(), quote: WidgetContent(date: Date(), text: "Do or do not, there is no try", title: "Star Wars Episode V", author: "Yoda"))
     }
 
     func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
-        completion(entry)
+        var entry: SimpleEntry
+        if let decodedData = try? JSONDecoder().decode([WidgetContent].self, from: quotes) {
+            entry = SimpleEntry(date: decodedData[0].date, configuration: configuration, quote: decodedData[0])
+            print("Decoded")
+        } else {
+            entry = SimpleEntry(date: Date(), configuration: configuration, quote: WidgetContent(date: Date(), text: "Do or do not, there is no try", title: "Star Wars Episode V", author: "Yoda Snapshot"))
+            print("couldnt decode")
+        }
+       completion(entry)
     }
 
     func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         var entries: [SimpleEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
-        let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
+        if let decodedData = try? JSONDecoder().decode([WidgetContent].self, from: quotes) {
+            let entry = SimpleEntry(date: decodedData[0].date, configuration: configuration, quote: decodedData[0])
+            print("Decoded")
             entries.append(entry)
+        } else {
+            let entry = SimpleEntry(date: Date(), configuration: configuration, quote: WidgetContent(date: Date(), text: "Do or do not, there is no try", title: "Star Wars Episode V", author: "Yoda Timeline"))
+            entries.append(entry)
+            print("couldnt decode")
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
+        let timeline = Timeline(entries: entries, policy: .never)
         completion(timeline)
     }
 }
@@ -39,6 +50,7 @@ struct Provider: IntentTimelineProvider {
 struct SimpleEntry: TimelineEntry {
     let date: Date
     let configuration: ConfigurationIntent
+    let quote: WidgetContent
 }
 
 struct FootnoteWidgetEntryView : View {
@@ -47,7 +59,7 @@ struct FootnoteWidgetEntryView : View {
 
     var body: some View {
         if widgetFamily == .systemSmall {
-                    SmallWidgetView()
+            SmallWidgetView(entry: entry)
         } else if widgetFamily == .systemMedium {
             MediumWidgetView()
         }
@@ -70,27 +82,31 @@ struct FootnoteWidget: Widget {
     }
 }
 
-struct FootnoteWidget_Previews: PreviewProvider {
-    static var previews: some View {
-        FootnoteWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
-            .previewContext(WidgetPreviewContext(family: .systemSmall))
-        FootnoteWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
-            .previewContext(WidgetPreviewContext(family: .systemMedium))
-        FootnoteWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
-            .previewContext(WidgetPreviewContext(family: .systemLarge))
-    }
-}
+//struct FootnoteWidget_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FootnoteWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+//            .previewContext(WidgetPreviewContext(family: .systemSmall))
+//        FootnoteWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+//            .previewContext(WidgetPreviewContext(family: .systemMedium))
+//        FootnoteWidgetEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+//            .previewContext(WidgetPreviewContext(family: .systemLarge))
+//    }
+//}
 
 struct SmallWidgetView: View {
+    
+    var entry: Provider.Entry
+    
     var body: some View {
+        
         HStack{
             VStack(alignment: .leading){
-                Text("Weight")
+                Text(entry.quote.author)
                     .font(.body)
                     .foregroundColor(.purple)
                     .bold()
                 Spacer()
-                Text("Weight Check")
+                Text(entry.quote.text)
                     .font(.title)
                     .foregroundColor(.purple)
                     .bold()
