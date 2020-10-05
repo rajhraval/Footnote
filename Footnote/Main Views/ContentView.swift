@@ -9,42 +9,45 @@
 import SwiftUI
 
 struct ContentView: View {
-  
+
   @Environment(\.managedObjectContext) var managedObjectContext
-  
+
   //Controls translation of AddQuoteView
   @State private var offset: CGSize = .zero
   @State var search = ""
+
   @State var showAddQuoteView = false
   @State var showSettingsView = false
   //@State var showView: ContentViewModals = .addQuoteView
-    
+
   // Onboarding via Sheet
   @State private var showOnboarding = false
-  
+
+
   @State private var refreshing = false
   private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
-  
-  
+
+
   @FetchRequest(
     entity: Quote.entity(),
     sortDescriptors: [
       NSSortDescriptor(keyPath: \Quote.dateCreated, ascending: false)
     ]
   ) var quotes: FetchedResults<Quote>
-  
+
   var body: some View {
-    
+
     NavigationView {
       VStack {
         TextField("Search", text: self.$search)
           .textFieldStyle(RoundedBorderTextFieldStyle())
           .padding([.leading, .trailing, .top])
-        
-        
+
+
         if self.search != "" {
           FilteredList(filter: self.search).environment(\.managedObjectContext, self.managedObjectContext)
         } else {
+
             if quotes.isEmpty {
                 Spacer()
                 VStack(alignment: .center, spacing: 14) {
@@ -78,10 +81,10 @@ struct ContentView: View {
                       self.refreshing.toggle()
                       print("refresh")
                     }
-                    
-                    
+
+
                   }.onDelete(perform: self.removeQuote)
-                  
+
                 }
             }
         }
@@ -98,7 +101,7 @@ struct ContentView: View {
         .sheet(isPresented: $showSettingsView) {
             SettingsView()
         },
-                        
+
                         trailing:
                           Button(action: {
                             //self.showView = .addQuoteView
@@ -115,10 +118,11 @@ struct ContentView: View {
     }
     .accentColor(Color.footnoteRed)
     .onAppear(perform: checkForFirstTimeDownload)
+
   }
-    
+
     // MARK: One-time onboarding on first time downloading
-    
+
     /// Checks if the app is a first time download.
     func checkForFirstTimeDownload() {
         let launchKey = "didLaunchBefore"
@@ -130,8 +134,8 @@ struct ContentView: View {
             print("App has launched more than one time")
         }
     }
-    
-  
+
+
   func removeQuote(at offsets: IndexSet) {
     for index in offsets {
       let quote = quotes[index]
@@ -151,7 +155,6 @@ struct ContentView: View {
 enum ContentViewModals {
   case addQuoteView
   case settingsView
-  
 }
 
 // To preview with CoreData
@@ -161,9 +164,9 @@ struct ContentView_Previews: PreviewProvider {
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     return Group {
       ContentView().environment(\.managedObjectContext, context).environment(\.colorScheme, .light)
-      
+
     }
-    
+
   }
 }
 #endif
@@ -172,8 +175,8 @@ struct FilteredList: View {
   @Environment(\.managedObjectContext) var managedObjectContext
   @State var showImageCreator = false
   var fetchRequest: FetchRequest<Quote>
-  
-  
+
+
   init(filter: String) {
     fetchRequest = FetchRequest<Quote>(entity: Quote.entity(), sortDescriptors: [
       NSSortDescriptor(keyPath: \Quote.dateCreated, ascending: false)
@@ -187,9 +190,9 @@ struct FilteredList: View {
       ]
     ))
   }
-  
+
   var body: some View {
-    
+
     NavigationView {
       List {
         ForEach(fetchRequest.wrappedValue, id: \.self) { quote in
@@ -206,7 +209,7 @@ struct FilteredList: View {
     }.navigationBarTitle("")
     .navigationBarHidden(true)
   }
-  
+
   func removeQuote(at offsets: IndexSet) {
     for index in offsets {
       let quote = fetchRequest.wrappedValue[index]

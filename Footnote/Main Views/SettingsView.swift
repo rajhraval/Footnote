@@ -7,18 +7,34 @@
 //
 
 import SwiftUI
+import UIKit
 
 struct SettingsView: View {
+    @Environment(\.managedObjectContext) var managedObjectContext
+    @Binding var showModal: Bool
+
     var body: some View {
-      VStack(alignment: .leading) {
-        Text("An eventual home for settings, about, and contributors list. Likely contributors list at the bottom, beneath settings.")
-        Text("Possible settings include: text size, color theme, quote export.")
+      HStack(alignment: .center) {
+        Image(systemName: "gear").renderingMode(.original).resizable().cornerRadius(20).frame(width: 60, height: 60).clipped().aspectRatio(contentMode: .fit)
+                
+        VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
+            Text("Footnote - IOS SwiftUI Open-Source Application developed during Hacktoberfest 2020.")
+                .font(.system(size: 18))
+                .lineLimit(nil)
+        })
       }.padding()
     }
 }
 
+// To preview with CoreData
+#if DEBUG
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsView()
+        let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+        return Group {
+            SettingsView(showModal: .constant(true)).environment(\.managedObjectContext, context).environment(\.colorScheme, .light)
+        }
+        
     }
 }
+#endif
