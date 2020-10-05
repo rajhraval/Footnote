@@ -10,6 +10,10 @@
 		0867228A24B69A6100B6938D /* DynamicHeightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867228924B69A6100B6938D /* DynamicHeightTextField.swift */; };
 		3F2500982527683A00FD83E4 /* ShareSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2500972527683A00FD83E4 /* ShareSheetView.swift */; };
 		B17E06052525265C00DA0E44 /* MediaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E06042525265C00DA0E44 /* MediaTypes.swift */; };
+		CFB112FE252B57DF0052A710 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB112FD252B57DF0052A710 /* OnboardingView.swift */; };
+		CFB11302252B58530052A710 /* Button+Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11301252B58530052A710 /* Button+Modifier.swift */; };
+		CFBA65B6252AE811003A39B3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBA65B5252AE811003A39B3 /* SettingsView.swift */; };
+		CFBA65C3252AEA0E003A39B3 /* OnboardingGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBA65C2252AEA0E003A39B3 /* OnboardingGroupView.swift */; };
 		FC0AC73223DCD94B003219A1 /* BookCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0AC73123DCD94B003219A1 /* BookCoverView.swift */; };
 		FC50DF2324131B0600CB5EB7 /* AddQuoteUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC50DF2224131B0600CB5EB7 /* AddQuoteUIKit.swift */; };
 		FC7C208724FB49C600A5A963 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7C208624FB49C600A5A963 /* SuggestionsView.swift */; };
@@ -41,6 +45,10 @@
 		3F2500972527683A00FD83E4 /* ShareSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetView.swift; sourceTree = "<group>"; };
 		B17E06042525265C00DA0E44 /* MediaTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTypes.swift; sourceTree = "<group>"; };
 		B17E060A252529C800DA0E44 /* FootnoteV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FootnoteV2.xcdatamodel; sourceTree = "<group>"; };
+		CFB112FD252B57DF0052A710 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
+		CFB11301252B58530052A710 /* Button+Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+Modifier.swift"; sourceTree = "<group>"; };
+		CFBA65B5252AE811003A39B3 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		CFBA65C2252AEA0E003A39B3 /* OnboardingGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGroupView.swift; sourceTree = "<group>"; };
 		FC0AC73123DCD94B003219A1 /* BookCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCoverView.swift; sourceTree = "<group>"; };
 		FC50DF2224131B0600CB5EB7 /* AddQuoteUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuoteUIKit.swift; sourceTree = "<group>"; };
 		FC7C208624FB49C600A5A963 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
@@ -80,10 +88,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CFB11300252B57EE0052A710 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				CFBA65C2252AEA0E003A39B3 /* OnboardingGroupView.swift */,
+				CFB112FD252B57DF0052A710 /* OnboardingView.swift */,
+			);
+			path = Onboarding;
+			sourceTree = "<group>";
+		};
 		FC50DF242413218100CB5EB7 /* Main Views */ = {
 			isa = PBXGroup;
 			children = (
 				FCD0C83923A070FE00EFA591 /* ContentView.swift */,
+				CFBA65B5252AE811003A39B3 /* SettingsView.swift */,
 				FC50DF2224131B0600CB5EB7 /* AddQuoteUIKit.swift */,
 				FCD2A1B523DA8E6700FF266A /* QuoteDetailView.swift */,
 			);
@@ -138,6 +156,8 @@
 		FCD0C83123A070FE00EFA591 /* Footnote */ = {
 			isa = PBXGroup;
 			children = (
+				CFB11301252B58530052A710 /* Button+Modifier.swift */,
+				CFB11300252B57EE0052A710 /* Onboarding */,
 				FC50DF242413218100CB5EB7 /* Main Views */,
 				FC50DF252413219B00CB5EB7 /* Supporting Views */,
 				FCD0C83223A070FE00EFA591 /* AppDelegate.swift */,
@@ -250,11 +270,15 @@
 				FC7C208724FB49C600A5A963 /* SuggestionsView.swift in Sources */,
 				FCD0C83323A070FE00EFA591 /* AppDelegate.swift in Sources */,
 				FCD0C85023A073E900EFA591 /* Cosmetics.swift in Sources */,
+				CFBA65C3252AEA0E003A39B3 /* OnboardingGroupView.swift in Sources */,
 				FC8E91A423DD281000BC1365 /* ImageCreator.swift in Sources */,
+				CFB11302252B58530052A710 /* Button+Modifier.swift in Sources */,
+				CFBA65B6252AE811003A39B3 /* SettingsView.swift in Sources */,
 				FCD0C83823A070FE00EFA591 /* Footnote2.xcdatamodeld in Sources */,
 				0867228A24B69A6100B6938D /* DynamicHeightTextField.swift in Sources */,
 				FCD2A1B623DA8E6700FF266A /* QuoteDetailView.swift in Sources */,
 				3F2500982527683A00FD83E4 /* ShareSheetView.swift in Sources */,
+				CFB112FE252B57DF0052A710 /* OnboardingView.swift in Sources */,
 				FC96BFED23E1071C00F4BE94 /* UIColor+FootnoteQuoteColors.swift in Sources */,
 				FC50DF2324131B0600CB5EB7 /* AddQuoteUIKit.swift in Sources */,
 				FCD0C85223A0742600EFA591 /* QuoteItemView.swift in Sources */,
