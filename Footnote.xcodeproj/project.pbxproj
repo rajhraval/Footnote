@@ -15,6 +15,7 @@
 		CFBA65B6252AE811003A39B3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBA65B5252AE811003A39B3 /* SettingsView.swift */; };
 		CFBA65C3252AEA0E003A39B3 /* OnboardingGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBA65C2252AEA0E003A39B3 /* OnboardingGroupView.swift */; };
 		FC0AC73223DCD94B003219A1 /* BookCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0AC73123DCD94B003219A1 /* BookCoverView.swift */; };
+		FC3FB7AD252908BA00F7DC5F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3FB7AC252908BA00F7DC5F /* SettingsView.swift */; };
 		FC50DF2324131B0600CB5EB7 /* AddQuoteUIKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC50DF2224131B0600CB5EB7 /* AddQuoteUIKit.swift */; };
 		FC7C208724FB49C600A5A963 /* SuggestionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC7C208624FB49C600A5A963 /* SuggestionsView.swift */; };
 		FC8E91A423DD281000BC1365 /* ImageCreator.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC8E91A323DD281000BC1365 /* ImageCreator.swift */; };
@@ -50,6 +51,7 @@
 		CFBA65B5252AE811003A39B3 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CFBA65C2252AEA0E003A39B3 /* OnboardingGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGroupView.swift; sourceTree = "<group>"; };
 		FC0AC73123DCD94B003219A1 /* BookCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCoverView.swift; sourceTree = "<group>"; };
+		FC3FB7AC252908BA00F7DC5F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FC50DF2224131B0600CB5EB7 /* AddQuoteUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuoteUIKit.swift; sourceTree = "<group>"; };
 		FC7C208624FB49C600A5A963 /* SuggestionsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsView.swift; sourceTree = "<group>"; };
 		FC8E91A323DD281000BC1365 /* ImageCreator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCreator.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 				CFBA65B5252AE811003A39B3 /* SettingsView.swift */,
 				FC50DF2224131B0600CB5EB7 /* AddQuoteUIKit.swift */,
 				FCD2A1B523DA8E6700FF266A /* QuoteDetailView.swift */,
+				FC3FB7AC252908BA00F7DC5F /* SettingsView.swift */,
 			);
 			path = "Main Views";
 			sourceTree = "<group>";
@@ -273,7 +276,7 @@
 				CFBA65C3252AEA0E003A39B3 /* OnboardingGroupView.swift in Sources */,
 				FC8E91A423DD281000BC1365 /* ImageCreator.swift in Sources */,
 				CFB11302252B58530052A710 /* Button+Modifier.swift in Sources */,
-				CFBA65B6252AE811003A39B3 /* SettingsView.swift in Sources */,
+				FC3FB7AD252908BA00F7DC5F /* SettingsView.swift in Sources */,
 				FCD0C83823A070FE00EFA591 /* Footnote2.xcdatamodeld in Sources */,
 				0867228A24B69A6100B6938D /* DynamicHeightTextField.swift in Sources */,
 				FCD2A1B623DA8E6700FF266A /* QuoteDetailView.swift in Sources */,
