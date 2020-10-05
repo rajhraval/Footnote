@@ -16,7 +16,7 @@ struct ContentView: View {
   @State private var offset: CGSize = .zero
   @State var search = ""
   @State var showModal = false
-    //@State var showView: ContentViewModals = .addQuoteView
+    
     @State var ShowModalSettings: ContentViewModals = .settingsView
     @State var ShowModalAddQuote: ContentViewModals = .addQuoteView
     
@@ -99,30 +99,6 @@ struct ContentView: View {
         }
       }
     }.accentColor(Color.footnoteRed)
-//    }.sheet(isPresented: $showModal) {
-//
-//
-////        if self.showView == .settingsView {
-////            SettingsView(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
-////        }
-////
-////        if self.showView == .addQuoteView {
-////                AddQuoteUIKit(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
-////        }
-////
-//
-//        switch self.showView {
-//        case .settingsView :
-////            print("You're just starting out")
-//            SettingsView(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
-//
-//        case .addQuoteView :
-////            print("You just released iTunes Live From SoHo")
-//            AddQuoteUIKit(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
-//        }
-//
-//
-//    }.accentColor(Color.footnoteRed)
     
   }
   
