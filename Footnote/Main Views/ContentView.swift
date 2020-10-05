@@ -99,7 +99,7 @@ struct ContentView: View {
                             Image(systemName: "gear")
                           }
         .sheet(isPresented: $showSettingsView) {
-            SettingsView()
+            SettingsView(showModal: $showSettingsView)
         },
 
                         trailing:
