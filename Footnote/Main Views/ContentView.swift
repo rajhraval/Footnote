@@ -16,8 +16,13 @@ struct ContentView: View {
   @State private var offset: CGSize = .zero
   @State var search = ""
   @State var showModal = false
-  @State var showView: ContentViewModals = .addQuoteView
-  
+    //@State var showView: ContentViewModals = .addQuoteView
+    @State var ShowModalSettings: ContentViewModals = .settingsView
+    @State var ShowModalAddQuote: ContentViewModals = .addQuoteView
+    
+    @State var showSettingsView : Bool = false
+    @State var showAddQuoteView : Bool = false
+
   @State private var refreshing = false
   private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
   
@@ -66,34 +71,58 @@ struct ContentView: View {
           .navigationBarTitle("Footnote", displayMode: .inline)
           .navigationBarItems(leading:
                                 Button(action: {
-                                  self.showView = .settingsView
-                                  self.showModal.toggle()
+                                    self.showModal = true
+                                    showSettingsView = true
+                                    showAddQuoteView = false
+               
                                 } ) {
                                   Image(systemName: "gear")
                                 },
                               
                               trailing:
                                 Button(action: {
-                                  self.showView = .addQuoteView
-                                  self.showModal.toggle()
+                                    self.showModal = true
+                                    showSettingsView = false
+                                    showAddQuoteView = true
+                                    
                                 } ) {
                                   Image(systemName: "plus")
                                 }
-                              )
+          ).sheet(isPresented: $showModal) {
+            if showAddQuoteView == false {
+                SettingsView(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
+            } else if showSettingsView == false {
+                AddQuoteUIKit(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
+            }
+           
+          }
         }
       }
-    }.sheet(isPresented: $showModal) {
-      if self.showView == .addQuoteView {
-        
-        AddQuoteUIKit(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
-        
-      }
-      
-      if self.showView == .settingsView {
-        SettingsView()
-      }
-      
     }.accentColor(Color.footnoteRed)
+//    }.sheet(isPresented: $showModal) {
+//
+//
+////        if self.showView == .settingsView {
+////            SettingsView(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
+////        }
+////
+////        if self.showView == .addQuoteView {
+////                AddQuoteUIKit(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
+////        }
+////
+//
+//        switch self.showView {
+//        case .settingsView :
+////            print("You're just starting out")
+//            SettingsView(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
+//
+//        case .addQuoteView :
+////            print("You just released iTunes Live From SoHo")
+//            AddQuoteUIKit(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
+//        }
+//
+//
+//    }.accentColor(Color.footnoteRed)
     
   }
   
@@ -114,7 +143,6 @@ struct ContentView: View {
 enum ContentViewModals {
   case addQuoteView
   case settingsView
-  
 }
 
 // To preview with CoreData
