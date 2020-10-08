@@ -19,5 +19,6 @@ platform :ios do
   desc "Generate new localized screenshots"
   lane :screenshots do
     capture_screenshots(scheme: "FastlaneSnapshots", reinstall_app: true, number_of_retries: 0)
+    frameit
   end
 end
