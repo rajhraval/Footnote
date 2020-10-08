@@ -42,7 +42,7 @@ struct ContentView: View {
         TextField("Search", text: self.$search)
           .textFieldStyle(RoundedBorderTextFieldStyle())
           .padding([.leading, .trailing, .top])
-
+            .accessibility(label: Text("Search Bar"))
 
         if self.search != "" {
           FilteredList(filter: self.search).environment(\.managedObjectContext, self.managedObjectContext)
@@ -97,6 +97,7 @@ struct ContentView: View {
                             self.showSettingsView.toggle()
                           } ) {
                             Image(systemName: "gear")
+                                .accessibility(label: Text("Settings"))
                           }
         .sheet(isPresented: $showSettingsView) {
             SettingsView(showModal: $showSettingsView)
@@ -108,6 +109,7 @@ struct ContentView: View {
                             self.showAddQuoteView.toggle()
                           } ) {
                             Image(systemName: "plus")
+                                .accessibility(label: Text("Add Quote"))
                           }
                             .sheet(isPresented: $showAddQuoteView) {
                                 AddQuoteUIKit(showModal: $showAddQuoteView).environment(\.managedObjectContext, self.managedObjectContext)
