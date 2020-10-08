@@ -12,7 +12,6 @@
 		B17E06052525265C00DA0E44 /* MediaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E06042525265C00DA0E44 /* MediaTypes.swift */; };
 		CFB112FE252B57DF0052A710 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB112FD252B57DF0052A710 /* OnboardingView.swift */; };
 		CFB11302252B58530052A710 /* Button+Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11301252B58530052A710 /* Button+Modifier.swift */; };
-		CFBA65B6252AE811003A39B3 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBA65B5252AE811003A39B3 /* SettingsView.swift */; };
 		CFBA65C3252AEA0E003A39B3 /* OnboardingGroupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFBA65C2252AEA0E003A39B3 /* OnboardingGroupView.swift */; };
 		FC0AC73223DCD94B003219A1 /* BookCoverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC0AC73123DCD94B003219A1 /* BookCoverView.swift */; };
 		FC3FB7AD252908BA00F7DC5F /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC3FB7AC252908BA00F7DC5F /* SettingsView.swift */; };
@@ -39,7 +38,19 @@
 		FCD0C85223A0742600EFA591 /* QuoteItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C85123A0742600EFA591 /* QuoteItemView.swift */; };
 		FCD2A1B623DA8E6700FF266A /* QuoteDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCD2A1B523DA8E6700FF266A /* QuoteDetailView.swift */; };
 		FCFB9F7223DBA6EE00A5BD96 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = FCFB9F7123DBA6EE00A5BD96 /* ImagePicker.swift */; };
+		FFF89966252F165B00CEC44B /* FastlaneSnapshots.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF89965252F165B00CEC44B /* FastlaneSnapshots.swift */; };
+		FFF89970252F16DA00CEC44B /* SnapshotHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFF8996F252F16DA00CEC44B /* SnapshotHelper.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		FFF89968252F165B00CEC44B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FCD0C82723A070FE00EFA591 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = FCD0C82E23A070FE00EFA591;
+			remoteInfo = Footnote;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0867228924B69A6100B6938D /* DynamicHeightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextField.swift; sourceTree = "<group>"; };
@@ -77,10 +88,21 @@
 		FCD0C85123A0742600EFA591 /* QuoteItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteItemView.swift; sourceTree = "<group>"; };
 		FCD2A1B523DA8E6700FF266A /* QuoteDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteDetailView.swift; sourceTree = "<group>"; };
 		FCFB9F7123DBA6EE00A5BD96 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		FFF89963252F165B00CEC44B /* FastlaneSnapshots.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FastlaneSnapshots.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFF89965252F165B00CEC44B /* FastlaneSnapshots.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FastlaneSnapshots.swift; sourceTree = "<group>"; };
+		FFF89967252F165B00CEC44B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FFF8996F252F16DA00CEC44B /* SnapshotHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SnapshotHelper.swift; path = fastlane/SnapshotHelper.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		FCD0C82C23A070FE00EFA591 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFF89960252F165B00CEC44B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -144,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				FCD0C83123A070FE00EFA591 /* Footnote */,
+				FFF89964252F165B00CEC44B /* FastlaneSnapshots */,
 				FCD0C83023A070FE00EFA591 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -152,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				FCD0C82F23A070FE00EFA591 /* Footnote.app */,
+				FFF89963252F165B00CEC44B /* FastlaneSnapshots.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -186,6 +210,16 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		FFF89964252F165B00CEC44B /* FastlaneSnapshots */ = {
+			isa = PBXGroup;
+			children = (
+				FFF8996F252F16DA00CEC44B /* SnapshotHelper.swift */,
+				FFF89965252F165B00CEC44B /* FastlaneSnapshots.swift */,
+				FFF89967252F165B00CEC44B /* Info.plist */,
+			);
+			path = FastlaneSnapshots;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -208,18 +242,40 @@
 			productReference = FCD0C82F23A070FE00EFA591 /* Footnote.app */;
 			productType = "com.apple.product-type.application";
 		};
+		FFF89962252F165B00CEC44B /* FastlaneSnapshots */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFF8996C252F165B00CEC44B /* Build configuration list for PBXNativeTarget "FastlaneSnapshots" */;
+			buildPhases = (
+				FFF8995F252F165B00CEC44B /* Sources */,
+				FFF89960252F165B00CEC44B /* Frameworks */,
+				FFF89961252F165B00CEC44B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				FFF89969252F165B00CEC44B /* PBXTargetDependency */,
+			);
+			name = FastlaneSnapshots;
+			productName = FastlaneSnapshots;
+			productReference = FFF89963252F165B00CEC44B /* FastlaneSnapshots.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		FCD0C82723A070FE00EFA591 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
+				LastSwiftUpdateCheck = 1200;
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Cameron Bardell";
 				TargetAttributes = {
 					FCD0C82E23A070FE00EFA591 = {
 						CreatedOnToolsVersion = 11.2.1;
+					};
+					FFF89962252F165B00CEC44B = {
+						CreatedOnToolsVersion = 12.0.1;
+						TestTargetID = FCD0C82E23A070FE00EFA591;
 					};
 				};
 			};
@@ -239,6 +295,7 @@
 			projectRoot = "";
 			targets = (
 				FCD0C82E23A070FE00EFA591 /* Footnote */,
+				FFF89962252F165B00CEC44B /* FastlaneSnapshots */,
 			);
 		};
 /* End PBXProject section */
@@ -259,6 +316,13 @@
 				FC93375823DE339D0097FE83 /* Merriweather-Regular.ttf in Resources */,
 				FC93375A23DE33A50097FE83 /* PermanentMarker-Regular.ttf in Resources */,
 				FCD0C83C23A070FF00EFA591 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFF89961252F165B00CEC44B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +356,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		FFF8995F252F165B00CEC44B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFF89966252F165B00CEC44B /* FastlaneSnapshots.swift in Sources */,
+				FFF89970252F16DA00CEC44B /* SnapshotHelper.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		FFF89969252F165B00CEC44B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = FCD0C82E23A070FE00EFA591 /* Footnote */;
+			targetProxy = FFF89968252F165B00CEC44B /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		FCD0C84023A070FF00EFA591 /* LaunchScreen.storyboard */ = {
@@ -472,6 +553,46 @@
 			};
 			name = Release;
 		};
+		FFF8996A252F165B00CEC44B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4WMQY24R33;
+				INFOPLIST_FILE = FastlaneSnapshots/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pushpinderpalsingh.FastlaneSnapshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Footnote;
+			};
+			name = Debug;
+		};
+		FFF8996B252F165B00CEC44B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4WMQY24R33;
+				INFOPLIST_FILE = FastlaneSnapshots/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pushpinderpalsingh.FastlaneSnapshots;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Footnote;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -489,6 +610,15 @@
 			buildConfigurations = (
 				FCD0C84723A070FF00EFA591 /* Debug */,
 				FCD0C84823A070FF00EFA591 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FFF8996C252F165B00CEC44B /* Build configuration list for PBXNativeTarget "FastlaneSnapshots" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFF8996A252F165B00CEC44B /* Debug */,
+				FFF8996B252F165B00CEC44B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
