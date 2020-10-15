@@ -16,6 +16,8 @@
 		3F3BD9B625290F250097BC52 /* FootnoteWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BD9B225290F230097BC52 /* FootnoteWidget.intentdefinition */; };
 		3F3BD9B725290F250097BC52 /* FootnoteWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BD9B225290F230097BC52 /* FootnoteWidget.intentdefinition */; };
 		3F3BD9BA25290F250097BC52 /* FootnoteWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F3BD9A925290F230097BC52 /* FootnoteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		3F56D94E253826DD00DF82BC /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56D94D253826DD00DF82BC /* SearchBar.swift */; };
+		3F56D9522538270400DF82BC /* ViewControllerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56D9512538270400DF82BC /* ViewControllerResolver.swift */; };
 		3FD45D02252A43DC00A22ED1 /* QuoteCodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D01252A43DC00A22ED1 /* QuoteCodableExtension.swift */; };
 		3FD45D0B252A482500A22ED1 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D0A252A482500A22ED1 /* AppGroup.swift */; };
 		3FD45D0F252A491100A22ED1 /* WidgetContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D0E252A491100A22ED1 /* WidgetContent.swift */; };
@@ -84,6 +86,8 @@
 		3F3BD9B225290F230097BC52 /* FootnoteWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = FootnoteWidget.intentdefinition; sourceTree = "<group>"; };
 		3F3BD9B325290F250097BC52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3F3BD9B525290F250097BC52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		3F56D94D253826DD00DF82BC /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		3F56D9512538270400DF82BC /* ViewControllerResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerResolver.swift; sourceTree = "<group>"; };
 		3FD45D01252A43DC00A22ED1 /* QuoteCodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCodableExtension.swift; sourceTree = "<group>"; };
 		3FD45D05252A47E400A22ED1 /* Footnote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Footnote.entitlements; sourceTree = "<group>"; };
 		3FD45D0A252A482500A22ED1 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
@@ -179,6 +183,8 @@
 				3F2500972527683A00FD83E4 /* ShareSheetView.swift */,
 				0867228924B69A6100B6938D /* DynamicHeightTextField.swift */,
 				FC7C208624FB49C600A5A963 /* SuggestionsView.swift */,
+				3F56D94D253826DD00DF82BC /* SearchBar.swift */,
+				3F56D9512538270400DF82BC /* ViewControllerResolver.swift */,
 			);
 			path = "Supporting Views";
 			sourceTree = "<group>";
@@ -389,9 +395,11 @@
 				3F2500982527683A00FD83E4 /* ShareSheetView.swift in Sources */,
 				FC96BFED23E1071C00F4BE94 /* UIColor+FootnoteQuoteColors.swift in Sources */,
 				FC50DF2324131B0600CB5EB7 /* AddQuoteUIKit.swift in Sources */,
+				3F56D94E253826DD00DF82BC /* SearchBar.swift in Sources */,
 				FCD0C85223A0742600EFA591 /* QuoteItemView.swift in Sources */,
 				FCD0C83A23A070FE00EFA591 /* ContentView.swift in Sources */,
 				FCFB9F7223DBA6EE00A5BD96 /* ImagePicker.swift in Sources */,
+				3F56D9522538270400DF82BC /* ViewControllerResolver.swift in Sources */,
 				FCD0C83523A070FE00EFA591 /* SceneDelegate.swift in Sources */,
 				FC0AC73223DCD94B003219A1 /* BookCoverView.swift in Sources */,
 				3FD45D02252A43DC00A22ED1 /* QuoteCodableExtension.swift in Sources */,

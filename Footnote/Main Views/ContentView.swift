@@ -14,13 +14,13 @@ struct ContentView: View {
   
   //Controls translation of AddQuoteView
   @State private var offset: CGSize = .zero
-  @State var search = ""
   @State var showModal = false
   @State var showView: ContentViewModals = .addQuoteView
   
   @State private var refreshing = false
   private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
   
+  @ObservedObject var searchBar: SearchBar = SearchBar()
   
   @FetchRequest(
     entity: Quote.entity(),
@@ -37,57 +37,34 @@ struct ContentView: View {
     
     NavigationView {
       VStack {
-        TextField("Search", text: self.$search)
-          .textFieldStyle(RoundedBorderTextFieldStyle())
-          .padding([.leading, .trailing, .top])
-        
-        
-        if self.search != "" {
-          FilteredList(filter: self.search).environment(\.managedObjectContext, self.managedObjectContext)
+        if !self.searchBar.text.isEmpty {
+            FilteredList(filter: self.searchBar.text)
+                .environment(\.managedObjectContext, self.managedObjectContext)
         } else {
-          
-          List {
-            ForEach(self.quotes, id: \.self) { quote in
-              // Issue #17: Pass Media type to the detail view
-              NavigationLink(destination: QuoteDetailView(text: quote.text ?? "",
-                                                          title: quote.title ?? "",
-                                                          author: quote.author ?? "",
-                                                          mediaType: MediaType(rawValue: Int(quote.mediaType)) ?? MediaType.book,
-                                                          quote: quote
-              ).environment(\.managedObjectContext, self.managedObjectContext)) {
-                QuoteItemView(quote: quote)
-              }
-              .onReceive(self.didSave) { _ in
-                self.refreshing.toggle()
+            FilteredList()
+              .environment(\.managedObjectContext, self.managedObjectContext)
+              .listStyle(PlainListStyle())
+              .add(self.searchBar)
+              .navigationBarTitle("Footnote", displayMode: .inline)
+              .navigationBarItems(leading:
+                                    Button(action: {
+                                      self.showView = .settingsView
+                                      self.showModal.toggle()
+                                    } ) {
+                                      Image(systemName: "gear")
+                                    },
+                                  
+                                  trailing:
+                                    Button(action: {
+                                      self.showView = .addQuoteView
+                                      self.showModal.toggle()
+                                    } ) {
+                                      Image(systemName: "plus")
+                                    }
+                                  )
+              .onAppear(perform: {
                 self.widgetSync()
-                print("refresh")
-              }
-              
-              
-            }.onDelete(perform: self.removeQuote)
-            
-          }
-          .listStyle(PlainListStyle())
-          .navigationBarTitle("Footnote", displayMode: .inline)
-          .navigationBarItems(leading:
-                                Button(action: {
-                                  self.showView = .settingsView
-                                  self.showModal.toggle()
-                                } ) {
-                                  Image(systemName: "gear")
-                                },
-                              
-                              trailing:
-                                Button(action: {
-                                  self.showView = .addQuoteView
-                                  self.showModal.toggle()
-                                } ) {
-                                  Image(systemName: "plus")
-                                }
-                              )
-          .onAppear(perform: {
-            self.widgetSync()
-          })
+              })
         }
       }
     }.sheet(isPresented: $showModal) {
@@ -119,8 +96,6 @@ struct ContentView: View {
   }
     
     func widgetSync(){
-        
-        
         let quotesJSON = self.quotes.map({
             WidgetContent(date: $0.dateCreated ?? Date(), text: $0.text ?? "Default Text", title: $0.title ?? "Default Title", author: $0.author ?? "Default Author")
         })
@@ -136,7 +111,6 @@ struct ContentView: View {
         
         print(type(of: quotesJSON))
         UserDefaults(suiteName: AppGroup.appGroup.rawValue)!.set(encodedData, forKey: "WidgetContent")
-        
     }
 }
 
@@ -180,10 +154,14 @@ struct FilteredList: View {
       ]
     ))
   }
+    
+    init() {
+      fetchRequest = FetchRequest<Quote>(entity: Quote.entity(), sortDescriptors: [
+        NSSortDescriptor(keyPath: \Quote.dateCreated, ascending: false)
+      ])
+    }
   
   var body: some View {
-    
-    NavigationView {
       List {
         ForEach(fetchRequest.wrappedValue, id: \.self) { quote in
           // Issue #17: Pass Media type to the detail view
@@ -196,8 +174,7 @@ struct FilteredList: View {
           }
         }.onDelete(perform: self.removeQuote)
       }
-    }.navigationBarTitle("")
-    .navigationBarHidden(true)
+      .listStyle(PlainListStyle())
   }
   
   func removeQuote(at offsets: IndexSet) {
@@ -207,7 +184,6 @@ struct FilteredList: View {
     }
     do {
       try managedObjectContext.save()
-        self.widgetSync()
     } catch {
       // handle the Core Data error
     }
