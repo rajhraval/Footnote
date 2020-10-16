@@ -21,7 +21,7 @@ struct BookCoverView: View {
     }
 }
 
-struct bookCoverView_Previews: PreviewProvider {
+struct BookCoverView_Previews: PreviewProvider {
     static var previews: some View {
         BookCoverView(image: Image(systemName: "square"))
     }

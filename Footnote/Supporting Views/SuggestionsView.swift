@@ -71,11 +71,11 @@ public class BookFetcher: ObservableObject {
 struct Book: Decodable, Hashable {
 
     let title: String
-    let author_names: [String]
+    let authorNames: [String]
 
     enum CodingKeys: String, CodingKey {
         case title
-        case author_names = "author_name"
+        case authorNames = "author_name"
     }
 }
 
