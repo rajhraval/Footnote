@@ -61,6 +61,7 @@ struct QuoteItemView: View {
 struct QuoteItemView_Previews: PreviewProvider {
     
     static var previews: some View {
+        // swiftlint:disable:next force_cast
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let newQuote = Quote.init(context: context)
         newQuote.text = """

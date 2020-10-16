@@ -30,6 +30,7 @@ struct SettingsView: View {
 #if DEBUG
 struct SettingsView_Previews: PreviewProvider {
     static var previews: some View {
+        // swiftlint:disable:next force_cast
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         return Group {
             SettingsView(showModal: .constant(true)).environment(\.managedObjectContext, context).environment(\.colorScheme, .light)

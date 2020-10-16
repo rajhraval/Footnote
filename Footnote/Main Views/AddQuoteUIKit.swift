@@ -241,6 +241,7 @@ struct AddQuoteUIKit: View {
 #if DEBUG
 struct AddQuoteUIKit_Previews: PreviewProvider {
     static var previews: some View {
+        // swiftlint:disable:next force_cast
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         return Group {
             AddQuoteUIKit(showModal: .constant(true)).environment(\.managedObjectContext, context).environment(\.colorScheme, .light)
