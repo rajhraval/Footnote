@@ -23,10 +23,8 @@ struct ContentView: View {
   // Onboarding via Sheet
   @State private var showOnboarding = false
 
-
   @State private var refreshing = false
   private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
-
 
   @FetchRequest(
     entity: Quote.entity(),
@@ -64,8 +62,7 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
-            }
-            else {
+            } else {
                 List {
                   ForEach(self.quotes, id: \.self) { quote in
                     // Issue #17: Pass Media type to the detail view
@@ -82,7 +79,6 @@ struct ContentView: View {
                       print("refresh")
                     }
 
-
                   }.onDelete(perform: self.removeQuote)
 
                 }
@@ -95,7 +91,7 @@ struct ContentView: View {
                           Button(action: {
                             //self.showView = .settingsView
                             self.showSettingsView.toggle()
-                          } ) {
+                          }) {
                             Image(systemName: "gear")
                                 .accessibility(label: Text("Settings"))
                           }
@@ -107,7 +103,7 @@ struct ContentView: View {
                           Button(action: {
                             //self.showView = .addQuoteView
                             self.showAddQuoteView.toggle()
-                          } ) {
+                          }) {
                             Image(systemName: "plus")
                                 .accessibility(label: Text("Add Quote"))
                           }
@@ -137,7 +133,6 @@ struct ContentView: View {
         }
     }
 
-
   func removeQuote(at offsets: IndexSet) {
     for index in offsets {
       let quote = quotes[index]
@@ -150,8 +145,6 @@ struct ContentView: View {
     }
   }
 }
-
-
 
 /// contentView modals
 enum ContentViewModals {
@@ -177,7 +170,6 @@ struct FilteredList: View {
   @Environment(\.managedObjectContext) var managedObjectContext
   @State var showImageCreator = false
   var fetchRequest: FetchRequest<Quote>
-
 
   init(filter: String) {
     fetchRequest = FetchRequest<Quote>(entity: Quote.entity(), sortDescriptors: [

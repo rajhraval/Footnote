@@ -17,11 +17,11 @@ struct QuoteItemView: View {
             HStack(alignment: .top) {
                 if quote.coverImage != nil {
                     BookCoverView(image: Image(uiImage: UIImage(data: quote.coverImage!)!))
-                        
+                    
                 }
                 
                 Text(quote.text ?? "")
-                .multilineTextAlignment(.leading)
+                    .multilineTextAlignment(.leading)
                     .lineLimit(nil)
                     .lineSpacing(4.0)
                 Spacer()
@@ -43,12 +43,11 @@ struct QuoteItemView: View {
                 }
                 Spacer()
                 Text(formatDate(date: quote.dateCreated ??
-                Date())).font(.body)
-                .foregroundColor(Color.footnoteRed)
+                                    Date())).font(.body)
+                    .foregroundColor(Color.footnoteRed)
                 
             }.padding(3)
         }
-        
         
     }
     
@@ -59,33 +58,44 @@ struct QuoteItemView: View {
     }
 }
 
-
 struct QuoteItemView_Previews: PreviewProvider {
-
+    
     static var previews: some View {
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         let newQuote = Quote.init(context: context)
-        newQuote.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et urna vitae nunc ullamcorper auctor id a justo. Ut rutrum sapien metus, at congue arcu imperdiet sed. Sed tristique quam ullamcorper magna lobortis dapibus."
+        newQuote.text = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et urna vitae nunc ullamcorper auctor id a
+justo. Ut rutrum sapien metus, at congue arcu imperdiet sed. Sed tristique quam ullamcorper magna lobortis dapibus.
+"""
         newQuote.author = "author"
         newQuote.title = "title"
         newQuote.dateCreated = Date()
-        
+
         let newQuotePodcast = Quote.init(context: context)
-        newQuotePodcast.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et urna vitae nunc ullamcorper auctor id a justo. Ut rutrum sapien metus, at congue arcu imperdiet sed. Sed tristique quam ullamcorper magna lobortis dapibus."
+        newQuotePodcast.text = """
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et urna vitae nunc ullamcorper auctor id a
+            justo. Ut rutrum sapien metus, at congue arcu imperdiet sed. Sed tristique quam ullamcorper magna lobortis dapibus.
+            """
         newQuotePodcast.author = "author"
         newQuotePodcast.title = "title"
         newQuotePodcast.dateCreated = Date()
         newQuotePodcast.mediaType = 1
-        
+
         let newQuoteMovie = Quote.init(context: context)
-        newQuoteMovie.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et urna vitae nunc ullamcorper auctor id a justo. Ut rutrum sapien metus, at congue arcu imperdiet sed. Sed tristique quam ullamcorper magna lobortis dapibus."
+        newQuoteMovie.text = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et urna vitae nunc ullamcorper auctor id a
+justo. Ut rutrum sapien metus, at congue arcu imperdiet sed. Sed tristique quam ullamcorper magna lobortis dapibus.
+"""
         newQuoteMovie.author = "author"
         newQuoteMovie.title = "title"
         newQuoteMovie.dateCreated = Date()
         newQuoteMovie.mediaType = 2
         
         let newQuoteTvShow = Quote.init(context: context)
-        newQuoteTvShow.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et urna vitae nunc ullamcorper auctor id a justo. Ut rutrum sapien metus, at congue arcu imperdiet sed. Sed tristique quam ullamcorper magna lobortis dapibus."
+        newQuoteTvShow.text = """
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum et urna vitae nunc ullamcorper auctor id a
+justo. Ut rutrum sapien metus, at congue arcu imperdiet sed. Sed tristique quam ullamcorper magna lobortis dapibus.
+"""
         newQuoteTvShow.author = "author"
         newQuoteTvShow.title = "title"
         newQuoteTvShow.dateCreated = Date()

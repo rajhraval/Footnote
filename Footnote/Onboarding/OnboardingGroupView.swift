@@ -9,11 +9,11 @@
 import SwiftUI
 
 struct OnboardingGroupView: View {
-    
+
     let image: String
     let heading: String
     let subheading: String
-    
+
     var body: some View {
         HStack {
             Image(image)

@@ -17,7 +17,7 @@ struct BookCoverView: View {
             .clipShape(Rectangle())
             .overlay(
                 Rectangle().stroke(Color.footnoteRed, lineWidth: 2))
-            
+
     }
 }
 

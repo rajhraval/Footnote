@@ -16,8 +16,8 @@ struct SettingsView: View {
     var body: some View {
       HStack(alignment: .center) {
         Image(systemName: "gear").renderingMode(.original).resizable().cornerRadius(20).frame(width: 60, height: 60).clipped().aspectRatio(contentMode: .fit)
-                
-        VStack(alignment: .leading, spacing: /*@START_MENU_TOKEN@*/nil/*@END_MENU_TOKEN@*/, content: {
+
+        VStack(alignment: .leading, spacing: nil/*@END_MENU_TOKEN@*/, content: {
             Text("Footnote - IOS SwiftUI Open-Source Application developed during Hacktoberfest 2020.")
                 .font(.system(size: 18))
                 .lineLimit(nil)
@@ -34,7 +34,7 @@ struct SettingsView_Previews: PreviewProvider {
         return Group {
             SettingsView(showModal: .constant(true)).environment(\.managedObjectContext, context).environment(\.colorScheme, .light)
         }
-        
+
     }
 }
 #endif

@@ -12,9 +12,25 @@ import UIKit
 struct ImageCreator: View {
     var text: String
     var source: String
-    
-    var colors: [UIColor] = [.black, .uclaBlue, .tuftsBlue, .tiffanyBlue, .paleRobinEggBlue, .pastelGreen, .kellyGreen, .yellow, .sunglow, .westSide, .safetyOrange, .crayonRed, .harvardCrimson, .bordeaux, .deepFuchsia]
-    
+
+    var colors: [UIColor] = [
+        .black,
+        .uclaBlue,
+        .tuftsBlue,
+        .tiffanyBlue,
+        .paleRobinEggBlue,
+        .pastelGreen,
+        .kellyGreen,
+        .yellow,
+        .sunglow,
+        .westSide,
+        .safetyOrange,
+        .crayonRed,
+        .harvardCrimson,
+        .bordeaux,
+        .deepFuchsia
+    ]
+
     var fonts: [String] = [
         "Merriweather-Regular",
         "Lobster-Regular",
@@ -25,23 +41,23 @@ struct ImageCreator: View {
         "PermanentMarker-Regular",
         "PlayfairDisplay-Regular"
     ]
-    
+
     @State private var selectedFont = "Merriweather-Regular"
     @State private var selectedColor = UIColor.black
     @State private var fontSize: Double = 20
     @State private var currentPosition: CGSize = .zero
     @State private var newPosition: CGSize = .zero
-    
+
     @State private var image: Image?
     @State private var showingImagePicker = false
     @State private var inputImage: UIImage?
-    
+
     @State private var showingShareSheet = false
-    
+
     @Environment(\.presentationMode) var presentationMode
-    
+
     var body: some View {
-        NavigationView{
+        NavigationView {
             GeometryReader { geometry in
                 VStack {
                     self.drawImage(width: geometry.size.width - 10, height: geometry.size.height / 2)
@@ -59,8 +75,8 @@ struct ImageCreator: View {
                                 self.newPosition = self.currentPosition
                         })
                         .padding(.top)
-                    
-                    ScrollView(.vertical){
+
+                    ScrollView(.vertical) {
                         Button(action: {
                             print("Image picker")
                             self.showingImagePicker = true
@@ -74,7 +90,7 @@ struct ImageCreator: View {
                         }.sheet(isPresented: self.$showingImagePicker, onDismiss: self.loadBackgroundImage) {
                             ImagePicker(image: self.$inputImage)
                         }
-                        
+
                         ScrollView(.horizontal) {
                             HStack {
                                 ForEach(self.fonts, id: \.self) { font in
@@ -82,8 +98,7 @@ struct ImageCreator: View {
                                         withAnimation(.easeInOut) {
                                             self.selectedFont = font
                                         }
-                                        
-                                        
+
                                     }) {
                                         Text(font.components(separatedBy: "-")[0])
                                             .padding()
@@ -91,13 +106,13 @@ struct ImageCreator: View {
                                             .font(.custom(font, size: 15))
                                             .background(self.selectedFont == font ? Color(self.selectedColor) : .white)
                                             .cornerRadius(10)
-                                        
+
                                     }
-                                    
+
                                 }
                             }
                         }.padding()
-                        
+
                         ScrollView(.horizontal) {
                             HStack {
                                 ForEach(self.colors, id: \.self) { color in
@@ -105,7 +120,7 @@ struct ImageCreator: View {
                                         withAnimation(.easeInOut) {
                                             self.selectedColor = color
                                         }
-                                        
+
                                     }) {
                                         Circle().foregroundColor(Color(color))
                                             .frame(width: 40, height: 40)
@@ -115,7 +130,7 @@ struct ImageCreator: View {
                                 }
                             }.padding()
                         }
-                        
+
                         HStack {
                             Text("Font size")
                                 .padding()
@@ -126,15 +141,14 @@ struct ImageCreator: View {
                             Slider(value: self.$fontSize, in: 1...50, step: 1)
                                 .padding(.trailing).accentColor(Color(self.selectedColor))
                         }
-                        
-                        
-                        HStack{
-                            
+
+                        HStack {
+
                             Button(action: {
                                 self.saveImage(image: self.renderImage(width: geometry.size.width, height: geometry.size.height / 2))
                                 self.presentationMode.wrappedValue.dismiss()
                             }) {
-                                HStack{
+                                HStack {
                                     Text("Save to Library")
                                     Image(systemName: "square.and.arrow.down")
                                         .font(.headline)
@@ -145,13 +159,13 @@ struct ImageCreator: View {
                                 .cornerRadius(10)
                             }
                             .layoutPriority(1)
-                            
+
                             Spacer()
                                 .layoutPriority(0)
-                            
+
                             Button(action: {
                                     self.showingShareSheet = true                            }) {
-                                HStack{
+                                HStack {
                                     Text("Share Image")
                                     Image(systemName: "square.and.arrow.up")
                                         .font(.headline)
@@ -162,46 +176,43 @@ struct ImageCreator: View {
                                 .cornerRadius(10)
                             }
                             .layoutPriority(1)
-                            .sheet(isPresented: self.$showingShareSheet){
+                            .sheet(isPresented: self.$showingShareSheet) {
                                 ShareSheetView(activityItems: [self.renderImage(width: geometry.size.width-10, height: geometry.size.height/2)])
                             }
                         }
                         .padding()
                     }
-                    
-                   
-                    
+
                 }
             }
             .navigationBarTitle("Share Quote", displayMode: .inline)
-            .navigationBarItems(trailing: Button("Cancel"){
+            .navigationBarItems(trailing: Button("Cancel") {
                 self.presentationMode.wrappedValue.dismiss()
             })
         }
-        
+
     }
-    
+
     func loadBackgroundImage() {
         guard let inputImage = inputImage else { return }
         image = Image(uiImage: inputImage)
     }
-    
+
     func renderImage(width: CGFloat, height: CGFloat) -> UIImage {
         let renderer = UIGraphicsImageRenderer(size: CGSize(width: width, height: height))
-        
-        let img = renderer.image { ctx in
+
+        let img = renderer.image { _ in
             // 2
-            
+
             if let background = inputImage {
                 let resizable = background.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .stretch)
                 resizable.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
 
             }
-            
-                        
+
             let paragraphStyle = NSMutableParagraphStyle()
             paragraphStyle.alignment = .center
-            
+
             guard let customFont = UIFont(name: self.selectedFont, size: CGFloat(self.fontSize)) else {
                 fatalError("""
                     Failed to load the "CustomFont-Light" font.
@@ -209,24 +220,27 @@ struct ImageCreator: View {
                     """
                 )
             }
-            
+
             // 3
             let attrs: [NSAttributedString.Key: Any] = [
                 .font: customFont,
                 .paragraphStyle: paragraphStyle,
                 .foregroundColor: self.selectedColor
             ]
-            
-            
+
             let attributedString = NSMutableAttributedString(string: text, attributes: attrs)
-            
+
             let sourceAttributedString = NSAttributedString(string: "\n\n —\(self.source)", attributes: attrs)
-            
+
             attributedString.append(sourceAttributedString)
             // 5
-            attributedString.draw(with: CGRect(x: self.currentPosition.width + 5, y: self.currentPosition.height + 50, width: width - 10, height: height), options: .usesLineFragmentOrigin, context: nil)
-            
-            
+            attributedString.draw(with: CGRect(x: self.currentPosition.width + 5,
+                                               y: self.currentPosition.height + 50,
+                                               width: width - 10,
+                                               height: height),
+                                  options: .usesLineFragmentOrigin,
+                                  context: nil)
+
 //            let watermarkAttrs: [NSAttributedString.Key: Any] = [
 //                .font: UIFont.systemFont(ofSize: 29)
 //            ]
@@ -240,28 +254,27 @@ struct ImageCreator: View {
 //
 //
 //            attributedWatermark.draw(with: CGRect(x: width - 150, y: height - 40, width: width, height: height), options: .usesLineFragmentOrigin, context: nil)
-            
+
         }
-        
+
         return img
-        
+
         // Prints all available font names
         //        for family in UIFont.familyNames.sorted() {
         //            let names = UIFont.fontNames(forFamilyName: family)
         //            print("Family: \(family) Font names: \(names)")
         //        }
     }
-    
+
     func drawImage(width: CGFloat, height: CGFloat) -> Image {
         return Image(uiImage: renderImage(width: width, height: height))
     }
-    
+
     func saveImage(image: UIImage) {
         // TODO: what happens if saving fails. https://www.hackingwithswift.com/books/ios-swiftui/how-to-save-images-to-the-users-photo-library
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
-    
-    
+
     // Copied from StackOverflow, not tested.
 //    func shareToInstagram(deepLinkString : String){
 //        let url = URL(string: "instagram-stories://share")!
@@ -285,7 +298,6 @@ struct ImageCreator: View {
 //        }
 //    }
 }
-
 
 struct ImageCreator_Previews: PreviewProvider {
     static var previews: some View {

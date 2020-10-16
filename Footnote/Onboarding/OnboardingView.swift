@@ -9,9 +9,9 @@
 import SwiftUI
 
 struct OnboardingView: View {
-    
+
     @Environment(\.presentationMode) var presentationMode
-    
+
     var body: some View {
         VStack {
             Spacer(minLength: 64)
