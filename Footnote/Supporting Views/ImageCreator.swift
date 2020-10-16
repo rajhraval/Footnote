@@ -84,13 +84,13 @@ struct ImageCreator: View {
                             print("Image picker")
                             self.showingImagePicker = true
 
-                        }) {
+                        }, label: {
                             Text("Add a background image")
                                 .padding()
                                 .foregroundColor(.white)
                                 .background(Color(self.selectedColor))
                                 .cornerRadius(10)
-                        }.sheet(isPresented: self.$showingImagePicker, onDismiss: self.loadBackgroundImage) {
+                        }).sheet(isPresented: self.$showingImagePicker, onDismiss: self.loadBackgroundImage) {
                             ImagePicker(image: self.$inputImage)
                         }
 
@@ -102,7 +102,7 @@ struct ImageCreator: View {
                                             self.selectedFont = font
                                         }
 
-                                    }) {
+                                    }, label: {
                                         Text(font.components(separatedBy: "-")[0])
                                             .padding()
                                             .foregroundColor(self.selectedFont == font ? .white : .black)
@@ -110,8 +110,7 @@ struct ImageCreator: View {
                                             .background(self.selectedFont == font ? Color(self.selectedColor) : .white)
                                             .cornerRadius(10)
 
-                                    }
-
+                                    })
                                 }
                             }
                         }.padding()
@@ -124,13 +123,13 @@ struct ImageCreator: View {
                                             self.selectedColor = color
                                         }
 
-                                    }) {
+                                    }, label: {
                                         Circle().foregroundColor(Color(color))
                                             .frame(width: 40, height: 40)
                                             .overlay(
                                                 Circle().stroke(Color.gray,
                                                                 lineWidth: self.selectedColor == color ? 3 : 0))
-                                    }
+                                    })
                                 }
                             }.padding()
                         }
@@ -147,12 +146,11 @@ struct ImageCreator: View {
                         }
 
                         HStack {
-
                             Button(action: {
                                 self.saveImage(image: self.renderImage(width: geometry.size.width,
                                                                        height: geometry.size.height / 2))
                                 self.presentationMode.wrappedValue.dismiss()
-                            }) {
+                            }, label: {
                                 HStack {
                                     Text("Save to Library")
                                     Image(systemName: "square.and.arrow.down")
@@ -162,14 +160,15 @@ struct ImageCreator: View {
                                 .foregroundColor(.white)
                                 .background(Color(self.selectedColor))
                                 .cornerRadius(10)
-                            }
+                            })
                             .layoutPriority(1)
 
                             Spacer()
                                 .layoutPriority(0)
 
                             Button(action: {
-                                    self.showingShareSheet = true                            }) {
+                                    self.showingShareSheet = true
+                            }, label: {
                                 HStack {
                                     Text("Share Image")
                                     Image(systemName: "square.and.arrow.up")
@@ -179,7 +178,7 @@ struct ImageCreator: View {
                                 .foregroundColor(.white)
                                 .background(Color(self.selectedColor))
                                 .cornerRadius(10)
-                            }
+                            })
                             .layoutPriority(1)
                             .sheet(isPresented: self.$showingShareSheet) {
                                 ShareSheetView(activityItems: [self.renderImage(width: geometry.size.width-10,

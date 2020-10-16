@@ -180,7 +180,7 @@ struct AddQuoteUIKit: View {
                 } else {
                     self.showEmptyTextFieldAlert = true
                 }
-            }) {
+            }, label: {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.white)
                     .frame(height: 40)
@@ -189,7 +189,7 @@ struct AddQuoteUIKit: View {
                         Text("Save changes")
                             .foregroundColor(.black)
                 )
-            }
+            })
             .alert(isPresented: $showEmptyTextFieldAlert, content: {
                 Alert(title: Text("Error Saving Quote"),
                       message: Text("Please ensure that all text fields are filled before saving."),

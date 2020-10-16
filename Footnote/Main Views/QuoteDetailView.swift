@@ -137,7 +137,7 @@ struct QuoteDetailView: View {
                 } else {
                     self.showEmptyTextFieldAlert = true
                 }
-            }) {
+            }, label: {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.footnoteRed)
                     .frame(height: 40)
@@ -147,7 +147,7 @@ struct QuoteDetailView: View {
                             .foregroundColor(.white)
 
                 )
-            }
+            })
             .alert(isPresented: $showEmptyTextFieldAlert, content: {
                     Alert(title: Text("Error Updating Quote"),
                           message: Text("Please ensure that all text fields are filled before updating."),
@@ -156,7 +156,7 @@ struct QuoteDetailView: View {
 
             Button(action: {
                 self.showImageCreator = true
-            }) {
+            }, label: {
                 RoundedRectangle(cornerRadius: 8)
                     .foregroundColor(.footnoteRed)
                     .frame(height: 40)
@@ -169,7 +169,7 @@ struct QuoteDetailView: View {
                     .sheet(isPresented: self.$showImageCreator) {
                         ImageCreator(text: self.quote.text ?? "", source: self.quote.title ?? "")
                 }
-            }
+            })
             Spacer()
         }
 

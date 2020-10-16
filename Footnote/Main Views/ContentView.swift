@@ -92,10 +92,10 @@ struct ContentView: View {
                           Button(action: {
                             //self.showView = .settingsView
                             self.showSettingsView.toggle()
-                          }) {
+                          }, label: {
                             Image(systemName: "gear")
                                 .accessibility(label: Text("Settings"))
-                          }
+                          })
         .sheet(isPresented: $showSettingsView) {
             SettingsView(showModal: $showSettingsView)
         },
@@ -104,10 +104,10 @@ struct ContentView: View {
                           Button(action: {
                             //self.showView = .addQuoteView
                             self.showAddQuoteView.toggle()
-                          }) {
+                          }, label: {
                             Image(systemName: "plus")
                                 .accessibility(label: Text("Add Quote"))
-                          }
+                          })
                             .sheet(isPresented: $showAddQuoteView) {
                                 AddQuoteUIKit(showModal: $showAddQuoteView)
                                     .environment(\.managedObjectContext, self.managedObjectContext)
