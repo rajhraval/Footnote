@@ -87,7 +87,8 @@ struct AddQuoteUIKit: View {
     var body: some View {
 
         VStack(spacing: 20) {
-            // Issue #17: Provides the user a choice of media types to use with their quote. It is displayed in a segmented picker control
+            // Issue #17: Provides the user a choice of media types to use with their quote.
+            // It is displayed in a segmented picker control
             Picker("Media Type", selection: $mediaType) {
                 ForEach(MediaType.allCases, id: \.rawValue) {type in
                     Text(type.stringValue).font(.largeTitle)
@@ -157,7 +158,8 @@ struct AddQuoteUIKit: View {
                             .colorScheme(.light)
                         if author.isEmpty {
                             HStack {
-                                // Issue #17: Changed Author to Content Creator to align with different media type options provided to the user
+                                // Issue #17: Changed Author to Content Creator to align with different media type
+                                // options provided to the user
                                 Text("Content Creator")
                                     .foregroundColor(.gray)
                                     .padding(.horizontal)
@@ -189,7 +191,9 @@ struct AddQuoteUIKit: View {
                 )
             }
             .alert(isPresented: $showEmptyTextFieldAlert, content: {
-                Alert(title: Text("Error Saving Quote"), message: Text("Please ensure that all text fields are filled before saving."), dismissButton: .default(Text("Ok")))
+                Alert(title: Text("Error Saving Quote"),
+                      message: Text("Please ensure that all text fields are filled before saving."),
+                      dismissButton: .default(Text("Ok")))
             })
             Spacer()
 
@@ -244,9 +248,10 @@ struct AddQuoteUIKit_Previews: PreviewProvider {
         // swiftlint:disable:next force_cast
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         return Group {
-            AddQuoteUIKit(showModal: .constant(true)).environment(\.managedObjectContext, context).environment(\.colorScheme, .light)
+            AddQuoteUIKit(showModal: .constant(true))
+                .environment(\.managedObjectContext, context)
+                .environment(\.colorScheme, .light)
         }
-
     }
 }
 #endif

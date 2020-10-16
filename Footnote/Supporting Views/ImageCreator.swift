@@ -67,10 +67,13 @@ struct ImageCreator: View {
                             .foregroundColor(Color(self.selectedColor))
                     )
                         .gesture(DragGesture().onChanged { value in
-                            self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
+                            self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width,
+                                                          height: value.translation.height + self.newPosition.height)
                         }   // 4.
                             .onEnded { value in
-                                self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width, height: value.translation.height + self.newPosition.height)
+                                self.currentPosition = CGSize(width: value.translation.width + self.newPosition.width,
+                                                              // swiftlint:disable:next line_length
+                                                              height: value.translation.height + self.newPosition.height)
                                 print(self.newPosition.width)
                                 self.newPosition = self.currentPosition
                         })
@@ -125,7 +128,8 @@ struct ImageCreator: View {
                                         Circle().foregroundColor(Color(color))
                                             .frame(width: 40, height: 40)
                                             .overlay(
-                                                Circle().stroke(Color.gray, lineWidth: self.selectedColor == color ? 3 : 0))
+                                                Circle().stroke(Color.gray,
+                                                                lineWidth: self.selectedColor == color ? 3 : 0))
                                     }
                                 }
                             }.padding()
@@ -145,7 +149,8 @@ struct ImageCreator: View {
                         HStack {
 
                             Button(action: {
-                                self.saveImage(image: self.renderImage(width: geometry.size.width, height: geometry.size.height / 2))
+                                self.saveImage(image: self.renderImage(width: geometry.size.width,
+                                                                       height: geometry.size.height / 2))
                                 self.presentationMode.wrappedValue.dismiss()
                             }) {
                                 HStack {
@@ -177,7 +182,8 @@ struct ImageCreator: View {
                             }
                             .layoutPriority(1)
                             .sheet(isPresented: self.$showingShareSheet) {
-                                ShareSheetView(activityItems: [self.renderImage(width: geometry.size.width-10, height: geometry.size.height/2)])
+                                ShareSheetView(activityItems: [self.renderImage(width: geometry.size.width-10,
+                                                                                height: geometry.size.height/2)])
                             }
                         }
                         .padding()
@@ -205,7 +211,11 @@ struct ImageCreator: View {
             // 2
 
             if let background = inputImage {
-                let resizable = background.resizableImage(withCapInsets: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), resizingMode: .stretch)
+                let resizable = background.resizableImage(withCapInsets: UIEdgeInsets(top: 0,
+                                                                                      left: 0,
+                                                                                      bottom: 0,
+                                                                                      right: 0),
+                                                          resizingMode: .stretch)
                 resizable.draw(in: CGRect(x: 0, y: 0, width: width, height: height))
 
             }
@@ -252,7 +262,7 @@ struct ImageCreator: View {
 //                       let iconString = NSAttributedString(attachment: watermarkAttachment)
 //            attributedWatermark.append(iconString)
 //
-//
+// swiftlint:disable:next line_length
 //            attributedWatermark.draw(with: CGRect(x: width - 150, y: height - 40, width: width, height: height), options: .usesLineFragmentOrigin, context: nil)
 
         }
@@ -271,7 +281,8 @@ struct ImageCreator: View {
     }
 
     func saveImage(image: UIImage) {
-        // TODO: what happens if saving fails. https://www.hackingwithswift.com/books/ios-swiftui/how-to-save-images-to-the-users-photo-library
+        // TODO: what happens if saving fails.
+        // https://www.hackingwithswift.com/books/ios-swiftui/how-to-save-images-to-the-users-photo-library
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
 
@@ -290,7 +301,8 @@ struct ImageCreator: View {
 //
 //            if #available(iOS 10.0, *) {
 //
-//                UIPasteboard.general.setItems(pasteBoardItems, options: [.expirationDate: Date().addingTimeInterval(60 * 5)])
+//                UIPasteboard.general.setItems(pasteBoardItems,
+//                                            options: [.expirationDate: Date().addingTimeInterval(60 * 5)])
 //            } else {
 //                UIPasteboard.general.items = pasteBoardItems
 //            }

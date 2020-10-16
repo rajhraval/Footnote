@@ -15,7 +15,13 @@ struct SettingsView: View {
 
     var body: some View {
       HStack(alignment: .center) {
-        Image(systemName: "gear").renderingMode(.original).resizable().cornerRadius(20).frame(width: 60, height: 60).clipped().aspectRatio(contentMode: .fit)
+        Image(systemName: "gear")
+            .renderingMode(.original)
+            .resizable()
+            .cornerRadius(20)
+            .frame(width: 60, height: 60)
+            .clipped()
+            .aspectRatio(contentMode: .fit)
 
         VStack(alignment: .leading, spacing: nil/*@END_MENU_TOKEN@*/, content: {
             Text("Footnote - IOS SwiftUI Open-Source Application developed during Hacktoberfest 2020.")
@@ -33,7 +39,9 @@ struct SettingsView_Previews: PreviewProvider {
         // swiftlint:disable:next force_cast
         let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
         return Group {
-            SettingsView(showModal: .constant(true)).environment(\.managedObjectContext, context).environment(\.colorScheme, .light)
+            SettingsView(showModal: .constant(true))
+                .environment(\.managedObjectContext, context)
+                .environment(\.colorScheme, .light)
         }
 
     }

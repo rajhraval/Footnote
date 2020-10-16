@@ -65,7 +65,9 @@ class Coordinator: NSObject, UITextViewDelegate, NSLayoutManagerDelegate {
         return true
     }
 
-    func layoutManager(_ layoutManager: NSLayoutManager, didCompleteLayoutFor textContainer: NSTextContainer?, atEnd layoutFinishedFlag: Bool) {
+    func layoutManager(_ layoutManager: NSLayoutManager,
+                       didCompleteLayoutFor textContainer: NSTextContainer?,
+                       atEnd layoutFinishedFlag: Bool) {
 
         DispatchQueue.main.async { [weak self] in
             guard let textView = self?.textView else {

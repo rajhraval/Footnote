@@ -69,7 +69,8 @@ struct ContentView: View {
                     NavigationLink(destination: QuoteDetailView(text: quote.text ?? "",
                                                                 title: quote.title ?? "",
                                                                 author: quote.author ?? "",
-                                                                mediaType: MediaType(rawValue: Int(quote.mediaType)) ?? MediaType.book,
+                                                                mediaType: MediaType(rawValue: Int(quote.mediaType))
+                                                                    ?? MediaType.book,
                                                                 quote: quote
                     ).environment(\.managedObjectContext, self.managedObjectContext)) {
                       QuoteItemView(quote: quote)
@@ -108,7 +109,8 @@ struct ContentView: View {
                                 .accessibility(label: Text("Add Quote"))
                           }
                             .sheet(isPresented: $showAddQuoteView) {
-                                AddQuoteUIKit(showModal: $showAddQuoteView).environment(\.managedObjectContext, self.managedObjectContext)
+                                AddQuoteUIKit(showModal: $showAddQuoteView)
+                                    .environment(\.managedObjectContext, self.managedObjectContext)
                             }
                         )
     }.sheet(isPresented: $showOnboarding) {
@@ -159,7 +161,9 @@ struct ContentView_Previews: PreviewProvider {
     // swiftlint:disable:next force_cast
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     return Group {
-      ContentView().environment(\.managedObjectContext, context).environment(\.colorScheme, .light)
+      ContentView()
+        .environment(\.managedObjectContext, context)
+        .environment(\.colorScheme, .light)
 
     }
 
@@ -195,7 +199,8 @@ struct FilteredList: View {
           NavigationLink(destination: QuoteDetailView(text: quote.text ?? "",
                                                       title: quote.title ?? "",
                                                       author: quote.author ?? "",
-                                                      mediaType: MediaType(rawValue: Int(quote.mediaType)) ?? MediaType.book,
+                                                      mediaType: MediaType(rawValue: Int(quote.mediaType))
+                                                        ?? MediaType.book,
                                                       quote: quote)) {
             QuoteItemView(quote: quote)
           }

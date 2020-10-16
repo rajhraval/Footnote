@@ -114,7 +114,8 @@ struct QuoteDetailView: View {
                 .frame(height: authorFieldHeight)
                 .shadow(radius: 5)
                 .overlay(
-                    DynamicHeightTextField(text: $title, height: $titleHeight).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    DynamicHeightTextField(text: $title, height: $titleHeight)
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         .frame(height: titleFieldHeight)
 
             ).padding(.horizontal)
@@ -124,7 +125,8 @@ struct QuoteDetailView: View {
                 .frame(height: authorFieldHeight)
                 .shadow(radius: 5)
                 .overlay(
-                    DynamicHeightTextField(text: $author, height: $authorHeight).clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
+                    DynamicHeightTextField(text: $author, height: $authorHeight)
+                        .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
                         .frame(height: authorFieldHeight)
 
             ).padding(.horizontal)
@@ -147,7 +149,9 @@ struct QuoteDetailView: View {
                 )
             }
             .alert(isPresented: $showEmptyTextFieldAlert, content: {
-                    Alert(title: Text("Error Updating Quote"), message: Text("Please ensure that all text fields are filled before updating."), dismissButton: .default(Text("Ok")))
+                    Alert(title: Text("Error Updating Quote"),
+                          message: Text("Please ensure that all text fields are filled before updating."),
+                          dismissButton: .default(Text("Ok")))
             })
 
             Button(action: {
