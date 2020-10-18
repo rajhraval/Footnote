@@ -23,10 +23,8 @@ struct ContentView: View {
   // Onboarding via Sheet
   @State private var showOnboarding = false
 
-
   @State private var refreshing = false
   private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
-
 
   @FetchRequest(
     entity: Quote.entity(),
@@ -64,15 +62,15 @@ struct ContentView: View {
                     }
                 }
                 Spacer()
-            }
-            else {
+            } else {
                 List {
                   ForEach(self.quotes, id: \.self) { quote in
                     // Issue #17: Pass Media type to the detail view
                     NavigationLink(destination: QuoteDetailView(text: quote.text ?? "",
                                                                 title: quote.title ?? "",
                                                                 author: quote.author ?? "",
-                                                                mediaType: MediaType(rawValue: Int(quote.mediaType)) ?? MediaType.book,
+                                                                mediaType: MediaType(rawValue: Int(quote.mediaType))
+                                                                    ?? MediaType.book,
                                                                 quote: quote
                     ).environment(\.managedObjectContext, self.managedObjectContext)) {
                       QuoteItemView(quote: quote)
@@ -81,7 +79,6 @@ struct ContentView: View {
                       self.refreshing.toggle()
                       print("refresh")
                     }
-
 
                   }.onDelete(perform: self.removeQuote)
 
@@ -95,10 +92,10 @@ struct ContentView: View {
                           Button(action: {
                             //self.showView = .settingsView
                             self.showSettingsView.toggle()
-                          } ) {
+                          }, label: {
                             Image(systemName: "gear")
                                 .accessibility(label: Text("Settings"))
-                          }
+                          })
         .sheet(isPresented: $showSettingsView) {
             SettingsView(showModal: $showSettingsView)
         },
@@ -107,12 +104,13 @@ struct ContentView: View {
                           Button(action: {
                             //self.showView = .addQuoteView
                             self.showAddQuoteView.toggle()
-                          } ) {
+                          }, label: {
                             Image(systemName: "plus")
                                 .accessibility(label: Text("Add Quote"))
-                          }
+                          })
                             .sheet(isPresented: $showAddQuoteView) {
-                                AddQuoteUIKit(showModal: $showAddQuoteView).environment(\.managedObjectContext, self.managedObjectContext)
+                                AddQuoteUIKit(showModal: $showAddQuoteView)
+                                    .environment(\.managedObjectContext, self.managedObjectContext)
                             }
                         )
     }.sheet(isPresented: $showOnboarding) {
@@ -137,7 +135,6 @@ struct ContentView: View {
         }
     }
 
-
   func removeQuote(at offsets: IndexSet) {
     for index in offsets {
       let quote = quotes[index]
@@ -151,8 +148,6 @@ struct ContentView: View {
   }
 }
 
-
-
 /// contentView modals
 enum ContentViewModals {
   case addQuoteView
@@ -163,9 +158,12 @@ enum ContentViewModals {
 #if DEBUG
 struct ContentView_Previews: PreviewProvider {
   static var previews: some View {
+    // swiftlint:disable:next force_cast
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     return Group {
-      ContentView().environment(\.managedObjectContext, context).environment(\.colorScheme, .light)
+      ContentView()
+        .environment(\.managedObjectContext, context)
+        .environment(\.colorScheme, .light)
 
     }
 
@@ -177,7 +175,6 @@ struct FilteredList: View {
   @Environment(\.managedObjectContext) var managedObjectContext
   @State var showImageCreator = false
   var fetchRequest: FetchRequest<Quote>
-
 
   init(filter: String) {
     fetchRequest = FetchRequest<Quote>(entity: Quote.entity(), sortDescriptors: [
@@ -202,7 +199,8 @@ struct FilteredList: View {
           NavigationLink(destination: QuoteDetailView(text: quote.text ?? "",
                                                       title: quote.title ?? "",
                                                       author: quote.author ?? "",
-                                                      mediaType: MediaType(rawValue: Int(quote.mediaType)) ?? MediaType.book,
+                                                      mediaType: MediaType(rawValue: Int(quote.mediaType))
+                                                        ?? MediaType.book,
                                                       quote: quote)) {
             QuoteItemView(quote: quote)
           }
