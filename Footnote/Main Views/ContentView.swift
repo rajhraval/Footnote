@@ -14,8 +14,11 @@ struct ContentView: View {
 
   //Controls translation of AddQuoteView
   @State private var offset: CGSize = .zero
-
   @State var search = ""
+
+  @State var showAddQuoteView = false
+  @State var showSettingsView = false
+  //@State var showView: ContentViewModals = .addQuoteView
 
   // Onboarding via Sheet
   @State private var showOnboarding = false
@@ -23,70 +26,98 @@ struct ContentView: View {
   @State private var refreshing = false
   private var didSave =  NotificationCenter.default.publisher(for: .NSManagedObjectContextDidSave)
 
-
-  @State var showModal = false
-  @State var showView: ContentViewModals = .addQuoteView
-
-  @ObservedObject var searchBar: SearchBar = SearchBar()
-
   @FetchRequest(
     entity: Quote.entity(),
     sortDescriptors: [
       NSSortDescriptor(keyPath: \Quote.dateCreated, ascending: false)
     ]
-
-  ) var quotes: FetchedResults<Quote> {
-    didSet{
-        self.widgetSync()
-    }
-  }
+  ) var quotes: FetchedResults<Quote>
 
   var body: some View {
 
     NavigationView {
       VStack {
-        if !self.searchBar.text.isEmpty {
-            FilteredList(filter: self.searchBar.text)
-                .environment(\.managedObjectContext, self.managedObjectContext)
-        } else {
-            FilteredList()
-              .environment(\.managedObjectContext, self.managedObjectContext)
-              .listStyle(PlainListStyle())
-              .add(self.searchBar)
-              .navigationBarTitle("Footnote", displayMode: .inline)
-              .navigationBarItems(leading:
-                                    Button(action: {
-                                      self.showView = .settingsView
-                                      self.showModal.toggle()
-                                    } ) {
-                                      Image(systemName: "gear")
-                                    },
+        TextField("Search", text: self.$search)
+          .textFieldStyle(RoundedBorderTextFieldStyle())
+          .padding([.leading, .trailing, .top])
+            .accessibility(label: Text("Search Bar"))
 
-                                  trailing:
-                                    Button(action: {
-                                      self.showView = .addQuoteView
-                                      self.showModal.toggle()
-                                    } ) {
-                                      Image(systemName: "plus")
-                                    }
-                                  )
-              .onAppear(perform: {
-                self.widgetSync()
-              })
+        if self.search != "" {
+          FilteredList(filter: self.search).environment(\.managedObjectContext, self.managedObjectContext)
+        } else {
+
+            if quotes.isEmpty {
+                Spacer()
+                VStack(alignment: .center, spacing: 14) {
+                    Image("QuotePlaceholder")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 85, height: 85)
+                    VStack(alignment: .center, spacing: 6) {
+                        Text("No Quotes Added")
+                            .font(.subheadline)
+                        Text("Click"+" + Add Quote")
+                            .font(.caption)
+                            .foregroundColor(.blue)
+                    }
+                }
+                Spacer()
+            } else {
+                List {
+                  ForEach(self.quotes, id: \.self) { quote in
+                    // Issue #17: Pass Media type to the detail view
+                    NavigationLink(destination: QuoteDetailView(text: quote.text ?? "",
+                                                                title: quote.title ?? "",
+                                                                author: quote.author ?? "",
+                                                                mediaType: MediaType(rawValue: Int(quote.mediaType))
+                                                                    ?? MediaType.book,
+                                                                quote: quote
+                    ).environment(\.managedObjectContext, self.managedObjectContext)) {
+                      QuoteItemView(quote: quote)
+                    }
+                    .onReceive(self.didSave) { _ in
+                      self.refreshing.toggle()
+                      print("refresh")
+                    }
+
+                  }.onDelete(perform: self.removeQuote)
+
+                }
+            }
         }
       }
-    }.sheet(isPresented: $showModal) {
-      if self.showView == .addQuoteView {
+      .listStyle(PlainListStyle())
+      .navigationBarTitle("Footnote", displayMode: .inline)
+    .navigationBarItems(leading:
+                          Button(action: {
+                            //self.showView = .settingsView
+                            self.showSettingsView.toggle()
+                          }, label: {
+                            Image(systemName: "gear")
+                                .accessibility(label: Text("Settings"))
+                          })
+        .sheet(isPresented: $showSettingsView) {
+            SettingsView(showModal: $showSettingsView)
+        },
 
-        AddQuoteUIKit(showModal: $showModal).environment(\.managedObjectContext, self.managedObjectContext)
-
-      }
-
-//      if self.showView == .settingsView {
-//        SettingsView()
-//      }
-
-    }.accentColor(Color.footnoteRed)
+                        trailing:
+                          Button(action: {
+                            //self.showView = .addQuoteView
+                            self.showAddQuoteView.toggle()
+                          }, label: {
+                            Image(systemName: "plus")
+                                .accessibility(label: Text("Add Quote"))
+                          })
+                            .sheet(isPresented: $showAddQuoteView) {
+                                AddQuoteUIKit(showModal: $showAddQuoteView)
+                                    .environment(\.managedObjectContext, self.managedObjectContext)
+                            }
+                        )
+    }.sheet(isPresented: $showOnboarding) {
+        OnboardingView()
+    }
+    .accentColor(Color.footnoteRed)
+    .onAppear(perform: checkForFirstTimeDownload)
 
   }
 
@@ -111,29 +142,10 @@ struct ContentView: View {
     }
     do {
       try managedObjectContext.save()
-        self.widgetSync()
     } catch {
       // handle the Core Data error
     }
   }
-
-    func widgetSync(){
-        let quotesJSON = self.quotes.map({
-            WidgetContent(date: $0.dateCreated ?? Date(), text: $0.text ?? "Default Text", title: $0.title ?? "Default Title", author: $0.author ?? "Default Author")
-        })
-
-        print("Syncing")
-
-        guard let encodedData = try? JSONEncoder().encode(quotesJSON) else {
-            print("Couldnt encode")
-            return }
-
-        print("encoded to UDs")
-        print(encodedData)
-
-        print(type(of: quotesJSON))
-        UserDefaults(suiteName: AppGroup.appGroup.rawValue)!.set(encodedData, forKey: "WidgetContent")
-    }
 }
 
 /// contentView modals
@@ -179,14 +191,8 @@ struct FilteredList: View {
   }
 
   var body: some View {
-  init() {
-    fetchRequest = FetchRequest<Quote>(entity: Quote.entity(), sortDescriptors: [
-      NSSortDescriptor(keyPath: \Quote.dateCreated, ascending: false)
-    ])
-  }
 
     NavigationView {
-
       List {
         ForEach(fetchRequest.wrappedValue, id: \.self) { quote in
           // Issue #17: Pass Media type to the detail view
@@ -200,7 +206,8 @@ struct FilteredList: View {
           }
         }.onDelete(perform: self.removeQuote)
       }
-      .listStyle(PlainListStyle())
+    }.navigationBarTitle("")
+    .navigationBarHidden(true)
   }
 
   func removeQuote(at offsets: IndexSet) {

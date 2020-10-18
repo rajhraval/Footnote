@@ -10,22 +10,6 @@
 		0867228A24B69A6100B6938D /* DynamicHeightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867228924B69A6100B6938D /* DynamicHeightTextField.swift */; };
 		3F2500982527683A00FD83E4 /* ShareSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2500972527683A00FD83E4 /* ShareSheetView.swift */; };
 		70818478E0D5F9B542E74E31 /* Pods_Footnote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E00C7A554BE25433F1729D /* Pods_Footnote.framework */; };
-		3F3BD9AC25290F230097BC52 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3BD9AB25290F230097BC52 /* WidgetKit.framework */; };
-		3F3BD9AE25290F230097BC52 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F3BD9AD25290F230097BC52 /* SwiftUI.framework */; };
-		3F3BD9B125290F230097BC52 /* FootnoteWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BD9B025290F230097BC52 /* FootnoteWidget.swift */; };
-		3F3BD9B425290F250097BC52 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3F3BD9B325290F250097BC52 /* Assets.xcassets */; };
-		3F3BD9B625290F250097BC52 /* FootnoteWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BD9B225290F230097BC52 /* FootnoteWidget.intentdefinition */; };
-		3F3BD9B725290F250097BC52 /* FootnoteWidget.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 3F3BD9B225290F230097BC52 /* FootnoteWidget.intentdefinition */; };
-		3F3BD9BA25290F250097BC52 /* FootnoteWidgetExtension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 3F3BD9A925290F230097BC52 /* FootnoteWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		3F56D94E253826DD00DF82BC /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56D94D253826DD00DF82BC /* SearchBar.swift */; };
-		3F56D9522538270400DF82BC /* ViewControllerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F56D9512538270400DF82BC /* ViewControllerResolver.swift */; };
-		3FD45D02252A43DC00A22ED1 /* QuoteCodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D01252A43DC00A22ED1 /* QuoteCodableExtension.swift */; };
-		3FD45D0B252A482500A22ED1 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D0A252A482500A22ED1 /* AppGroup.swift */; };
-		3FD45D0F252A491100A22ED1 /* WidgetContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D0E252A491100A22ED1 /* WidgetContent.swift */; };
-		3FD45D12252A4A2A00A22ED1 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D0A252A482500A22ED1 /* AppGroup.swift */; };
-		3FD45D15252A4C3E00A22ED1 /* QuoteCodableExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D01252A43DC00A22ED1 /* QuoteCodableExtension.swift */; };
-		3FD45D1A252A4E6200A22ED1 /* WidgetContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FD45D0E252A491100A22ED1 /* WidgetContent.swift */; };
-		3FD45D1D252A51D800A22ED1 /* Footnote2.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = FCD0C83623A070FE00EFA591 /* Footnote2.xcdatamodeld */; };
 		B17E06052525265C00DA0E44 /* MediaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E06042525265C00DA0E44 /* MediaTypes.swift */; };
 		CFB112FE252B57DF0052A710 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB112FD252B57DF0052A710 /* OnboardingView.swift */; };
 		CFB11302252B58530052A710 /* Button+Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11301252B58530052A710 /* Button+Modifier.swift */; };
@@ -60,7 +44,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-
 		FFF89968252F165B00CEC44B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = FCD0C82723A070FE00EFA591 /* Project object */;
@@ -75,47 +58,6 @@
 		3F2500972527683A00FD83E4 /* ShareSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetView.swift; sourceTree = "<group>"; };
 		7BDD8573C02C2BDDD6F078FB /* Pods-Footnote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Footnote.release.xcconfig"; path = "Target Support Files/Pods-Footnote/Pods-Footnote.release.xcconfig"; sourceTree = "<group>"; };
 		90E00C7A554BE25433F1729D /* Pods_Footnote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Footnote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-
-		3F3BD9B825290F250097BC52 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = FCD0C82723A070FE00EFA591 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3F3BD9A825290F230097BC52;
-			remoteInfo = FootnoteWidgetExtension;
-		};
-/* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		3F3BD9BB25290F250097BC52 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				3F3BD9BA25290F250097BC52 /* FootnoteWidgetExtension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
-
-/* Begin PBXFileReference section */
-		0867228924B69A6100B6938D /* DynamicHeightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextField.swift; sourceTree = "<group>"; };
-		3F2500972527683A00FD83E4 /* ShareSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetView.swift; sourceTree = "<group>"; };
-		3F3BD9A925290F230097BC52 /* FootnoteWidgetExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = FootnoteWidgetExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		3F3BD9AB25290F230097BC52 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
-		3F3BD9AD25290F230097BC52 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
-		3F3BD9B025290F230097BC52 /* FootnoteWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FootnoteWidget.swift; sourceTree = "<group>"; };
-		3F3BD9B225290F230097BC52 /* FootnoteWidget.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = FootnoteWidget.intentdefinition; sourceTree = "<group>"; };
-		3F3BD9B325290F250097BC52 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		3F3BD9B525290F250097BC52 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3F56D94D253826DD00DF82BC /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
-		3F56D9512538270400DF82BC /* ViewControllerResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerResolver.swift; sourceTree = "<group>"; };
-		3FD45D01252A43DC00A22ED1 /* QuoteCodableExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuoteCodableExtension.swift; sourceTree = "<group>"; };
-		3FD45D05252A47E400A22ED1 /* Footnote.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Footnote.entitlements; sourceTree = "<group>"; };
-		3FD45D0A252A482500A22ED1 /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
-		3FD45D0E252A491100A22ED1 /* WidgetContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetContent.swift; sourceTree = "<group>"; };
-
 		B17E06042525265C00DA0E44 /* MediaTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTypes.swift; sourceTree = "<group>"; };
 		B17E060A252529C800DA0E44 /* FootnoteV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FootnoteV2.xcdatamodel; sourceTree = "<group>"; };
 		CFB112FD252B57DF0052A710 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -157,15 +99,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		3F3BD9A625290F230097BC52 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3F3BD9AE25290F230097BC52 /* SwiftUI.framework in Frameworks */,
-				3F3BD9AC25290F230097BC52 /* WidgetKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FCD0C82C23A070FE00EFA591 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -188,11 +121,6 @@
 			isa = PBXGroup;
 			children = (
 				90E00C7A554BE25433F1729D /* Pods_Footnote.framework */,
-		3F3BD9AA25290F230097BC52 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				3F3BD9AB25290F230097BC52 /* WidgetKit.framework */,
-				3F3BD9AD25290F230097BC52 /* SwiftUI.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -213,16 +141,6 @@
 				CFB112FD252B57DF0052A710 /* OnboardingView.swift */,
 			);
 			path = Onboarding;
-		3F3BD9AF25290F230097BC52 /* FootnoteWidget */ = {
-			isa = PBXGroup;
-			children = (
-				3F3BD9B025290F230097BC52 /* FootnoteWidget.swift */,
-				3F3BD9B225290F230097BC52 /* FootnoteWidget.intentdefinition */,
-				3F3BD9B325290F250097BC52 /* Assets.xcassets */,
-				3F3BD9B525290F250097BC52 /* Info.plist */,
-				3FD45D0E252A491100A22ED1 /* WidgetContent.swift */,
-			);
-			path = FootnoteWidget;
 			sourceTree = "<group>";
 		};
 		FC50DF242413218100CB5EB7 /* Main Views */ = {
@@ -247,8 +165,6 @@
 				3F2500972527683A00FD83E4 /* ShareSheetView.swift */,
 				0867228924B69A6100B6938D /* DynamicHeightTextField.swift */,
 				FC7C208624FB49C600A5A963 /* SuggestionsView.swift */,
-				3F56D94D253826DD00DF82BC /* SearchBar.swift */,
-				3F56D9512538270400DF82BC /* ViewControllerResolver.swift */,
 			);
 			path = "Supporting Views";
 			sourceTree = "<group>";
@@ -273,8 +189,6 @@
 			children = (
 				FCD0C83123A070FE00EFA591 /* Footnote */,
 				FFF89964252F165B00CEC44B /* FastlaneSnapshots */,
-				3F3BD9AF25290F230097BC52 /* FootnoteWidget */,
-				3F3BD9AA25290F230097BC52 /* Frameworks */,
 				FCD0C83023A070FE00EFA591 /* Products */,
 				CE06290C7D722E2D842B596A /* Pods */,
 				0CF7110FD5C159D62698990E /* Frameworks */,
@@ -286,9 +200,6 @@
 			children = (
 				FCD0C82F23A070FE00EFA591 /* Footnote.app */,
 				FFF89963252F165B00CEC44B /* FastlaneSnapshots.xctest */,
-
-				3F3BD9A925290F230097BC52 /* FootnoteWidgetExtension.appex */,
-
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -296,11 +207,8 @@
 		FCD0C83123A070FE00EFA591 /* Footnote */ = {
 			isa = PBXGroup;
 			children = (
-
 				CFB11301252B58530052A710 /* Button+Modifier.swift */,
 				CFB11300252B57EE0052A710 /* Onboarding */,
-
-				3FD45D05252A47E400A22ED1 /* Footnote.entitlements */,
 				FC50DF242413218100CB5EB7 /* Main Views */,
 				FC50DF252413219B00CB5EB7 /* Supporting Views */,
 				FCD0C83223A070FE00EFA591 /* AppDelegate.swift */,
@@ -314,8 +222,6 @@
 				FCD0C83623A070FE00EFA591 /* Footnote2.xcdatamodeld */,
 				FC93374C23DE33490097FE83 /* Fonts */,
 				FCD0C83D23A070FF00EFA591 /* Preview Content */,
-				3FD45D01252A43DC00A22ED1 /* QuoteCodableExtension.swift */,
-				3FD45D0A252A482500A22ED1 /* AppGroup.swift */,
 			);
 			path = Footnote;
 			sourceTree = "<group>";
@@ -341,23 +247,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		3F3BD9A825290F230097BC52 /* FootnoteWidgetExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 3F3BD9BE25290F250097BC52 /* Build configuration list for PBXNativeTarget "FootnoteWidgetExtension" */;
-			buildPhases = (
-				3F3BD9A525290F230097BC52 /* Sources */,
-				3F3BD9A625290F230097BC52 /* Frameworks */,
-				3F3BD9A725290F230097BC52 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = FootnoteWidgetExtension;
-			productName = FootnoteWidgetExtension;
-			productReference = 3F3BD9A925290F230097BC52 /* FootnoteWidgetExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		FCD0C82E23A070FE00EFA591 /* Footnote */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCD0C84623A070FF00EFA591 /* Build configuration list for PBXNativeTarget "Footnote" */;
@@ -367,12 +256,10 @@
 				FCD0C82C23A070FE00EFA591 /* Frameworks */,
 				FCD0C82D23A070FE00EFA591 /* Resources */,
 				FFDFDBC72530CEEC00BBDEF9 /* Run SwiftLint */,
-				3F3BD9BB25290F250097BC52 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				3F3BD9B925290F250097BC52 /* PBXTargetDependency */,
 			);
 			name = Footnote;
 			productName = Footnote2;
@@ -407,9 +294,6 @@
 				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Cameron Bardell";
 				TargetAttributes = {
-					3F3BD9A825290F230097BC52 = {
-						CreatedOnToolsVersion = 12.0.1;
-					};
 					FCD0C82E23A070FE00EFA591 = {
 						CreatedOnToolsVersion = 11.2.1;
 					};
@@ -434,20 +318,11 @@
 			targets = (
 				FCD0C82E23A070FE00EFA591 /* Footnote */,
 				FFF89962252F165B00CEC44B /* FastlaneSnapshots */,
-				3F3BD9A825290F230097BC52 /* FootnoteWidgetExtension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		3F3BD9A725290F230097BC52 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3F3BD9B425290F250097BC52 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FCD0C82D23A070FE00EFA591 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -519,19 +394,6 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3F3BD9A525290F230097BC52 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				3F3BD9B625290F250097BC52 /* FootnoteWidget.intentdefinition in Sources */,
-				3FD45D12252A4A2A00A22ED1 /* AppGroup.swift in Sources */,
-				3FD45D1A252A4E6200A22ED1 /* WidgetContent.swift in Sources */,
-				3F3BD9B125290F230097BC52 /* FootnoteWidget.swift in Sources */,
-				3FD45D1D252A51D800A22ED1 /* Footnote2.xcdatamodeld in Sources */,
-				3FD45D15252A4C3E00A22ED1 /* QuoteCodableExtension.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		FCD0C82B23A070FE00EFA591 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -539,29 +401,23 @@
 				B17E06052525265C00DA0E44 /* MediaTypes.swift in Sources */,
 				FC7C208724FB49C600A5A963 /* SuggestionsView.swift in Sources */,
 				FCD0C83323A070FE00EFA591 /* AppDelegate.swift in Sources */,
-				3FD45D0B252A482500A22ED1 /* AppGroup.swift in Sources */,
 				FCD0C85023A073E900EFA591 /* Cosmetics.swift in Sources */,
 				CFBA65C3252AEA0E003A39B3 /* OnboardingGroupView.swift in Sources */,
-				3FD45D0F252A491100A22ED1 /* WidgetContent.swift in Sources */,
 				FC8E91A423DD281000BC1365 /* ImageCreator.swift in Sources */,
 				CFB11302252B58530052A710 /* Button+Modifier.swift in Sources */,
 				FC3FB7AD252908BA00F7DC5F /* SettingsView.swift in Sources */,
 				FCD0C83823A070FE00EFA591 /* Footnote2.xcdatamodeld in Sources */,
 				0867228A24B69A6100B6938D /* DynamicHeightTextField.swift in Sources */,
-				3F3BD9B725290F250097BC52 /* FootnoteWidget.intentdefinition in Sources */,
 				FCD2A1B623DA8E6700FF266A /* QuoteDetailView.swift in Sources */,
 				3F2500982527683A00FD83E4 /* ShareSheetView.swift in Sources */,
 				CFB112FE252B57DF0052A710 /* OnboardingView.swift in Sources */,
 				FC96BFED23E1071C00F4BE94 /* UIColor+FootnoteQuoteColors.swift in Sources */,
 				FC50DF2324131B0600CB5EB7 /* AddQuoteUIKit.swift in Sources */,
-				3F56D94E253826DD00DF82BC /* SearchBar.swift in Sources */,
 				FCD0C85223A0742600EFA591 /* QuoteItemView.swift in Sources */,
 				FCD0C83A23A070FE00EFA591 /* ContentView.swift in Sources */,
 				FCFB9F7223DBA6EE00A5BD96 /* ImagePicker.swift in Sources */,
-				3F56D9522538270400DF82BC /* ViewControllerResolver.swift in Sources */,
 				FCD0C83523A070FE00EFA591 /* SceneDelegate.swift in Sources */,
 				FC0AC73223DCD94B003219A1 /* BookCoverView.swift in Sources */,
-				3FD45D02252A43DC00A22ED1 /* QuoteCodableExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,17 +433,10 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-
 		FFF89969252F165B00CEC44B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = FCD0C82E23A070FE00EFA591 /* Footnote */;
 			targetProxy = FFF89968252F165B00CEC44B /* PBXContainerItemProxy */;
-
-		3F3BD9B925290F250097BC52 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 3F3BD9A825290F230097BC52 /* FootnoteWidgetExtension */;
-			targetProxy = 3F3BD9B825290F250097BC52 /* PBXContainerItemProxy */;
-
 		};
 /* End PBXTargetDependency section */
 
@@ -603,52 +452,6 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		3F3BD9BC25290F250097BC52 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = FootnoteWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bardell.footnote.FootnoteWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Debug;
-		};
-		3F3BD9BD25290F250097BC52 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
-				INFOPLIST_FILE = FootnoteWidget/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bardell.footnote.FootnoteWidget;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-			};
-			name = Release;
-		};
 		FCD0C84423A070FF00EFA591 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -769,14 +572,12 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D160ACFE7F1C5771019432CC /* Pods-Footnote.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Footnote/Footnote.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Footnote/Preview Content\"";
-				DEVELOPMENT_TEAM = TXPQYU7TF9;
+				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = Footnote/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
@@ -797,9 +598,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7BDD8573C02C2BDDD6F078FB /* Pods-Footnote.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = Footnote/Footnote.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
@@ -864,15 +663,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		3F3BD9BE25290F250097BC52 /* Build configuration list for PBXNativeTarget "FootnoteWidgetExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				3F3BD9BC25290F250097BC52 /* Debug */,
-				3F3BD9BD25290F250097BC52 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		FCD0C82A23A070FE00EFA591 /* Build configuration list for PBXProject "Footnote" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
