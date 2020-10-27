@@ -37,47 +37,9 @@ struct AddQuoteUIKit: View {
 
     @Binding var showModal: Bool
 
-    var textFieldHeight: CGFloat {
-        let minHeight: CGFloat = 40
-        let maxHeight: CGFloat = 100
-
-        if textHeight < minHeight {
-            return minHeight
-        }
-
-        if textHeight > maxHeight {
-            return maxHeight
-        }
-
-        return textHeight
-    }
-    var titleFieldHeight: CGFloat {
-        let minHeight: CGFloat = 40
-        let maxHeight: CGFloat = 70
-
-        if titleHeight < minHeight {
-            return minHeight
-        }
-
-        if titleHeight > maxHeight {
-            return maxHeight
-        }
-
-        return titleHeight
-    }
-    var authorFieldHeight: CGFloat {
-        let minHeight: CGFloat = 40
-        let maxHeight: CGFloat = 70
-
-        if authorHeight < minHeight {
-            return minHeight
-        }
-
-        if authorHeight > maxHeight {
-            return maxHeight
-        }
-
-        return authorHeight
+    init(showModal: Binding<Bool>) {
+        UITableView.appearance().backgroundColor = .clear
+        self._showModal = showModal
     }
 
     @State private var image: Image?
@@ -101,74 +63,21 @@ struct AddQuoteUIKit: View {
 
             Divider()
 
-            RoundedRectangle(cornerRadius: 8.0)
-                .foregroundColor(.white)
-                .frame(height: textFieldHeight)
-                .shadow(radius: 5)
-                .overlay(
-                    ZStack {
-                        DynamicHeightTextField(text: $text, height: $textHeight)
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            .frame(height: textFieldHeight)
-                            .colorScheme(.light)
-                        if text.isEmpty {
-                            HStack {
-                                Text("Text")
-                                    .foregroundColor(.gray)
-                                    .padding(.horizontal)
-                                Spacer()
-                            }
-                        }
+            Form {
+                Section(header: Text("Text").foregroundColor(.white)) {
+                    if #available(iOS 14.0, *) {
+                        TextEditor(text: $text)
+                    } else {
+                        TextField("If my life is going to mean anything, I have to live it myself.", text: $title)
                     }
-
-            ).padding(.horizontal)
-                .padding(.top)
-
-            RoundedRectangle(cornerRadius: 8.0)
-                .foregroundColor(.white)
-                .frame(height: authorFieldHeight)
-                .shadow(radius: 5)
-                .overlay(
-                    ZStack {
-                        DynamicHeightTextField(text: $title, height: $titleHeight)
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            .frame(height: titleFieldHeight)
-                            .colorScheme(.light)
-                        if title.isEmpty {
-                            HStack {
-                                Text("Title").padding(.horizontal)
-                                    .foregroundColor(.gray)
-                                Spacer()
-                            }
-
-                        }
-                    }
-
-            ).padding(.horizontal)
-
-            RoundedRectangle(cornerRadius: 8.0)
-                .foregroundColor(.white)
-                .frame(height: authorFieldHeight)
-                .shadow(radius: 5)
-                .overlay(
-                    ZStack {
-                        DynamicHeightTextField(text: $author, height: $authorHeight)
-                            .clipShape(RoundedRectangle(cornerRadius: 10, style: .continuous))
-                            .frame(height: authorFieldHeight)
-                            .colorScheme(.light)
-                        if author.isEmpty {
-                            HStack {
-                                // Issue #17: Changed Author to Content Creator to align with different media type
-                                // options provided to the user
-                                Text("Content Creator")
-                                    .foregroundColor(.gray)
-                                    .padding(.horizontal)
-                                Spacer()
-                            }
-                        }
-                    }
-
-            ).padding(.horizontal)
+                }
+                Section(header: Text("Title").foregroundColor(.white)) {
+                    TextField("The Lightning Thief", text: $title)
+                }
+                Section(header: Text("Author").foregroundColor(.white)) {
+                    TextField("Rick Riordan", text: $author)
+                }
+            }
             Divider()
             SuggestionsView(searchString: self.title)
                 .background(Color.white)
@@ -200,7 +109,6 @@ struct AddQuoteUIKit: View {
         }.padding(.top)
             .background(Color.footnoteRed)
         .edgesIgnoringSafeArea(.bottom)
-
     }
 
     func addQuote() {

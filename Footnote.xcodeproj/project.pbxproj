@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		0867228A24B69A6100B6938D /* DynamicHeightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867228924B69A6100B6938D /* DynamicHeightTextField.swift */; };
 		3F2500982527683A00FD83E4 /* ShareSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2500972527683A00FD83E4 /* ShareSheetView.swift */; };
-		70818478E0D5F9B542E74E31 /* Pods_Footnote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E00C7A554BE25433F1729D /* Pods_Footnote.framework */; };
 		B17E06052525265C00DA0E44 /* MediaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E06042525265C00DA0E44 /* MediaTypes.swift */; };
 		CFB112FE252B57DF0052A710 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB112FD252B57DF0052A710 /* OnboardingView.swift */; };
 		CFB11302252B58530052A710 /* Button+Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11301252B58530052A710 /* Button+Modifier.swift */; };
@@ -57,7 +56,6 @@
 		0867228924B69A6100B6938D /* DynamicHeightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextField.swift; sourceTree = "<group>"; };
 		3F2500972527683A00FD83E4 /* ShareSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetView.swift; sourceTree = "<group>"; };
 		7BDD8573C02C2BDDD6F078FB /* Pods-Footnote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Footnote.release.xcconfig"; path = "Target Support Files/Pods-Footnote/Pods-Footnote.release.xcconfig"; sourceTree = "<group>"; };
-		90E00C7A554BE25433F1729D /* Pods_Footnote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Footnote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B17E06042525265C00DA0E44 /* MediaTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTypes.swift; sourceTree = "<group>"; };
 		B17E060A252529C800DA0E44 /* FootnoteV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FootnoteV2.xcdatamodel; sourceTree = "<group>"; };
 		CFB112FD252B57DF0052A710 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -103,7 +101,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70818478E0D5F9B542E74E31 /* Pods_Footnote.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -120,7 +117,6 @@
 		0CF7110FD5C159D62698990E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				90E00C7A554BE25433F1729D /* Pods_Footnote.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
