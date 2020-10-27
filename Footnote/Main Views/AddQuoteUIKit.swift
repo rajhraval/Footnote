@@ -78,7 +78,9 @@ struct AddQuoteUIKit: View {
                     TextField("Rick Riordan", text: $author)
                 }
             }
+            
             Divider()
+            
             SuggestionsView(searchString: self.title)
                 .background(Color.white)
 
