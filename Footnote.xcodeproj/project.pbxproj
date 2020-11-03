@@ -9,7 +9,9 @@
 /* Begin PBXBuildFile section */
 		0867228A24B69A6100B6938D /* DynamicHeightTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867228924B69A6100B6938D /* DynamicHeightTextField.swift */; };
 		3F2500982527683A00FD83E4 /* ShareSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F2500972527683A00FD83E4 /* ShareSheetView.swift */; };
-		70818478E0D5F9B542E74E31 /* Pods_Footnote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 90E00C7A554BE25433F1729D /* Pods_Footnote.framework */; };
+		3FA223052546C90700A3F6F5 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA223042546C90700A3F6F5 /* SearchBar.swift */; };
+		3FA223092546C92700A3F6F5 /* ViewControllerResolver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FA223082546C92700A3F6F5 /* ViewControllerResolver.swift */; };
+		A84AF13E646E5F3F1B0B7EEC /* Pods_Footnote.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 115084AE4304AF32D302C812 /* Pods_Footnote.framework */; };
 		B17E06052525265C00DA0E44 /* MediaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17E06042525265C00DA0E44 /* MediaTypes.swift */; };
 		CFB112FE252B57DF0052A710 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB112FD252B57DF0052A710 /* OnboardingView.swift */; };
 		CFB11302252B58530052A710 /* Button+Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFB11301252B58530052A710 /* Button+Modifier.swift */; };
@@ -55,16 +57,18 @@
 
 /* Begin PBXFileReference section */
 		0867228924B69A6100B6938D /* DynamicHeightTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DynamicHeightTextField.swift; sourceTree = "<group>"; };
+		115084AE4304AF32D302C812 /* Pods_Footnote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Footnote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3F2500972527683A00FD83E4 /* ShareSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheetView.swift; sourceTree = "<group>"; };
-		7BDD8573C02C2BDDD6F078FB /* Pods-Footnote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Footnote.release.xcconfig"; path = "Target Support Files/Pods-Footnote/Pods-Footnote.release.xcconfig"; sourceTree = "<group>"; };
-		90E00C7A554BE25433F1729D /* Pods_Footnote.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Footnote.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FA223042546C90700A3F6F5 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		3FA223082546C92700A3F6F5 /* ViewControllerResolver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerResolver.swift; sourceTree = "<group>"; };
+		4390C3F3A91D8136CF014F6E /* Pods-Footnote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Footnote.debug.xcconfig"; path = "Target Support Files/Pods-Footnote/Pods-Footnote.debug.xcconfig"; sourceTree = "<group>"; };
+		4F73A95D59B9B850B68163C2 /* Pods-Footnote.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Footnote.release.xcconfig"; path = "Target Support Files/Pods-Footnote/Pods-Footnote.release.xcconfig"; sourceTree = "<group>"; };
 		B17E06042525265C00DA0E44 /* MediaTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaTypes.swift; sourceTree = "<group>"; };
 		B17E060A252529C800DA0E44 /* FootnoteV2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FootnoteV2.xcdatamodel; sourceTree = "<group>"; };
 		CFB112FD252B57DF0052A710 /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
 		CFB11301252B58530052A710 /* Button+Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button+Modifier.swift"; sourceTree = "<group>"; };
 		CFBA65B5252AE811003A39B3 /* SettingsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		CFBA65C2252AEA0E003A39B3 /* OnboardingGroupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingGroupView.swift; sourceTree = "<group>"; };
-		D160ACFE7F1C5771019432CC /* Pods-Footnote.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Footnote.debug.xcconfig"; path = "Target Support Files/Pods-Footnote/Pods-Footnote.debug.xcconfig"; sourceTree = "<group>"; };
 		FC0AC73123DCD94B003219A1 /* BookCoverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCoverView.swift; sourceTree = "<group>"; };
 		FC3FB7AC252908BA00F7DC5F /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		FC50DF2224131B0600CB5EB7 /* AddQuoteUIKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddQuoteUIKit.swift; sourceTree = "<group>"; };
@@ -103,7 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				70818478E0D5F9B542E74E31 /* Pods_Footnote.framework in Frameworks */,
+				A84AF13E646E5F3F1B0B7EEC /* Pods_Footnote.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -117,10 +121,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0CF7110FD5C159D62698990E /* Frameworks */ = {
+		A7C962050FB1499225F13071 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				90E00C7A554BE25433F1729D /* Pods_Footnote.framework */,
+				115084AE4304AF32D302C812 /* Pods_Footnote.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -128,8 +132,8 @@
 		CE06290C7D722E2D842B596A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D160ACFE7F1C5771019432CC /* Pods-Footnote.debug.xcconfig */,
-				7BDD8573C02C2BDDD6F078FB /* Pods-Footnote.release.xcconfig */,
+				4390C3F3A91D8136CF014F6E /* Pods-Footnote.debug.xcconfig */,
+				4F73A95D59B9B850B68163C2 /* Pods-Footnote.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -165,6 +169,8 @@
 				3F2500972527683A00FD83E4 /* ShareSheetView.swift */,
 				0867228924B69A6100B6938D /* DynamicHeightTextField.swift */,
 				FC7C208624FB49C600A5A963 /* SuggestionsView.swift */,
+				3FA223042546C90700A3F6F5 /* SearchBar.swift */,
+				3FA223082546C92700A3F6F5 /* ViewControllerResolver.swift */,
 			);
 			path = "Supporting Views";
 			sourceTree = "<group>";
@@ -191,7 +197,7 @@
 				FFF89964252F165B00CEC44B /* FastlaneSnapshots */,
 				FCD0C83023A070FE00EFA591 /* Products */,
 				CE06290C7D722E2D842B596A /* Pods */,
-				0CF7110FD5C159D62698990E /* Frameworks */,
+				A7C962050FB1499225F13071 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -251,7 +257,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = FCD0C84623A070FF00EFA591 /* Build configuration list for PBXNativeTarget "Footnote" */;
 			buildPhases = (
-				B8879BFE165F5578C3EE408B /* [CP] Check Pods Manifest.lock */,
+				89264D53E36F1B42C9CA32BB /* [CP] Check Pods Manifest.lock */,
 				FCD0C82B23A070FE00EFA591 /* Sources */,
 				FCD0C82C23A070FE00EFA591 /* Frameworks */,
 				FCD0C82D23A070FE00EFA591 /* Resources */,
@@ -351,7 +357,7 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		B8879BFE165F5578C3EE408B /* [CP] Check Pods Manifest.lock */ = {
+		89264D53E36F1B42C9CA32BB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -412,9 +418,11 @@
 				3F2500982527683A00FD83E4 /* ShareSheetView.swift in Sources */,
 				CFB112FE252B57DF0052A710 /* OnboardingView.swift in Sources */,
 				FC96BFED23E1071C00F4BE94 /* UIColor+FootnoteQuoteColors.swift in Sources */,
+				3FA223052546C90700A3F6F5 /* SearchBar.swift in Sources */,
 				FC50DF2324131B0600CB5EB7 /* AddQuoteUIKit.swift in Sources */,
 				FCD0C85223A0742600EFA591 /* QuoteItemView.swift in Sources */,
 				FCD0C83A23A070FE00EFA591 /* ContentView.swift in Sources */,
+				3FA223092546C92700A3F6F5 /* ViewControllerResolver.swift in Sources */,
 				FCFB9F7223DBA6EE00A5BD96 /* ImagePicker.swift in Sources */,
 				FCD0C83523A070FE00EFA591 /* SceneDelegate.swift in Sources */,
 				FC0AC73223DCD94B003219A1 /* BookCoverView.swift in Sources */,
@@ -503,7 +511,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -558,7 +566,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -570,11 +578,11 @@
 		};
 		FCD0C84723A070FF00EFA591 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D160ACFE7F1C5771019432CC /* Pods-Footnote.debug.xcconfig */;
+			baseConfigurationReference = 4390C3F3A91D8136CF014F6E /* Pods-Footnote.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Footnote/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
@@ -596,11 +604,11 @@
 		};
 		FCD0C84823A070FF00EFA591 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BDD8573C02C2BDDD6F078FB /* Pods-Footnote.release.xcconfig */;
+			baseConfigurationReference = 4F73A95D59B9B850B68163C2 /* Pods-Footnote.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Manual;
+				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Footnote/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
