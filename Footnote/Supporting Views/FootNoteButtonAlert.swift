@@ -14,14 +14,12 @@ enum ActiveAlert {
 struct FootNoteButtonAlert: View {
 
     @Environment(\.presentationMode) var presentationMode
-    
     var singleButton: Bool = false
     var buttonTitle: String
     var title: String
     var message: String
     var primaryButton: Alert.Button?
     var secondaryButton: Alert.Button?
-    
     var additionalActions: () -> Void
 
     @State private var showAlert = false
@@ -32,17 +30,15 @@ struct FootNoteButtonAlert: View {
         let secondaryButton = Alert.Button.default(Text("No More Quotes "), action: {
             self.presentationMode.wrappedValue.dismiss()
         })
-        
-        return Alert(title: Text(title), message: Text(message), primaryButton: primaryButton, secondaryButton: secondaryButton)
+        return Alert(title: Text(title),
+                     message: Text(message),
+                     primaryButton: primaryButton,
+                     secondaryButton: secondaryButton)
     }
-    
     private var alertOneButton: Alert {
         let primaryButton = Alert.Button.cancel()
-        
         return Alert(title: Text(title), message: Text(message), dismissButton: primaryButton)
     }
-    
-    
     var body: some View {
 
         Button(action: {
@@ -51,7 +47,6 @@ struct FootNoteButtonAlert: View {
             } else {
                 self.activeAlert = .second
             }
-            
             self.showAlert.toggle()
             self.additionalActions()
         }, label: {
@@ -59,7 +54,7 @@ struct FootNoteButtonAlert: View {
                 .foregroundColor(.white)
                 .frame(height: 40)
                 .padding(.horizontal)
-                .overlay (
+                .overlay(
                     Text(buttonTitle)
                         .foregroundColor(.black)
             )
