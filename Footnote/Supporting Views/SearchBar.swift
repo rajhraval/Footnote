@@ -9,10 +9,8 @@
 import SwiftUI
 
 class SearchBar: NSObject, ObservableObject {
-    
     @Published var text: String = ""
     let searchController: UISearchController = UISearchController(searchResultsController: nil)
-    
     override init() {
         super.init()
         self.searchController.obscuresBackgroundDuringPresentation = false
@@ -21,9 +19,7 @@ class SearchBar: NSObject, ObservableObject {
 }
 
 extension SearchBar: UISearchResultsUpdating {
-   
     func updateSearchResults(for searchController: UISearchController) {
-        
         // Publish search bar text changes.
         if let searchBarText = searchController.searchBar.text {
             self.text = searchBarText
@@ -32,9 +28,7 @@ extension SearchBar: UISearchResultsUpdating {
 }
 
 struct SearchBarModifier: ViewModifier {
-    
     let searchBar: SearchBar
-    
     func body(content: Content) -> some View {
         content
             .overlay(
@@ -47,7 +41,6 @@ struct SearchBarModifier: ViewModifier {
 }
 
 extension View {
-    
     func add(_ searchBar: SearchBar) -> some View {
         return self.modifier(SearchBarModifier(searchBar: searchBar))
     }

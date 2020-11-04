@@ -280,7 +280,6 @@ struct ImageCreator: View {
     }
 
     func saveImage(image: UIImage) {
-        // TODO: what happens if saving fails.
         // https://www.hackingwithswift.com/books/ios-swiftui/how-to-save-images-to-the-users-photo-library
         UIImageWriteToSavedPhotosAlbum(image, nil, nil, nil)
     }
